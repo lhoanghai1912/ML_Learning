@@ -1,6 +1,6 @@
 # EDA dữ liệu training (sales.csv) — 6 biểu đồ quan sát trước khi build model
-# Output: EDA_Insight/output/*.png
-# Chạy: python EDA_Insight/eda_training_charts.py (sau khi activate .venv)
+# Output: EDA_Insight/output/phase1/*.png
+# Chạy: python EDA_Insight/phase1_descriptive/eda_training_charts.py (sau khi activate .venv)
 
 import pandas as pd
 import numpy as np
@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 from lunardate import LunarDate
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-OUT = HERE / "output"
-OUT.mkdir(exist_ok=True)
+HERE = Path(__file__).resolve().parent           # EDA_Insight/phase1_descriptive/
+OUT = HERE.parent / "output" / "phase1"          # EDA_Insight/output/phase1/
+OUT.mkdir(parents=True, exist_ok=True)
 
 C_REV = "#A32D2D"   # đỏ — Revenue, cố định mọi chart
 C_COGS = "#185FA5"  # xanh — COGS
@@ -23,7 +23,7 @@ plt.rcParams.update({"font.size": 11, "axes.spines.top": False,
                      "axes.spines.right": False, "axes.grid": True,
                      "grid.alpha": 0.25, "grid.linestyle": ":"})
 
-sales = pd.read_csv(HERE.parent / "data" / "sales.csv", parse_dates=["Date"])
+sales = pd.read_csv(HERE.parent.parent / "data" / "sales.csv", parse_dates=["Date"])
 sales["margin_pct"] = (sales["Revenue"] - sales["COGS"]) / sales["Revenue"] * 100
 
 # ---------------------------------------------------------------

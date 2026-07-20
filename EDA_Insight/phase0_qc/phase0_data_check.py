@@ -5,11 +5,12 @@
 #   3. Kiểm tra duplicate trong order_items
 #   4. Xem 382 ngày lỗ gộp rơi vào thời điểm nào
 # Chạy: python3 phase0_data_check.py
+# (file nằm trong EDA_Insight/phase0_qc/ — DATA trỏ lên 3 cấp tới thư mục gốc dự án/data)
 
 import pandas as pd
 from pathlib import Path
 
-DATA = Path(__file__).resolve().parent.parent / "data"
+DATA = Path(__file__).resolve().parent.parent.parent / "data"
 
 print("Đang load dữ liệu...")
 orders = pd.read_csv(DATA / "orders.csv", parse_dates=["order_date"],
