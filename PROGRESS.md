@@ -4,6 +4,8 @@ Cập nhật lần cuối: 2026-07-21
 
 **Cấu trúc thư mục** (sau reorg): mỗi phase 1 folder riêng trong `EDA_Insight/` — `phase0_qc/`, `phase1_descriptive/` (kèm `data/` chứa CSV trung gian), `phase2_diagnostic/`, `phase3_dashboard/` (kèm `data/`). Chart tách theo `output/phase0-3/`. Lineage đầy đủ ghi ở `EDA_Insight/DATA_LINEAGE.md`.
 
+**Notebook trình bày (2026-07-21):** mỗi script phân tích `.py` có 1 `.ipynb` kèm (cùng thư mục, cùng tên) chart hiện inline — 9 notebook đã chạy thật qua Jupyter, 0 lỗi, 46 ảnh baked; bản đồ script↔notebook ở `EDA_Insight/NOTEBOOKS.md`. Notebook trung thực (savefig/CSV chạy lại ra byte y hệt, 0 file tracked bị sửa). ℹ️ Phát hiện phụ: chart `output/phase5/36_*.png` KHÔNG tái lập được từ `verify_target_and_cohort.py` (script này thuần tính số, không có code vẽ) — chart do session Phase 5 vẽ ad-hoc, là lỗ hổng reproducibility nhỏ của Phase 5.
+
 **Hạ tầng (2026-07-21): đã giải quyết 2 cảnh báo lặp lại nhiều phase.** Cài thêm vào `.venv` (+ `requirements.txt`): `scikit-learn`, `scipy`, `statsmodels`, `xgboost`, `lightgbm` (cần `brew install libomp` kèm theo trên macOS), `nbconvert`, `nbclient`, `notebook`. Đã chạy lại **cả 4 notebook** (`EDA_khoi_dong`, `EDA_quan_sat`, `EDA_diagnostic`, `EDA_demographics`) qua Jupyter kernel thật (`jupyter nbconvert --execute --inplace`) — 0 lỗi, output đã bake sẵn trong file. Không còn bị chặn hạ tầng cho Giai đoạn 7-8 (ensemble/ARIMA).
 
 | # | Giai đoạn | Agent | Trạng thái | File output | Ghi chú |
