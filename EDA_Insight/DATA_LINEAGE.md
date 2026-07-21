@@ -51,8 +51,32 @@ Phase 3 — Dashboard A: RFM/Cohort/Churn (phase3_dashboard/)  [xuất data/*.cs
    │  customer_demographics.py → data/rfm_customer_segments.csv, data/cohort_retention_matrix.csv,
    │                              data/churn_risk_scores.csv
    ▼
-Phase 4-10 (chưa tới) — Prescriptive, chốt giả định, feature engineering, model, forecast, validation,
-   báo cáo cuối — sẽ ĐỌC LẠI các file data/*.csv ở Phase 1 & 3 làm input, không tính lại từ raw.
+Phase 4 — Prescriptive (phase4_prescriptive/)  [xuất data/*.csv — 2026-07-21, chính thức]
+   │  prescriptive_analysis.py → data/{floor_price_simulation_overall,floor_price_simulation_by_category,
+   │    winback_scenario_by_segment,west_margin_replication_by_category_region,
+   │    west_margin_replication_summary}.csv
+   │  Chốt: floor price = cogs loại bỏ bán dưới giá vốn → margin toàn shop +2,36pp (+0,462 tỷ VND
+   │    toàn kỳ 10 năm, cận trên lý thuyết, giả định không co giãn cầu); win-back Can't Lose Them/At
+   │    Risk là kịch bản minh hoạ (+5/10/15pp retention, cần A/B test thật để xác nhận); nhân rộng
+   │    pricing West chỉ +38 triệu VND/10 năm (margin +0,24pp — giá trị chính là định hướng vận hành,
+   │    không phải đòn bẩy tài chính lớn); KHÔNG đề xuất giảm giá/tăng khuyến mãi (Phase 2 đã chứng
+   │    minh break 2019 là vấn đề khối lượng, không phải giá).
+   ▼
+Phase 5 — Chốt giả định A→B (phase5_model_assumptions/)  [xuất data/*.csv — verify độc lập]
+   │  verify_target_and_cohort.py → data/target_reconcile_sample.csv (3,833 dòng, đối chiếu
+   │    sales.csv vs rebuild gross từ order_items — MAPE 0.000000%),
+   │    data/cohort_retention_by_first_order.csv (13 dòng, verify độc lập retention phẳng bằng
+   │    cohort = tháng đơn hàng đầu tiên, KHÔNG dùng lại signup_date của Phase 3)
+   │  Chốt: target = gross demand xác nhận lại; retention phẳng ~5-6% mọi offset (xác nhận độc
+   │    lập phát hiện Phase 3, khả năng cao do cơ chế sinh dữ liệu độc lập theo thời gian) → loại
+   │    bỏ feature hành vi khách hàng lặp lại khỏi khung feature Giai đoạn 6; chốt 5 giả định
+   │    model (break 2019 = dummy indicator, mùa vụ margin thấp T7-9/T11-12 cho COGS, days_from_tet
+   │    liên tục, không dùng promo tương lai, region không làm trục chính) — xem
+   │    `phase5_model_assumptions/model_assumptions.md`.
+   ▼
+Phase 6-10 (chưa tới) — Feature engineering thuần lịch, baseline model, model theo quý +
+   ensemble, validation, báo cáo cuối — sẽ ĐỌC LẠI các file data/*.csv ở Phase 1/3/5 làm input,
+   không tính lại từ raw.
 ```
 
 ## 2. Raw data (`/Dự án datathon2026/data/`, chỉ đọc)
@@ -107,6 +131,32 @@ x promo). Chart mới: `output/phase2/29..35_*.png` (không đè 07-14 đã có 
 | `cohort_retention_matrix.csv` | `customers.signup_date` (loại 238 khách pre-launch `signup_date < 2012-07-04`) + `orders` (non-cancelled) | Cohort = tháng `signup_date`. Với mỗi cohort, tính % khách còn active (≥1 đơn non-cancelled) ở tháng offset 0-15 kể từ signup; mẫu số = **toàn bộ khách signup tháng đó** (kể cả chưa từng mua) — đúng chuẩn retention. 126 cohort tháng (2012-07 → 2022-12) × 16 cột offset. | `customer_demographics.py` (mục Cohort Retention) | Phase 5 — DS phải xác nhận lại phát hiện "retention PHẲNG ~3% mọi offset" (nghi ngờ đặc tính mô phỏng) trước khi giả định decay curve kiểu BG/NBD trong model CLV. |
 | `churn_risk_scores.csv` | `rfm_customer_segments.csv` (tier rule-based, toàn mẫu 88,123 khách) + logistic regression numpy thủ công (time-split, cutoff `2022-06-30`) | Cột `churn_tier`: rule tuyệt đối theo `recency_days` (>365 = "Đã rời bỏ", >180 & trend≤0 = "Rủi ro cao", ...). Cột `p_churn_logistic`: xác suất từ model logistic huấn luyện trên 87,589 khách có đơn ≤ cutoff (train 70,071/test 17,518, AUC 0.773) — áp dụng cho **toàn bộ** 87,589 khách trong `hist_agg`, không chỉ tập test; khách chỉ có đơn SAU cutoff (~535 khách, phần chênh giữa 88,123 và 87,589) để **NaN** ở cột này (không suy diễn/bịa số). Cột `used_in_logistic_test_set` đánh dấu 17,518 khách dùng để tính Accuracy/Precision/Recall/AUC ở báo cáo — phân biệt với phần còn lại (in-sample, dùng để train). | `customer_demographics.py` (mục Churn Risk + Logistic regression) | Phase 4 (target list ưu tiên campaign win-back theo tier); Phase 5 (DS thay bằng sklearn logistic chuẩn + tối ưu ngưỡng rule theo F1/lợi nhuận kỳ vọng, có `class_weight` cho mất cân bằng 87.4% churn). |
 
+### Phase 4 — Prescriptive (`phase4_prescriptive/data/`)
+
+Mô phỏng lịch sử ("nếu áp dụng sớm hơn thì...") cho 3/4 đề xuất định lượng — đề xuất thứ 4
+(acquisition/retention) không xuất CSV vì không có dữ liệu chi phí marketing để ước tính số tuyệt đối,
+chỉ nêu định hướng chiến lược (xem `prescriptive_analysis.md` mục 4).
+
+| File | Nguồn gốc (bảng raw) | Phép biến đổi | Tạo bởi | Dùng tiếp ở đâu |
+|---|---|---|---|---|
+| `floor_price_simulation_overall.csv` | `order_items+orders+products` (gross, toàn bộ 714,669 dòng lịch sử, không lọc năm/trạng thái đơn) | `unit_price_floor = max(unit_price, cogs)`; so sánh `revenue`/`margin_pct` thực tế vs giả định floor price (COGS catalog không đổi) | `prescriptive_analysis.py` (Đề xuất 1) | Nền cho khuyến nghị "đặt giá sàn = cogs khi chạy promo" — margin toàn shop +2.36pp nếu áp dụng, giả định không co giãn cầu (nêu rõ ở mục Rủi ro). |
+| `floor_price_simulation_by_category.csv` | Như trên, group theo `category` | Margin tăng thêm (VNĐ, điểm %) theo từng category | `prescriptive_analysis.py` (Đề xuất 1) | Xác nhận Streetwear đóng góp phần lớn margin tăng thêm (do tỷ trọng doanh thu, không phải % tăng/dòng cao nhất) — ưu tiên review floor price category này trước. |
+| `winback_scenario_by_segment.csv` | `phase3_dashboard/data/rfm_customer_segments.csv` (không tính lại từ raw) | Với segment "Can't Lose Them"/"At Risk": `AOV = tổng monetary/tổng frequency`; kịch bản `+5/10/15 điểm % retention` → `doanh thu tiềm năng = n_khách × X% × AOV` | `prescriptive_analysis.py` (Đề xuất 2) | Target list ưu tiên ngân sách win-back — con số là KỊCH BẢN minh hoạ, cần thiết kế A/B test thật trước khi scale (theo khuyến nghị `dashboard_rfm_cohort.md`). |
+| `west_margin_replication_by_category_region.csv` | `phase2_diagnostic/data/category_region_margin_controlled.csv` (không tính lại từ raw) | Với mỗi category ở Central/East: `gap_pp = margin(West) − margin(vùng)` (chặn ≥0); `target_margin = margin(vùng) + 60%×gap_pp` (hệ số 60% lấy từ `region_margin_mix_decomposition.csv` Phase 2); `margin tăng thêm = cogs_cũ − cogs_mới` | `prescriptive_analysis.py` (Đề xuất 3) | Chi tiết từng category — dùng khi cần biết category nào đáng ưu tiên nhân rộng pricing West trước (Outdoor, Streetwear có gap dương lớn nhất). |
+| `west_margin_replication_summary.csv` | Tổng hợp từ file trên + `category_region_margin_controlled.csv` | Margin toàn shop (3 vùng gộp) trước/sau kịch bản 60% | `prescriptive_analysis.py` (Đề xuất 3) | Kết luận: +38 triệu VND/10 năm (margin +0.24pp) — con số nhỏ, giá trị chính là định hướng vận hành. |
+
+Chart mới: `EDA_Insight/output/phase4/36_floor_price_margin_before_after.png`,
+`37_winback_revenue_scenario.png`, `38_west_margin_replication_uplift.png`.
+
+### Phase 5 — Chốt giả định A→B (`phase5_model_assumptions/data/`)
+
+| File | Nguồn gốc (bảng raw) | Phép biến đổi | Tạo bởi | Dùng tiếp ở đâu |
+|---|---|---|---|---|
+| `target_reconcile_sample.csv` | `sales.csv` + `order_items+orders+products` | Rebuild `gross_revenue_line = quantity×unit_price`, `gross_cogs_line = quantity×cogs` (catalog), group theo `order_date`, **giữ nguyên cancelled, không trừ discount**, join với `sales.csv` theo `Date`, tính `%` lệch tuyệt đối từng ngày. 3,833 dòng, MAPE 0.000000%. | `verify_target_and_cohort.py` (Nhiệm vụ 1) | Xác nhận độc lập lại kết luận Phase 0 W1 (target = gross demand) — căn cứ số cho `model_assumptions.md`. |
+| `cohort_retention_by_first_order.csv` | `orders` (non-cancelled) — cohort = **tháng đơn hàng KHÔNG-cancelled ĐẦU TIÊN** của khách (khác Phase 3 dùng `signup_date`) | Với mỗi offset 0-12 tháng: mẫu số = tổng khách của các cohort đủ thời gian quan sát tới offset đó; % active = có ≥1 đơn non-cancelled đúng offset đó. 13 dòng. | `verify_target_and_cohort.py` (Nhiệm vụ 3) | Verify độc lập phát hiện "retention phẳng" của Phase 3 bằng cách đo khác (first-order thay vì signup) — cùng kết luận: PHẲNG (std 0.40pp qua offset 1-12), không có decay → chốt loại bỏ feature hành vi khách hàng lặp lại khỏi khung feature Giai đoạn 6, xem `model_assumptions.md` Nhiệm vụ 3. |
+
+Chart mới: `EDA_Insight/output/phase5/36_cohort_retention_by_first_order_verify.png`.
+
 ## 4. Ghi chú quan trọng khi dùng lại các file trên
 
 1. **Không trộn gross và net khi join/so sánh giữa các file.** `category_region_decompose.csv` và
@@ -128,3 +178,9 @@ x promo). Chart mới: `output/phase2/29..35_*.png` (không đè 07-14 đã có 
    `revenue_diagnostic.py`, `customer_demographics.py`, và exec() nối các code-cell của cả 4 notebook
    (`EDA_khoi_dong.ipynb`, `EDA_quan_sat.ipynb`, `EDA_diagnostic.ipynb`, `EDA_demographics.ipynb`) bằng
    `.venv/bin/python` — tất cả chạy sạch (exit 0), số liệu khớp 100% với các báo cáo `.md` hiện có.
+6. **`phase4_prescriptive/data/` trộn cả gross và net có chủ đích, mỗi file ghi rõ loại đang dùng:**
+   `floor_price_simulation_*.csv` dùng **gross** (`order_items` toàn bộ, khớp định nghĩa `sales.csv` —
+   đúng scope "toàn bộ order_items lịch sử" theo yêu cầu đề xuất 1); `winback_scenario_by_segment.csv`
+   dùng **net** (kế thừa `monetary` = `payment_value` từ `rfm_customer_segments.csv` Phase 3);
+   `west_margin_replication_*.csv` dùng **gross + cogs catalog** (kế thừa `category_region_margin_controlled.csv`
+   Phase 2). Không cộng dồn số giữa 3 nhóm file này (đơn vị/định nghĩa doanh thu khác nhau).
