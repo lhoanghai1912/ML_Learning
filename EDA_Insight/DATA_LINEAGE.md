@@ -174,6 +174,33 @@ Chart QC: `EDA_Insight/output/phase6/qc_month_dow_distribution.png` (so phân b�
 giữa train và forecast — chênh lệch `month` là do cấu trúc horizon 1.5 năm dương lịch, không phải lỗi,
 giải thích chi tiết ở `feature_pipeline.md` mục 4).
 
+### Phase 7 — Baseline model Revenue/COGS (`phase7_baseline/data/`)
+
+Script: `build_baselines.py`, chi tiết đầy đủ + toàn bộ bảng metric/khuyến nghị ở
+`phase7_baseline/baseline_report.md`. Chỉ đọc `features_train.csv`/`features_forecast.csv` (Phase 6),
+KHÔNG sinh lại feature. Revenue/COGS train độc lập. Holdout nội bộ (2021-07-02 → 2022-12-31, 548 ngày)
+dùng để backtest — KHÔNG có ground-truth thật cho 2023-2024.
+
+| File | Nguồn gốc | Phép biến đổi | Tạo bởi | Dùng tiếp ở đâu |
+|---|---|---|---|---|
+| `metrics_summary.csv` | `features_train.csv` (holdout 2021-07-02→2022-12-31 và subset 2022) | MAPE/WAPE/RMSE/MAE cho 4 baseline (B1 seasonal naive, B2 month-mean, B3 linear, B3b linear+interaction) × 2 target × 2 holdout. | `build_baselines.py` | Chọn baseline tốt nhất (mốc Giai đoạn 8), so sánh model mới ở Giai đoạn 8. |
+| `holdout_predictions.csv` | `features_train.csv` (subset holdout) | Actual + dự đoán 4 baseline từng ngày, holdout chính, có cờ `in_2022`. | `build_baselines.py` | Vẽ chart, phân tích residual, đối chiếu số cụ thể. |
+| `forecast_B1_seasonal_naive.csv`, `forecast_B2_month_mean.csv`, `forecast_B3_linear.csv`, `forecast_B3b_linear_interaction.csv` | `features_forecast.csv` + production fit trên toàn bộ `features_train.csv` (2012-2022) | Forecast 548 ngày (2023-01-01 → 2024-07-01) mỗi baseline, cột `Date,Revenue,COGS`. **Lưu ý: `forecast_B3_linear.csv` có 4 ngày Revenue ÂM** (linear regression không ràng buộc không-âm) — không dùng trực tiếp làm submission. | `build_baselines.py` | Input tham khảo Giai đoạn 8 (so sánh với ensemble); Giai đoạn 9 (đối chiếu format). |
+| `submission_best_baseline.csv` | = `forecast_B1_seasonal_naive.csv` (baseline thắng theo avg WAPE holdout chính) | Đúng format `Date,Revenue,COGS` như `data/sample_submission.csv`. | `build_baselines.py` | Mốc "phải vượt" cho Giai đoạn 8; dự phòng format-check Giai đoạn 9. |
+| `b3_ols_coefficients.csv` | `features_train.csv` (loại 2012, production fit) | Coefficient/std-err/p-value từng feature B3 (Revenue và COGS riêng) — phụ trợ diễn giải bias (không bắt buộc theo đề bài). | `build_baselines.py` | Diễn giải nguyên nhân B3 thua B1 (`baseline_report.md` mục 4.4). |
+| `best_baseline_name.txt` | — | Tên baseline được chọn (`B1_seasonal_naive`). | `build_baselines.py` | Tham chiếu nhanh cho Giai đoạn 8/9. |
+
+**Kết quả quan trọng cần biết trước khi dùng lại:** **B1 (seasonal naive) thắng B2 và B3/B3b trên MỌI
+metric/target/holdout** (WAPE Revenue 25.18% vs B3 46.97%, WAPE COGS 23.09% vs B3 42.28%, holdout chính
+548 ngày) — nguyên nhân: B3 dùng 1 `trend_index` tuyến tính DUY NHẤT cho toàn bộ 2013-2022, ngoại suy
+lệch dương so với thực tế phục hồi chậm sau break 2019 (chi tiết + số liệu ở `baseline_report.md` mục
+4.4). Giai đoạn 8 PHẢI vượt qua mốc WAPE của B1 mới coi là có giá trị thêm.
+
+Chart: `EDA_Insight/output/phase7/07_train_fit_vs_actual.png`,
+`07_holdout_actual_vs_pred.png`, `07_forecast_baselines_overlay.png`,
+`07_b3_residuals_holdout.png`, `07_metric_bar_comparison.png` (mỗi chart có phân tích 3 ý ở
+`baseline_report.md` mục 4).
+
 ## 4. Ghi chú quan trọng khi dùng lại các file trên
 
 1. **Không trộn gross và net khi join/so sánh giữa các file.** `category_region_decompose.csv` và
