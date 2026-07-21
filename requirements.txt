@@ -2,3 +2,11 @@ pandas
 matplotlib
 openpyxl
 lunardate
+scikit-learn
+scipy
+statsmodels
+xgboost
+lightgbm
+nbconvert
+nbclient
+notebook
