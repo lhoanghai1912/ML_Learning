@@ -157,6 +157,23 @@ Chart mới: `EDA_Insight/output/phase4/36_floor_price_margin_before_after.png`,
 
 Chart mới: `EDA_Insight/output/phase5/36_cohort_retention_by_first_order_verify.png`.
 
+### Phase 6 — Feature engineering thuần lịch (`phase6_features/data/`)
+
+**Phần de (Giai đoạn 6a) — ma trận feature train/forecast.** Chạy độc lập với phần ds cùng phase
+(ds phụ trách `feature_spec.md`, `feature_target_correlation.csv`, `output/phase6/screen_*` — không
+liệt kê ở đây, ds tự cập nhật phần của mình). Script: `build_features.py`, chi tiết đầy đủ ở
+`phase6_features/feature_pipeline.md`.
+
+| File | Nguồn gốc (bảng raw/phase trước) | Phép biến đổi | Tạo bởi | Dùng tiếp ở đâu |
+|---|---|---|---|---|
+| `tet_dates_extended.csv` | Không đọc `data/` — sinh từ `lunardate`, đối chiếu với `phase1_descriptive/data/tet_dates.csv` (chỉ đọc, không ghi đè) | Mồng 1 Tết dương lịch 2012-2025 (mở rộng 2 năm so với Phase 1, thêm 2023-2025 cho horizon forecast); dừng script nếu lệch 2013-2022 so với Phase 1 (đã kiểm: khớp 100%) | `build_features.py` bước 1 | Input tính `days_from_tet` cho cả `features_train.csv` và `features_forecast.csv`. |
+| `features_train.csv` | `data/sales.csv` (gross, `Date,Revenue,COGS`) + `tet_dates_extended.csv` | 1 dòng/ngày (2012-07-04 → 2022-12-31, 3,833 dòng), 17 cột feature GHIM thuần lịch (`year`, `month`, `quarter`, `day_of_week`, `day_of_month`, `month_sin/cos`, `dow_sin/cos`, `is_post_2019`, `is_post_2019_transition`, `days_from_tet`, `is_low_margin_season`, `trend_index` neo `2012-07-04=0`, `is_holiday_302_305`, `is_holiday_qk`, `is_christmas`) + `is_partial_year_2012` + join nguyên trạng `Revenue`/`COGS` (gross, KHÔNG tính lại) từ `sales.csv`. KHÔNG có feature hành vi khách/promo tương lai/region (chốt Phase 5 G4/G5/Nhiệm vụ 3). | `build_features.py` bước 4 | Input train Giai đoạn 7 (baseline model Revenue/COGS độc lập). |
+| `features_forecast.csv` | `data/sample_submission.csv` (`Date`) + `tet_dates_extended.csv` | Đúng 548 dòng (2023-01-01 → 2024-07-01, tập ngày khớp 100% `sample_submission.csv`), CÙNG hàm `build_calendar_features()` như train (không leakage, không lệch định nghĩa), CHỈ feature, KHÔNG có `Revenue`/`COGS`. | `build_features.py` bước 5 | Input predict Giai đoạn 9 (sinh forecast 548 ngày, đối chiếu format `sample_submission.csv`). |
+
+Chart QC: `EDA_Insight/output/phase6/qc_month_dow_distribution.png` (so phân bố `month`/`day_of_week`
+giữa train và forecast — chênh lệch `month` là do cấu trúc horizon 1.5 năm dương lịch, không phải lỗi,
+giải thích chi tiết ở `feature_pipeline.md` mục 4).
+
 ## 4. Ghi chú quan trọng khi dùng lại các file trên
 
 1. **Không trộn gross và net khi join/so sánh giữa các file.** `category_region_decompose.csv` và
