@@ -142,6 +142,16 @@ Chart actual-vs-predicted holdout (`08_holdout_actual_vs_pred_final.png`): model
 
 ---
 
+### Cập nhật GĐ9 (đã thực hiện — `phase9_validation/validation_report.md`)
+
+Các khuyến nghị #2, #3, #4, #5 ở trên đã được kiểm tại GĐ9, **KHÔNG đổi model/weight → giữ nguyên `forecast_548.csv`**:
+
+- **#2 SHAP:** chiều tác động khớp GĐ6 (`lag_365` +, `trend_index` −, `days_from_tet` +, `day_of_month` +); `quarter`/`is_holiday_qk`/`is_christmas` mean|SHAP|=0 xác nhận lại. **Phát hiện mới:** `trend_index` ở vùng ngoại suy (100% ngày forecast > max train) bị **tree chặn phẳng ở leaf cuối** → đóng góp hằng số cho toàn forecast; rủi ro under-forecast nếu 2023–2024 tăng nền vượt lịch sử (đưa vào §6 hạn chế).
+- **#3 Horizon:** đuôi (366–548, lag chain) KHÔNG suy giảm — còn tốt hơn đầu (Rev −3.74, COGS −0.84 điểm) → rủi ro §6.2 không hiện thực hóa; **không cần lag_182**.
+- **#4/#5 Robustness + weight:** Ensemble 50/50 thắng main + no-break cả 2 target; grid weight 0.30–0.70 cho argmin đúng tại 0.5 (validation) → **giữ 50/50**. GradientBoosting chỉ hơn ở fold break `rolling_2` → giữ làm fallback nếu drift báo sốc cấu trúc.
+
+---
+
 ## 8. Danh sách file output
 
 - `build_model.py` — script tái lập đầy đủ.

@@ -1,0 +1,7 @@
+target,model,main_548d,rolling_1,rolling_2,rolling_3,rolling_4,avg_rolling,avg_rolling_no_break
+Revenue,GradientBoosting,25.09,21.15,44.58,27.03,33.52,31.57,27.23
+Revenue,LightGBM,23.22,22.12,63.19,25.47,20.44,32.8,22.68
+Revenue,Ensemble_LGB_B1_50/50,22.71,20.45,58.34,24.09,19.23,30.53,21.26
+COGS,GradientBoosting,20.92,22.15,31.23,20.61,22.21,24.05,21.66
+COGS,LightGBM,20.05,24.98,57.4,21.0,18.43,30.45,21.47
+COGS,Ensemble_LGB_B1_50/50,19.79,21.08,54.61,20.76,17.28,28.43,19.71
