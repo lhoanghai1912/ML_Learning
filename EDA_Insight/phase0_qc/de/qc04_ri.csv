@@ -1,0 +1,16 @@
+edge,child_rows,null_fk,orphans,orphan_pct,orphan_keys_distinct,example_orphan_values,severity,note
+orders.customer_id -> customers.customer_id,646945,0,0,0.0,0,[],none,
+orders.zip -> geography.zip,646945,0,0,0.0,0,[],none,
+customers.zip -> geography.zip,121930,0,0,0.0,0,[],none,
+order_items.order_id -> orders.order_id,714669,0,0,0.0,0,[],none,
+order_items.product_id -> products.product_id,714669,0,0,0.0,0,[],none,
+order_items.promo_id -> promotions.promo_id,714669,438353,0,0.0,0,[],none,"phan lon don khong ap dung khuyen mai -> NULL hop le (438353 null, 61.34%, KHONG tinh la orphan)"
+order_items.promo_id_2 -> promotions.promo_id,714669,714463,0,0.0,0,[],none,"khuyen mai thu 2 (stackable) hiem -> phan lon NULL hop le (714463 null, 99.97%, KHONG tinh la orphan)"
+payments.order_id -> orders.order_id,646945,0,0,0.0,0,[],none,
+shipments.order_id -> orders.order_id,566067,0,0,0.0,0,[],none,
+returns.order_id -> orders.order_id,39939,0,0,0.0,0,[],none,
+returns.product_id -> products.product_id,39939,0,0,0.0,0,[],none,
+reviews.order_id -> orders.order_id,113551,0,0,0.0,0,[],none,
+reviews.product_id -> products.product_id,113551,0,0,0.0,0,[],none,
+reviews.customer_id -> customers.customer_id,113551,0,0,0.0,0,[],none,
+inventory.product_id -> products.product_id,60247,0,0,0.0,0,[],none,

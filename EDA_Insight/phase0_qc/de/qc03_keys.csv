@@ -1,0 +1,18 @@
+table,grain,key,rows,distinct_key,violations,pass,note
+customers,1 dong / 1 khach hang (customer_id),customer_id,121930,121930,0,PASS,
+products,1 dong / 1 SKU (product_id),product_id,2412,2412,0,PASS,
+geography,1 dong / 1 zip (candidate),zip,39948,39948,0,PASS,zip DUY NHAT (39948 dong = 39948 zip distinct). zip+district cung PASS nhung thua vi zip da unique.
+geography,"kiem tra thay the: 1 dong / (zip, district)",zip+district,39948,39948,0,PASS,
+orders,1 dong / 1 don hang (order_id),order_id,646945,646945,0,PASS,
+payments,"1 dong / 1 don hang, ky vong 1:1 voi orders (order_id)",order_id,646945,646945,0,PASS,So sanh voi orders: 0 order_id trong payments nhung KHONG co trong orders (RI); 0 don orders KHONG co payment.
+order_items,"1 dong = 1 dong hang (line item) trong 1 don, co the >1 dong/SKU/don",order_id+product_id,714669,714653,16,FAIL,"(order_id,product_id) KHONG phai key duy nhat: 16 dong vi pham tren 16 nhom trung. 0 bang dong TRUNG TOAN BO cac cot (full-row duplicate); 16 nhom (order_id,product_id) trung nhung KHAC unit_price/quantity (la 2 line item hop le cung SKU, VD mua nhieu lan / gia khac nhau trong cung don). GRAIN THAT: 1 dong = 1 dong hang (line item), KHONG phai 1 dong = 1 SKU/don. Vi du 2 dong dau trung key: [{'order_id': 14280, 'product_id': 976, 'quantity': 1, 'unit_price': 4019.47, 'discount_amount': 0.0, 'promo_id': nan, 'promo_id_2': nan}, {'order_id': 14280, 'product_id': 976, 'quantity': 2, 'unit_price': 3937.99, 'discount_amount': 0.0, 'promo_id': nan, 'promo_id_2': nan}]"
+shipments,"1 dong / 1 don da ship (order_id, subset cua orders)",order_id,566067,566067,0,PASS,"orders - shipments = 80,878 don chua co ban ghi shipment (co the chua ship/huy)."
+reviews,1 dong / 1 review (review_id),review_id,113551,113551,0,PASS,
+reviews,"kiem tra thay the: 1 review / (order_id,product_id)?",order_id+product_id,113551,113551,0,PASS,0 vi pham -> PASS neu 0 don+SKU co nhieu review (vd review lai)
+returns,1 dong / 1 yeu cau tra hang (return_id),return_id,39939,39939,0,PASS,
+returns,"kiem tra thay the: 1 return / (order_id,product_id)?",order_id+product_id,39939,39937,2,FAIL,"2 vi pham -> 2 nhom (order_id,product_id) co nhieu lan return"
+promotions,1 dong / 1 chuong trinh khuyen mai (promo_id),promo_id,50,50,0,PASS,
+inventory,"1 dong / 1 (thang snapshot, SKU) -- panel thang x san pham",snapshot_date+product_id,60247,60247,0,PASS,Panel KHONG can: 1624 SKU distinct trong inventory / 2412 SKU trong products.
+web_traffic,"1 dong / 1 ngay TOAN SITE (traffic_source la nhan/thuoc tinh, KHONG phai chieu phan rach)",date,3652,3652,0,PASS,"So dong/ngay: min=1, max=1. Neu max=1 => date la key that su, du du lieu co cot traffic_source."
+sales,1 dong / 1 ngay (Date),Date,3833,3833,0,PASS,
+sample_submission,1 dong / 1 ngay du bao (Date),Date,548,548,0,PASS,

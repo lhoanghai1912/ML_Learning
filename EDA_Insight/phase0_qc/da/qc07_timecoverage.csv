@@ -1,0 +1,12 @@
+table,date_col,kind,n_rows,date_min,date_max,span_units,unit,distinct_units_with_data,missing_units,missing_sample
+sales,Date,daily,3833,2012-07-04,2022-12-31,3833,days,3833,0,
+orders,order_date,daily_multi,646945,2012-07-04,2022-12-31,3833,days,3833,0,
+web_traffic,date,daily,3652,2013-01-01,2022-12-31,3652,days,3652,0,
+inventory,snapshot_date,monthly,60247,2012-07-31,2022-12-31,126,months,126,0,
+promotions,start_date,event,50,2013-01-31,2022-11-18,3579,"days(span, KHONG phai daily series)",50,N/A (event list),
+promotions,end_date,event,50,2013-03-01,2022-12-31,3593,"days(span, KHONG phai daily series)",50,N/A (event list),
+reviews,review_date,daily_multi,113551,2012-07-10,2022-12-31,3827,days,3825,2,2012-07-11; 2021-02-22
+returns,return_date,daily_multi,39939,2012-07-11,2022-12-31,3826,days,3806,20,2012-07-13; 2019-03-09; 2020-02-04; 2020-02-08; 2020-02-23; 2020-03-22; 2020-03-27; 2020-10-28; 2020-11-09; 2021-01-16 ... (+10 more)
+shipments,ship_date,daily_multi,566067,2012-07-04,2022-12-29,3831,days,3831,0,
+shipments,delivery_date,daily_multi,566067,2012-07-06,2022-12-31,3831,days,3831,0,
+sample_submission,Date,daily,548,2023-01-01,2024-07-01,548,days,548,0,

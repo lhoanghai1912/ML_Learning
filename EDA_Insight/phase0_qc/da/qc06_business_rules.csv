@@ -1,0 +1,21 @@
+rule,checked_rows,violations,rate_pct,example,loai,ghi_chu
+order_items.unit_price >= products.cogs,714669,133052,18.61729,"[{'order_id': 90, 'product_id': 2055, 'unit_price': 6747.15, 'cogs': 6878.097761980831}, {'order_id': 3068, 'product_id': 726, 'unit_price': 1274.04, 'cogs': 1274.2470762711862}]",hien-tuong-nghiep-vu,"Ban duoi gia von — hien tuong THAT (da biet ~382/3833 ngay = 9.97% lo gop o cap do daily-aggregate theo sprint plan). O cap do dong hang (line-item), rate cao hon nhieu: 133052/714669 dong (18.6173%) co unit_price<cogs. Chenh lech 2 rate (9.97% ngay vs 18.6% dong hang) HOP LY vi 1 ngay co nhieu dong hang, chi can vai dong lai bu duoc cac dong lo -> ngay van net-lai duong; khong mau thuan, chi la khac granularity. Khong sua — day la du lieu phan anh chien luoc gia/khuyen mai sau, giu nguyen cho model."
+"discount_amount in [0, unit_price*quantity]",714669,0,0.0,,khong-vi-pham,"neg(<0)=0, vuot line_total=0"
+order_items.quantity > 0,714669,0,0.0,,khong-vi-pham,
+"order_date in [promo.start,end] khi co promo_id",276316,0,0.0,,khong-vi-pham,So dong co promo_id (khong null): 276316
+"order_date in [promo.start,end] khi co promo_id_2",206,0,0.0,,khong-vi-pham,So dong co promo_id_2 (khong null): 206
+returns.return_quantity <= qty da dat (order_items),39939,0,0.0,,khong-vi-pham,"return khong khop duoc voi order_items (order_id,product_id) nao: 0 dong (cho vao muc rieng, khong tinh la vi pham qty)"
+"returns match voi order_items theo (order_id,product_id)",39939,0,0.0,,khong-vi-pham,"RI returns.order_id/product_id da PASS o QC0.4 (0 orphan voi orders/products rieng le); ospomo o day la KHONG tim thay dung CAP (order_id,product_id) trong order_items — khac voi orphan FK don le."
+"refund_amount in [0, payments.payment_value]",39939,3430,8.588097,"[{'return_id': 'RET-003051', 'order_id': 46395, 'refund_amount': 1314.13, 'payment_value': 1276.13}, {'return_id': 'RET-003062', 'order_id': 46593, 'refund_amount': 3073.43, 'payment_value': 2881.4}]",loi-data,"neg=0, refund>payment_value=3430. Da dieu tra: 3424/3430 vi pham la don CHI CO 1 return (khong phai do cong don nhieu return trung order_id — vay khong the giai thich bang aggregation), 6 don co >1 return. ratio refund/payment: min=1.000, median=1.097, max=1.250. Ty le refund/payment bi CHAN TREN o ~1.25x, khong random vo han -> nghi la NHIEU/ANOMALY duoc CO Y dua vao du lieu (giong pattern '382 ngay lo gop' da biet), KHONG giai thich duoc bang shipping_fee hay logic nghiep vu ro rang -> xep loai-data, can @tester dieu tra sau o QC0.9/QC0.10."
+SUM(refund_amount) theo order_id <= payment_value (tong hop),36062,3640,10.093727,"[{'order_id': 46395, 'refund_amount': 1314.13, 'payment_value': 1276.13}, {'order_id': 46593, 'refund_amount': 3073.43, 'payment_value': 2881.4}]",loi-data,Kiem tra o muc DON (cong don nhieu return cung order_id) — chinh xac hon kiem tra tung dong return rieng le o muc [6].
+"reviews.rating in [1,5]",113551,0,0.0,,khong-vi-pham,
+reviews.review_date >= orders.order_date,113551,0,0.0,,khong-vi-pham,
+payments.installments >= 1,646945,0,0.0,,khong-vi-pham,
+payments.payment_value >= 0,646945,0,0.0,,khong-vi-pham,
+"web_traffic.bounce_rate in [0,1]",3652,0,0.0,,khong-vi-pham,
+"inventory.fill_rate in [0,1]",60247,0,0.0,,khong-vi-pham,
+"inventory.sell_through_rate in [0,1]",60247,0,0.0,,khong-vi-pham,
+shipments.ship_date >= orders.order_date,566067,0,0.0,,khong-vi-pham,
+shipments.delivery_date >= ship_date,566067,0,0.0,,khong-vi-pham,
+"order_status in {delivered,shipped,returned} => phai co ban ghi shipments",566631,564,0.099536,"[{'order_id': 832884, 'order_date': Timestamp('2022-12-23 00:00:00'), 'order_status': 'delivered'}, {'order_id': 832929, 'order_date': Timestamp('2022-12-23 00:00:00'), 'order_status': 'shipped'}]",loi-data,Doi chieu lai finding cua @de (QC0.4): 564 don co status ngu y da/dang ship nhung khong co dong trong shipments. Min/max order_date cua nhom nay: 2022-12-22 00:00:00 -> 2022-12-31 00:00:00
+promotions.end_date >= start_date,50,0,0.0,,khong-vi-pham,

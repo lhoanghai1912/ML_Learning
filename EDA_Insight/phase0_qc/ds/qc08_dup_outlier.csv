@@ -1,0 +1,73 @@
+﻿check_type,table,col_or_key,method,count,total_rows,rate_pct,detail,classification
+dup_fullrow,customers,ALL_COLS,exact,0,121930,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,products,ALL_COLS,exact,0,2412,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,geography,ALL_COLS,exact,0,39948,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,orders,ALL_COLS,exact,0,646945,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,payments,ALL_COLS,exact,0,646945,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,order_items,ALL_COLS,exact,0,714669,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,shipments,ALL_COLS,exact,0,566067,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,reviews,ALL_COLS,exact,0,113551,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,returns,ALL_COLS,exact,0,39939,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,promotions,ALL_COLS,exact,0,50,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,inventory,ALL_COLS,exact,0,60247,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,web_traffic,ALL_COLS,exact,0,3652,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,sales,ALL_COLS,exact,0,3833,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_fullrow,sample_submission,ALL_COLS,exact,0,548,0.0,"0 dong trung toan bo cot (giu ban dau, dem ban lap)",hop_le_nghiep_vu
+dup_key,customers,customer_id,exact,0,121930,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,products,product_id,exact,0,2412,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,geography,zip,exact,0,39948,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,orders,order_id,exact,0,646945,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,payments,order_id,exact,0,646945,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,order_items,order_id+product_id,exact,32,714669,0.0045,"16 nhom (order_id,product_id) trung: 16 nhom KHAC nhau o unit_price/quantity/discount (>=1 lan mua khac nhau, hop le - line item that), 0 nhom GIONG HET cac cot con lai (nghi ban ghi trung/loi nhap)",hop_le_nghiep_vu
+dup_key,shipments,order_id,exact,0,566067,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,reviews,review_id,exact,0,113551,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,returns,return_id,exact,0,39939,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,promotions,promo_id,exact,0,50,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,inventory,snapshot_date+product_id,exact,0,60247,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,web_traffic,date,exact,0,3652,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,sales,Date,exact,0,3833,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+dup_key,sample_submission,Date,exact,0,548,0.0,0 nhom key trung (0 dong lien quan),hop_le_nghiep_vu
+invalid_value,order_items,unit_price,rule_negative,0,714669,0.0,0 dong unit_price < 0 (min=392.57),hop_le_nghiep_vu
+invalid_value,order_items,unit_price,rule_zero,0,714669,0.0,0 dong unit_price == 0,hop_le_nghiep_vu
+outlier,order_items,unit_price,IQR_1.5x,8623,714669,1.2066,"nguong IQR=[-6143.41,15324.07]; min=392.57; max=43056.00; gia tri outlier da dang (distinct/count=0.99) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,order_items,unit_price,zscore_3,5766,714669,0.8068,"|z|>3, mean=5114.69, std=3774.82; gia tri outlier da dang (distinct/count=0.99) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,order_items,quantity,rule_negative,0,714669,0.0,0 dong quantity < 0 (min=1),hop_le_nghiep_vu
+invalid_value,order_items,quantity,rule_zero,0,714669,0.0,0 dong quantity == 0,hop_le_nghiep_vu
+outlier,order_items,quantity,IQR_1.5x,0,714669,0.0,"nguong IQR=[-4.00,12.00]; min=1.00; max=8.00; khong co outlier",hop_le_nghiep_vu
+outlier,order_items,quantity,zscore_3,0,714669,0.0,"|z|>3, mean=4.50, std=2.29; khong co outlier",hop_le_nghiep_vu
+invalid_value,order_items,discount_amount,rule_negative,0,714669,0.0,0 dong discount_amount < 0 (min=0.0),hop_le_nghiep_vu
+invalid_value,order_items,discount_amount,rule_zero,438353,714669,61.3365,438353 dong discount_amount == 0,hop_le_nghiep_vu
+outlier,order_items,discount_amount,IQR_1.5x,105767,714669,14.7994,"nguong IQR=[-1451.44,2419.07]; min=0.00; max=35235.47; gia tri outlier da dang (distinct/count=0.92) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,order_items,discount_amount,zscore_3,19160,714669,2.681,"|z|>3, mean=1048.89, std=2280.53; gia tri outlier da dang (distinct/count=0.92) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,payments,payment_value,rule_negative,0,646945,0.0,0 dong payment_value < 0 (min=389.74),hop_le_nghiep_vu
+invalid_value,payments,payment_value,rule_zero,0,646945,0.0,0 dong payment_value == 0,hop_le_nghiep_vu
+outlier,payments,payment_value,IQR_1.5x,30219,646945,4.671,"nguong IQR=[-31356.87,72744.29]; min=389.74; max=331570.40; gia tri outlier da dang (distinct/count=0.99) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,payments,payment_value,zscore_3,9393,646945,1.4519,"|z|>3, mean=24238.33, std=22378.48; gia tri outlier da dang (distinct/count=0.99) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,returns,refund_amount,rule_negative,0,39939,0.0,0 dong refund_amount < 0 (min=458.81),hop_le_nghiep_vu
+invalid_value,returns,refund_amount,rule_zero,0,39939,0.0,0 dong refund_amount == 0,hop_le_nghiep_vu
+outlier,returns,refund_amount,IQR_1.5x,2778,39939,6.9556,"nguong IQR=[-16389.50,36844.88]; min=458.81; max=160937.94; gia tri outlier da dang (distinct/count=1.00) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,returns,refund_amount,zscore_3,904,39939,2.2635,"|z|>3, mean=12784.46, std=14092.15; gia tri outlier da dang (distinct/count=1.00) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,products,price,rule_negative,0,2412,0.0,0 dong price < 0 (min=9.056593572436444),hop_le_nghiep_vu
+invalid_value,products,price,rule_zero,0,2412,0.0,0 dong price == 0,hop_le_nghiep_vu
+outlier,products,price,IQR_1.5x,31,2412,1.2852,"nguong IQR=[-11432.16,19212.12]; min=9.06; max=40950.00; gia tri outlier da dang (distinct/count=0.97) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,products,price,zscore_3,30,2412,1.2438,"|z|>3, mean=4928.22, std=4776.74; gia tri outlier da dang (distinct/count=0.97) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,products,cogs,rule_negative,0,2412,0.0,0 dong cogs < 0 (min=5.183828982020106),hop_le_nghiep_vu
+invalid_value,products,cogs,rule_zero,0,2412,0.0,0 dong cogs == 0,hop_le_nghiep_vu
+outlier,products,cogs,IQR_1.5x,37,2412,1.534,"nguong IQR=[-8709.71,14609.69]; min=5.18; max=38902.50; gia tri outlier da dang (distinct/count=0.97) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,products,cogs,zscore_3,29,2412,1.2023,"|z|>3, mean=3868.35, std=3878.58; gia tri outlier da dang (distinct/count=0.97) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,web_traffic,avg_session_duration_sec,rule_negative,0,3652,0.0,0 dong avg_session_duration_sec < 0 (min=100.1),hop_le_nghiep_vu
+invalid_value,web_traffic,avg_session_duration_sec,rule_zero,0,3652,0.0,0 dong avg_session_duration_sec == 0,hop_le_nghiep_vu
+outlier,web_traffic,avg_session_duration_sec,IQR_1.5x,0,3652,0.0,"nguong IQR=[-7.55,430.45]; min=100.10; max=319.90; khong co outlier",hop_le_nghiep_vu
+outlier,web_traffic,avg_session_duration_sec,zscore_3,0,3652,0.0,"|z|>3, mean=210.28, std=63.77; khong co outlier",hop_le_nghiep_vu
+invalid_value,web_traffic,sessions,rule_negative,0,3652,0.0,0 dong sessions < 0 (min=7973),hop_le_nghiep_vu
+invalid_value,web_traffic,sessions,rule_zero,0,3652,0.0,0 dong sessions == 0,hop_le_nghiep_vu
+outlier,web_traffic,sessions,IQR_1.5x,0,3652,0.0,"nguong IQR=[-4926.00,53808.00]; min=7973.00; max=50947.00; khong co outlier",hop_le_nghiep_vu
+outlier,web_traffic,sessions,zscore_3,0,3652,0.0,"|z|>3, mean=25041.77, std=9422.61; khong co outlier",hop_le_nghiep_vu
+invalid_value,web_traffic,page_views,rule_negative,0,3652,0.0,0 dong page_views < 0 (min=30451),hop_le_nghiep_vu
+invalid_value,web_traffic,page_views,rule_zero,0,3652,0.0,0 dong page_views == 0,hop_le_nghiep_vu
+outlier,web_traffic,page_views,IQR_1.5x,18,3652,0.4929,"nguong IQR=[-24674.00,235742.00]; min=30451.00; max=275560.00; gia tri outlier da dang (distinct/count=1.00) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+outlier,web_traffic,page_views,zscore_3,10,3652,0.2738,"|z|>3, mean=108615.22, std=44472.06; gia tri outlier da dang (distinct/count=1.00) - phan phoi lien tuc, khong phai sentinel/loi nhap",outlier_that
+invalid_value,returns,refund_amount,rule_negative,0,39939,0.0,0 dong refund_amount < 0,hop_le_nghiep_vu
+invalid_value,order_items,quantity,rule_zero_illogical,0,714669,0.0,0 dong quantity==0 (mua 0 san pham - vo ly neu co),hop_le_nghiep_vu
+business_outlier,products,price_vs_cogs,rule,0,2412,0.0,"0 SKU co price < cogs (gia ban < gia von - hien tuong nghiep vu, khong phai loi nhap)",hop_le_nghiep_vu
+invalid_value,order_items,discount_amount_vs_line_total,rule,0,714669,0.0,0 dong discount_amount > unit_price*quantity (giam gia vuot gia tri dong hang),hop_le_nghiep_vu
