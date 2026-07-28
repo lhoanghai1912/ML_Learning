@@ -1,0 +1,3 @@
+QC0.2 done at 2026-07-28T04:07:20Z
+artifact: EDA_Insight/phase0_qc/de/qc02_schema.csv, EDA_Insight/phase0_qc/de/qc02_enums.md
+note: 0 parse-fail, 0 dtype-lech tren 14 bang. Phat hien: inventory.reorder_flag = hang chet (100% = 0).

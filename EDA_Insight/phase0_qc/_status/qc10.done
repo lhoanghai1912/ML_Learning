@@ -1,0 +1,5 @@
+QC0.10 done — GATE: CONDITIONAL PASS
+owner: @tester
+files: data_quality_log.csv, data_quality_log.md, tester/qc10_independent_audit.py
+audit: 5/5 finding severity cao nhat khop 100%
+critical/high mo: 2 root-cause (refund>payment 8.6-10.1%; 564 don thieu shipment 0.0995%)

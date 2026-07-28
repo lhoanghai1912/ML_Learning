@@ -1,0 +1,3 @@
+QC0.4 done at 2026-07-28T04:26:25Z
+artifact: EDA_Insight/phase0_qc/de/qc04_ri.csv
+note: TAT CA 15 FK edge = 0 orphan (RI sach 100%). promo_id/promo_id_2 null cao (61.34%/99.97%) la nghiep vu hop le, khong tinh orphan. Phat hien phu (khong phai FK orphan): 564 don status delivered/returned/shipped KHONG co ban ghi shipments (tap trung cuoi window du lieu ~2022-12-23) - can @da/@ds dieu tra o QC0.5/0.9.
