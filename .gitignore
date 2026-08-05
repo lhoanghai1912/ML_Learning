@@ -14,3 +14,17 @@ __pycache__/
 # Editor
 .vscode/
 .idea/
+
+# Data (raw kept local/out-of-git, sample/ committed for CI)
+data/raw/*.csv
+!data/raw/.gitkeep
+
+# Secrets
+.env
+
+# dbt
+dbt_datathon/target/
+dbt_datathon/dbt_packages/
+
+# DuckDB
+*.duckdb
