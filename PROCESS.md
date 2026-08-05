@@ -57,6 +57,7 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
 
 - 2026-08-05: nhánh tạo từ main. D1=C, D2=A, D3=git rm --cached. Phase8 WIP parked trong stash.
 - 2026-08-05: **M0 GATE = PASS** (verify PO). Tree khớp target, import OK, docs 128+2 preserved, data chưa move (đúng scope). Greenlight **M1** (de, single). Sau M1 → phát song song {M2, M4a, M4b, M7}.
+- 2026-08-05: **M1 GATE = PASS** (verify PO). commit ee63d2b. 14 CSV ở data/raw/ (đĩa còn, git index=0, .gitignore chặn re-add). config.py đọc sales OK (3833,3), RAW_TABLES 14 bảng all exist, 1 nguồn path. No history rewrite. Sửa placeholder PENDING_COMMIT→ee63d2b. **Greenlight WAVE SONG SONG {M2, M4a, M4b, M7}** — 4 session riêng, disjoint file, KHÔNG commit PROCESS.md (ghi .process_status/<M>.md), PO gộp.
 - (PO ghi tiếp mỗi lần duyệt...)
 
 ---
