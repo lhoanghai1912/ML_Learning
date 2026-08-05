@@ -13,7 +13,7 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
 
 | M | Agent | Phụ thuộc | Status | Commit | File output chính | DoD tự check | Ghi chú / blocker |
 |---|---|---|---|---|---|---|---|
-| M0 | pm | — | ⬜ | | scaffold tree, pyproject, Makefile, README, LICENSE, .env.example, .gitignore | tree khớp target; `import datathon` OK | |
+| M0 | pm | — | ✅ | 79e32f7 | scaffold tree, pyproject.toml, uv.lock, Makefile, README.md, LICENSE, .env.example, .gitignore, docs/{analysis,brief,orchestrator_prompt.md,PROGRESS.md} | tree khớp target 100% node; `import datathon` OK (verify qua `python3 -c "import sys;sys.path.insert(0,'src');import datathon"`); docs/analysis 128/128 file, docs/brief 2/2 file (0 mất) | uv cài được (`pip install uv` OK) → `uv lock` thành công, 270 packages, `uv.lock` 8047 dòng. Không cần fallback requirements.lock. Không move data, không port code (đúng scope M0). |
 | M1 | de | M0 | ⬜ | | data→raw/, config.py, .gitkeep | đọc sales qua config OK; git rm --cached | |
 | M2 | de | M1 | ⬜ | | docker-compose, infra/*, jobs/* | up healthy; ingest MERGE idempotent; audit row | |
 | M3 | de+da | M2 | ⬜ | | dbt_datathon/* | dbt build + freshness xanh; contract enforced | |
