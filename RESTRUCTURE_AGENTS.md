@@ -116,6 +116,9 @@ Nguyên tắc: chiều 2/4/6/8 sai → **quarantine** (không drop). Chiều 1/3
 ## M3 — de + da — dbt trên Trino/Iceberg
 
 > Gốc như trên. M2 xong (Iceberg raw có data).
+> **TÁCH 2 sub-agent (tuần tự, không song song — marts cần staging):**
+> **M3a (de):** dbt_project.yml, packages.yml, profiles, `models/staging/*`, `schema.yml` (sources+freshness+contract). Chạy trước.
+> **M3b (da):** `models/intermediate/*`, `models/marts/*`, mart tests, exposures. Chạy SAU khi M3a build staging xong.
 > Nhiệm vụ: dbt project chạy thật trên Trino. **Tuân "DE HARDENING STANDARD".**
 > Việc:
 > 1. `dbt_datathon/dbt_project.yml` (profile trino), `packages.yml` (dbt_utils), profile trỏ Trino từ `.env`. **Pin version** `dbt-trino` + connector tương thích Iceberg syntax.
@@ -131,6 +134,10 @@ Nguyên tắc: chiều 2/4/6/8 sai → **quarantine** (không drop). Chiều 1/3
 ## M4 — de + ds — Port `src/datathon/*`
 
 > Gốc như trên. M1 xong (config có). KHÔNG viết lại thuật toán — trích từ code phase đã verify.
+> **TÁCH 2 sub-agent SONG SONG (⟂ disjoint file):**
+> **M4a (de):** `schema.py`, `ingestion.py`, `quality.py` (10 chiều DQ).
+> **M4b (ds):** `features.py`, `models.py`, `backtest.py`, `submission.py`.
+> Cả 2 import chung `config.py` (từ M1), KHÔNG đụng file của nhau. Commit chỉ file mình. KHÔNG commit PROCESS.md — ghi `.process_status/M4a.md` / `M4b.md`. PO gộp.
 > Nhiệm vụ: 8 module chuẩn, importable, có test được.
 > Việc (nguồn → đích):
 > - `schema.py` ⇐ `docs/analysis/phase0_qc/de/qc02_schema.py` — dtype/enum 14 bảng, hàm `validate_schema(df, table)`.
@@ -164,6 +171,10 @@ Nguyên tắc: chiều 2/4/6/8 sai → **quarantine** (không drop). Chiều 1/3
 ## M6 — da + ds — Consolidate notebooks
 
 > Gốc như trên. M4 xong.
+> **TÁCH 2 sub-agent SONG SONG (⟂ disjoint file):**
+> **M6a (da):** `notebooks/01_data_quality.ipynb`, `notebooks/02_eda.ipynb`.
+> **M6b (ds):** `notebooks/03_forecasting_colab.ipynb`.
+> KHÔNG commit PROCESS.md — ghi `.process_status/M6a.md` / `M6b.md`. PO gộp.
 > Nhiệm vụ: gộp notebook phase cũ thành 3 notebook chuẩn, import `datathon`.
 > Việc:
 > - `notebooks/01_data_quality.ipynb` ⇐ phase0 — gọi `datathon.quality`.
