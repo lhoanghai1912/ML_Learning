@@ -15,15 +15,15 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
 |---|---|---|---|---|---|---|---|
 | M0 | pm | — | ✅ | 79e32f7 | scaffold tree, pyproject.toml, uv.lock, Makefile, README.md, LICENSE, .env.example, .gitignore, docs/{analysis,brief,orchestrator_prompt.md,PROGRESS.md} | tree khớp target 100% node; `import datathon` OK (verify qua `python3 -c "import sys;sys.path.insert(0,'src');import datathon"`); docs/analysis 128/128 file, docs/brief 2/2 file (0 mất) | uv cài được (`pip install uv` OK) → `uv lock` thành công, 270 packages, `uv.lock` 8047 dòng. Không cần fallback requirements.lock. Không move data, không port code (đúng scope M0). |
 | M1 | de | M0 | ✅ | ee63d2b | data/raw/*.csv (14, untracked), src/datathon/config.py, data/raw/.gitkeep | đọc sales qua config OK (shape (3833,3)); `git rm --cached` xong, đĩa còn 14 CSV; RAW_TABLES 1 nguồn path | 6 file docs/analysis còn hardcode `data/` path — archive cũ, KHÔNG sửa (đúng scope). ⚠ commit sau sẽ làm CSV biến khỏi repo, clone mới không có data — M7 phải ghi cách lấy. |
-| M2 | de | M1 | ⬜ | | docker-compose.yml, infra/*, jobs/* | up healthy; ingest MERGE idempotent; audit row | ⟂ M4a/M4b/M7 |
+| M2 | de | M1 | ✅ | a57f7ed | docker-compose.yml, infra/*, jobs/* | up 7/7 healthy; ingest MERGE idempotent (14 bảng, count không đổi lần 2); quarantine test thật; audit 34 row; catalog=Postgres(JDBC); 0 secret | ⚠ chưa chạy pyspark query thật (spark idle, ngoài critical path). Trino MERGE ON dùng `=` (đã lọc null key ra quarantine). Report .process_status/M2.md |
 | M3a | de | M2 | ⬜ | | dbt_project.yml, packages.yml, models/staging/*, schema.yml(sources+freshness+contract) | dbt build staging xanh | |
 | M3b | da | **M3a** | ⬜ | | models/intermediate/*, models/marts/*, mart tests, exposures | mart build xanh; regression==phase1 | cần staging M3a |
-| M4a | de | M1 | ⬜ | | src/datathon/{schema,ingestion,quality}.py | import OK; 10 chiều DQ đủ | ⟂ M4b |
-| M4b | ds | M1 | ⬜ | | src/datathon/{features,models,backtest,submission}.py | import OK; regression forecast==baseline | ⟂ M4a |
+| M4a | de | M1 | ✅ | b3b85cf | src/datathon/{schema,ingestion,quality}.py | import OK; 10/10 hàm DQ đủ; run_all 14 bảng; sales↔order_items MAPE 0.000%; order_items surrogate line_id | severity map đúng (1/3/9=fail,2/4/6/8=quar,5/7=warn). Report .process_status/M4a.md |
+| M4b | ds | M1 | ✅ | f4036f9 | src/datathon/{features,models,backtest,submission}.py | import OK; **REGRESSION forecast_548 BYTE-IDENTICAL baseline (PO verify thật)**; backtest metric khớp; no-leakage (đệ quy 548) | ⚠ nguồn port từ nhánh feat/phase8-model (phase8/9 CHƯA có ở docs/analysis nhánh này) — PO cân nhắc cherry-pick để audit lâu dài. Report .process_status/M4b.md |
 | M5 | tester | M4a+M4b | ⬜ | | tests/*, ci.yml, data/sample | pytest xanh; CI pass; sample<1MB | ⟂ M6a/M6b |
 | M6a | da | M4a+M4b | ⬜ | | notebooks/01_data_quality.ipynb, 02_eda.ipynb | execute sạch | ⟂ M6b/M5 |
 | M6b | ds | M4a+M4b | ⬜ | | notebooks/03_forecasting_colab.ipynb | execute sạch (+Colab) | ⟂ M6a/M5 |
-| M7 | ba | M1 | ⬜ | | data/README.md | 14 bảng tài liệu hóa | ⟂ M2/M4 |
+| M7 | ba | M1 | ✅ | 3347521 | data/README.md | 14 bảng tài liệu hóa (302 dòng); cột thật + grain/PK/FK; business fact GROSS/net/Monetary; coverage 2012–2022 | ⚠ mục "Cách lấy data" = TODO — **cần PO cấp nguồn tải data raw**. Report .process_status/M7.md |
 
 **Song song an toàn** (⟂ = disjoint file, chạy cùng lúc OK):
 - Sau M1: `{M2, M4a, M4b, M7}` — 4 session riêng, khác file hoàn toàn.
@@ -58,6 +58,14 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
 - 2026-08-05: nhánh tạo từ main. D1=C, D2=A, D3=git rm --cached. Phase8 WIP parked trong stash.
 - 2026-08-05: **M0 GATE = PASS** (verify PO). Tree khớp target, import OK, docs 128+2 preserved, data chưa move (đúng scope). Greenlight **M1** (de, single). Sau M1 → phát song song {M2, M4a, M4b, M7}.
 - 2026-08-05: **M1 GATE = PASS** (verify PO). commit ee63d2b. 14 CSV ở data/raw/ (đĩa còn, git index=0, .gitignore chặn re-add). config.py đọc sales OK (3833,3), RAW_TABLES 14 bảng all exist, 1 nguồn path. No history rewrite. Sửa placeholder PENDING_COMMIT→ee63d2b. **Greenlight WAVE SONG SONG {M2, M4a, M4b, M7}** — 4 session riêng, disjoint file, KHÔNG commit PROCESS.md (ghi .process_status/<M>.md), PO gộp.
+- 2026-08-05: **WAVE {M2,M4a,M4b,M7} GATE = PASS** (verify PO thật, không tin self-report). Bằng chứng PO tự chạy:
+  - Ownership disjoint 100% (git show per-commit: M2=infra/jobs/compose/.env.example, M4a=schema/ingestion/quality, M4b=features/models/backtest/submission, M7=data/README.md — 0 chồng chéo).
+  - Import tổng 8 module `src/datathon` cùng lúc OK (qua .venv; bare python3 fail do thiếu venv, KHÔNG phải bug; lunardate/lightgbm declared pyproject:15/20).
+  - M4a: 10/10 hàm DQ present. M4b: **forecast_548 PO tự sinh = BYTE-IDENTICAL committed baseline** (diff -q khớp, 548 dòng). REGRESSION PASS.
+  - M2: 0 hardcoded secret (git grep committed files), .env không tracked. M7: README 302 dòng, mục nguồn data=TODO.
+  - PO gộp: commit M7 deliverable 3347521 + reports 2e496db (M7 agent để deliverable uncommitted, PO commit thay).
+  - **2 việc PO còn nợ**: (1) cấp nguồn tải data raw → điền data/README.md mục 0 (M7 TODO). (2) quyết cherry-pick phase8/9 từ feat/phase8-model vào docs/analysis để M4b audit lâu dài (khuyến nghị: có, tránh mất nguồn nếu nhánh bị xoá).
+  - **Greenlight kế**: M3a (de, dbt staging — cần M2 ✅, đã ✅) → xong mới M3b. Song song được: {M5, M6a, M6b} cần M4a+M4b (✅) — có thể phát NGAY cùng M3a. Đề xuất phát: M3a + {M5, M6a, M6b} = 4 session (M3a/M5 disjoint; M6a/M6b disjoint notebook).
 - (PO ghi tiếp mỗi lần duyệt...)
 
 ---
