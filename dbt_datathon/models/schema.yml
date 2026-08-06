@@ -1,0 +1,394 @@
+version: 2
+
+# ---------------------------------------------------------------------------
+# SOURCES — Iceberg landing layer (M2, namespace `raw`, ghi bởi jobs/ingest_csv_to_iceberg.py)
+# ---------------------------------------------------------------------------
+sources:
+  - name: raw
+    database: iceberg
+    schema: raw
+    description: >
+      Landing layer Iceberg (M2). MERGE theo natural key (không createOrReplace), 5 cột metadata
+      (_ingested_at/_source_file/_source_row_number/_checksum/_batch_id). Chỉ đọc từ dbt
+      (staging KHÔNG ghi ngược vào namespace raw).
+    loaded_at_field: _ingested_at
+    freshness:
+      # Dataset lịch sử tĩnh (2012-2022), ingest hiện chạy THỦ CÔNG (chưa có scheduler/
+      # orchestrator ở milestone này -- xem RESTRUCTURE_AGENTS.md, orchestration ngoài scope
+      # M2/M3). Freshness ở đây là canary VẬN HÀNH: phát hiện pipeline "im hơi" quá lâu trong lúc
+      # dev (vd clone máy mới quên `make ingest`), KHÔNG đo độ trễ nguồn dữ liệu thời gian thực
+      # (nguồn là CSV tĩnh, không có "dữ liệu mới" phát sinh theo lịch). Ngưỡng chọn theo nhịp
+      # dev quan sát thật ở M2 (nhiều lần re-ingest/ngày khi đang phát triển):
+      #   warn nếu >3 ngày không ai re-ingest, error nếu >14 ngày (nghi ingest job bị bỏ quên/hỏng).
+      warn_after: {count: 3, period: day}
+      error_after: {count: 14, period: day}
+    tables:
+      - name: customers
+      - name: geography
+      - name: inventory
+      - name: order_items
+      - name: orders
+      - name: payments
+      - name: products
+      - name: promotions
+      - name: returns
+      - name: reviews
+      - name: sales
+      - name: sample_submission
+      - name: shipments
+      - name: web_traffic
+
+# ---------------------------------------------------------------------------
+# MODELS — staging (M3a). Contract enforced ở từng .sql (config contract.enforced=true); cột/kiểu
+# khai dưới đây PHẢI khớp thứ tự + data_type của SELECT, dbt fail parse nếu lệch.
+# ---------------------------------------------------------------------------
+models:
+  - name: stg_customers
+    description: "Khách hàng, đã ép kiểu từ iceberg.raw.customers. Grain 1 dòng/customer_id."
+    columns:
+      - name: customer_id
+        data_type: bigint
+        tests: [not_null, unique]
+      - name: zip
+        data_type: varchar
+        tests:
+          - relationships:
+              arguments: {to: ref('stg_geography'), field: zip}
+      - name: city
+        data_type: varchar
+      - name: signup_date
+        data_type: date
+        tests: [not_null]
+      - name: gender
+        data_type: varchar
+      - name: age_group
+        data_type: varchar
+      - name: acquisition_channel
+        data_type: varchar
+
+  - name: stg_geography
+    description: "Danh mục zip/city/region/district. Grain 1 dòng/zip."
+    columns:
+      - name: zip
+        data_type: varchar
+        tests: [not_null, unique]
+      - name: city
+        data_type: varchar
+      - name: region
+        data_type: varchar
+      - name: district
+        data_type: varchar
+
+  - name: stg_inventory
+    description: "Snapshot tồn kho cuối tháng. Grain (snapshot_date, product_id) — panel không cân (W6), KHÔNG suy diễn tồn=0 cho tháng vắng mặt."
+    columns:
+      - name: snapshot_date
+        data_type: date
+        tests: [not_null]
+      - name: product_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_products'), field: product_id}
+      - name: stock_on_hand
+        data_type: bigint
+      - name: units_received
+        data_type: bigint
+      - name: units_sold
+        data_type: bigint
+      - name: stockout_days
+        data_type: bigint
+      - name: days_of_supply
+        data_type: double
+      - name: fill_rate
+        data_type: double
+      - name: stockout_flag
+        data_type: bigint
+      - name: overstock_flag
+        data_type: bigint
+      - name: reorder_flag
+        data_type: bigint
+      - name: sell_through_rate
+        data_type: double
+      - name: product_name
+        data_type: varchar
+      - name: category
+        data_type: varchar
+      - name: segment
+        data_type: varchar
+      - name: year
+        data_type: bigint
+      - name: month
+        data_type: bigint
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [snapshot_date, product_id]
+
+  - name: stg_order_items
+    description: >
+      Dòng hàng của đơn. Grain = (order_id, product_id, line_number) — line_number là
+      _source_row_number raw đổi tên (W7: 16 cặp order_id+product_id trùng là 2 line item hợp
+      lệ, KHÔNG dedup). unit_price GỘP CẢ đơn cancelled (khớp sales.csv gross 0.000%, W1).
+    columns:
+      - name: order_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: product_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_products'), field: product_id}
+      - name: line_number
+        data_type: bigint
+        tests: [not_null]
+      - name: quantity
+        data_type: bigint
+      - name: unit_price
+        data_type: double
+      - name: discount_amount
+        data_type: double
+      - name: promo_id
+        data_type: varchar
+        tests:
+          - relationships:
+              arguments: {to: ref('stg_promotions'), field: promo_id}
+      - name: promo_id_2
+        data_type: varchar
+        tests:
+          - relationships:
+              arguments: {to: ref('stg_promotions'), field: promo_id}
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [order_id, product_id, line_number]
+
+  - name: stg_orders
+    description: "Đơn hàng. Grain 1 dòng/order_id."
+    columns:
+      - name: order_id
+        data_type: bigint
+        tests: [not_null, unique]
+      - name: order_date
+        data_type: date
+        tests: [not_null]
+      - name: customer_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_customers'), field: customer_id}
+      - name: zip
+        data_type: varchar
+        tests:
+          - relationships:
+              arguments: {to: ref('stg_geography'), field: zip}
+      - name: order_status
+        data_type: varchar
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [delivered, cancelled, returned, shipped, paid, created]
+      - name: payment_method
+        data_type: varchar
+      - name: device_type
+        data_type: varchar
+      - name: order_source
+        data_type: varchar
+
+  - name: stg_payments
+    description: "payment_value = net theo đơn (I1) — KHÔNG phải cash thực thu, phải lọc order_status khi phân tích dòng tiền (mart, M3b). Grain 1 dòng/order_id."
+    columns:
+      - name: order_id
+        data_type: bigint
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: payment_method
+        data_type: varchar
+      - name: payment_value
+        data_type: double
+      - name: installments
+        data_type: bigint
+
+  - name: stg_products
+    description: "Catalog sản phẩm. Grain 1 dòng/product_id. product_name có trùng giữa SKU (I6) — luôn dùng product_id làm khóa."
+    columns:
+      - name: product_id
+        data_type: bigint
+        tests: [not_null, unique]
+      - name: product_name
+        data_type: varchar
+      - name: category
+        data_type: varchar
+      - name: segment
+        data_type: varchar
+      - name: size
+        data_type: varchar
+      - name: color
+        data_type: varchar
+      - name: price
+        data_type: double
+      - name: cogs
+        data_type: double
+
+  - name: stg_promotions
+    description: "Khuyến mãi. Grain 1 dòng/promo_id. applicable_category đã impute 'all_categories' cho NULL (W10)."
+    columns:
+      - name: promo_id
+        data_type: varchar
+        tests: [not_null, unique]
+      - name: promo_name
+        data_type: varchar
+      - name: promo_type
+        data_type: varchar
+      - name: discount_value
+        data_type: double
+      - name: start_date
+        data_type: date
+      - name: end_date
+        data_type: date
+      - name: applicable_category
+        data_type: varchar
+        tests: [not_null]
+      - name: promo_channel
+        data_type: varchar
+      - name: stackable_flag
+        data_type: bigint
+      - name: min_order_value
+        data_type: double
+
+  - name: stg_returns
+    description: "Trả hàng. Grain 1 dòng/return_id."
+    columns:
+      - name: return_id
+        data_type: varchar
+        tests: [not_null, unique]
+      - name: order_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: product_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_products'), field: product_id}
+      - name: return_date
+        data_type: date
+      - name: return_reason
+        data_type: varchar
+      - name: return_quantity
+        data_type: bigint
+      - name: refund_amount
+        data_type: double
+
+  - name: stg_reviews
+    description: "Đánh giá đơn hàng. Grain 1 dòng/review_id."
+    columns:
+      - name: review_id
+        data_type: varchar
+        tests: [not_null, unique]
+      - name: order_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: product_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_products'), field: product_id}
+      - name: customer_id
+        data_type: bigint
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_customers'), field: customer_id}
+      - name: review_date
+        data_type: date
+      - name: rating
+        data_type: bigint
+        tests:
+          - accepted_values:
+              arguments: {values: [1, 2, 3, 4, 5], quote: false}
+      - name: review_title
+        data_type: varchar
+
+  - name: stg_sales
+    description: >
+      Target forecast Phần B. revenue/cogs = GROSS toàn bộ đơn kể cả cancelled (W1, MAPE tái
+      dựng 0.000% so với order_items) — KHÔNG phải net. Grain 1 dòng/date, liên tục
+      2012-07-04..2022-12-31 (0 ngày thiếu).
+    columns:
+      - name: date
+        data_type: date
+        tests: [not_null, unique]
+      - name: revenue
+        data_type: double
+        tests: [not_null]
+      - name: cogs
+        data_type: double
+        tests: [not_null]
+
+  - name: stg_sample_submission
+    description: "Template nộp bài 548 dòng (2023-01-01..2024-07-01). Giá trị revenue/cogs hiện tại là placeholder (I2) — Phần B phải ghi đè toàn bộ."
+    columns:
+      - name: date
+        data_type: date
+        tests: [not_null, unique]
+      - name: revenue
+        data_type: double
+      - name: cogs
+        data_type: double
+
+  - name: stg_shipments
+    description: "Vận đơn. Grain 1 dòng/order_id (80,878 đơn không có shipment — hợp lý theo order_status, I4). shipping_fee khác đơn vị tiền tệ so với giá trị đơn (I3)."
+    columns:
+      - name: order_id
+        data_type: bigint
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: ship_date
+        data_type: date
+      - name: delivery_date
+        data_type: date
+      - name: shipping_fee
+        data_type: double
+
+  - name: stg_web_traffic
+    description: >
+      Lưu lượng site theo ngày. Grain thực tế 1 dòng/ngày toàn site (W4, TRÁI dictionary
+      "date+traffic_source" — traffic_source chỉ là nhãn của ngày). Chỉ có từ 2013-01-01 (W5,
+      thiếu 181 ngày đầu 2012).
+    columns:
+      - name: date
+        data_type: date
+        tests: [not_null, unique]
+      - name: sessions
+        data_type: bigint
+      - name: unique_visitors
+        data_type: bigint
+      - name: page_views
+        data_type: bigint
+      - name: bounce_rate
+        data_type: double
+      - name: avg_session_duration_sec
+        data_type: double
+      - name: traffic_source
+        data_type: varchar
