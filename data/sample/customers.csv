@@ -1,0 +1,1924 @@
+customer_id,zip,city,signup_date,gender,age_group,acquisition_channel
+59,15212,Son Tay,2017-01-22,Male,55+,social_media
+114,15223,Ha Long,2017-04-16,Male,18-24,organic_search
+161,15235,Lao Cai,2015-05-04,Female,35-44,paid_search
+168,15236,Hanoi,2022-03-23,Female,18-24,paid_search
+169,15236,Hanoi,2017-10-16,Male,18-24,referral
+172,15237,Lao Cai,2021-06-12,Female,55+,social_media
+454,16056,Cam Pha,2018-05-15,Female,35-44,email_campaign
+478,16066,Bac Giang,2022-06-04,Female,55+,organic_search
+480,16066,Bac Giang,2022-12-08,Female,45-54,organic_search
+604,16201,Hanoi,2022-11-19,Female,35-44,organic_search
+656,16226,Viet Tri,2019-12-01,Female,35-44,social_media
+660,16226,Viet Tri,2016-11-01,Female,35-44,social_media
+799,16314,Nam Dinh,2020-11-28,Male,25-34,referral
+852,16341,Cam Pha,2014-05-18,Non-binary,25-34,organic_search
+896,16364,Bac Giang,2019-10-04,Female,35-44,email_campaign
+975,16602,Viet Tri,2018-11-16,Male,45-54,social_media
+1017,16624,Thai Nguyen,2016-06-11,Male,35-44,social_media
+1131,16662,Bac Giang,2022-06-24,Male,25-34,organic_search
+1132,16662,Bac Giang,2018-12-14,Female,18-24,paid_search
+1238,16692,Thai Nguyen,2020-04-25,Female,25-34,organic_search
+1276,16830,Bac Ninh,2019-12-30,Male,18-24,paid_search
+1399,15001,Ninh Binh,2016-03-05,Male,25-34,social_media
+1415,15005,Lao Cai,2018-02-19,Non-binary,35-44,organic_search
+1470,15021,Hai Phong,2019-10-11,Male,35-44,organic_search
+1477,15024,Phu Ly,2022-08-29,Male,45-54,social_media
+1482,15025,Bac Ninh,2019-02-02,Female,25-34,organic_search
+1484,15025,Bac Ninh,2022-03-01,Female,25-34,paid_search
+1588,15052,Thai Nguyen,2022-07-12,Male,25-34,social_media
+1632,15063,Hanoi,2022-08-05,Female,35-44,referral
+1758,15108,Son Tay,2019-06-12,Male,55+,organic_search
+1876,15301,Ha Long,2022-02-08,Male,35-44,organic_search
+1879,15301,Ha Long,2016-04-21,Female,18-24,email_campaign
+1911,15317,Bac Giang,2020-11-21,Female,45-54,social_media
+1922,15321,Phu Ly,2020-06-02,Male,25-34,direct
+2356,15473,Hanoi,2022-06-08,Male,25-34,organic_search
+2586,15563,Thai Nguyen,2016-09-24,Female,35-44,social_media
+2590,15563,Thai Nguyen,2020-04-18,Male,45-54,paid_search
+2597,15601,Bac Ninh,2015-09-09,Female,55+,referral
+2740,15639,Thai Nguyen,2021-11-12,Female,18-24,direct
+2775,15650,Cam Pha,2015-11-15,Female,35-44,paid_search
+2816,15668,Hai Phong,2018-05-19,Female,25-34,organic_search
+2820,15668,Hai Phong,2020-05-29,Female,35-44,social_media
+2851,15677,Ninh Binh,2014-02-26,Male,45-54,social_media
+3063,15742,Viet Tri,2015-02-11,Female,25-34,referral
+3116,15771,Bac Ninh,2016-10-26,Male,35-44,email_campaign
+3166,15801,Viet Tri,2018-12-23,Male,35-44,paid_search
+3266,15860,Phu Ly,2022-03-31,Male,35-44,organic_search
+3308,15902,Thai Nguyen,2022-07-29,Female,18-24,paid_search
+3383,15930,Viet Tri,2018-11-12,Male,25-34,referral
+3451,18049,Ha Long,2022-06-06,Female,25-34,email_campaign
+3461,18055,Phu Ly,2019-06-28,Male,25-34,social_media
+3479,18068,Lao Cai,2022-03-26,Male,18-24,organic_search
+3570,18914,Son Tay,2014-10-06,Non-binary,35-44,paid_search
+3666,18944,Hanoi,2021-03-30,Male,25-34,social_media
+3678,18947,Hanoi,2021-04-30,Female,25-34,organic_search
+3804,19002,Cam Pha,2021-03-01,Female,25-34,social_media
+3894,19026,Ha Long,2020-12-18,Female,25-34,direct
+3898,19027,Ha Long,2022-02-24,Female,25-34,organic_search
+3963,19040,Hai Phong,2017-04-23,Male,45-54,organic_search
+4277,19380,Thai Nguyen,2021-12-08,Male,55+,social_media
+4286,19382,Phu Ly,2017-01-14,Female,35-44,referral
+4289,19382,Phu Ly,2018-10-02,Female,45-54,email_campaign
+4372,19438,Lao Cai,2019-09-10,Female,45-54,paid_search
+4445,19468,Ha Long,2016-03-17,Male,25-34,organic_search
+4536,19103,Son Tay,2020-10-06,Female,55+,organic_search
+4607,19123,Hanoi,2021-04-29,Male,35-44,social_media
+4674,19136,Viet Tri,2017-07-17,Male,45-54,email_campaign
+4935,16506,Bac Giang,2020-06-20,Male,25-34,social_media
+4937,16507,Lao Cai,2021-03-20,Male,35-44,paid_search
+4949,16509,Lao Cai,2021-05-02,Male,45-54,organic_search
+4979,16701,Hanoi,2018-10-08,Male,25-34,organic_search
+5075,16803,Nam Dinh,2018-02-05,Female,35-44,social_media
+5167,16866,Cam Pha,2017-12-02,Female,45-54,paid_search
+5326,16947,Viet Tri,2019-05-01,Female,45-54,organic_search
+5379,17051,Hai Phong,2017-09-29,Male,35-44,paid_search
+5527,17760,Hanoi,2015-08-26,Female,35-44,paid_search
+5528,17760,Hanoi,2021-12-11,Male,25-34,organic_search
+5677,17842,Thai Nguyen,2020-06-07,Female,35-44,organic_search
+5977,17019,Thai Nguyen,2022-05-14,Male,45-54,paid_search
+5978,17019,Thai Nguyen,2018-03-10,Male,45-54,referral
+5980,17019,Thai Nguyen,2018-08-02,Male,25-34,paid_search
+6037,17033,Viet Tri,2021-04-13,Female,25-34,social_media
+6121,17057,Lao Cai,2022-06-30,Male,35-44,social_media
+6183,17078,Hai Phong,2019-09-26,Female,25-34,email_campaign
+6624,17325,Cam Pha,2019-11-07,Female,25-34,email_campaign
+6766,17404,Cam Pha,2020-07-06,Male,35-44,referral
+6839,17522,Bac Giang,2018-11-22,Female,25-34,paid_search
+6886,17545,Uong Bi,2022-01-21,Male,35-44,social_media
+6990,17601,Hanoi,2021-11-26,Female,45-54,paid_search
+7014,17980,Lao Cai,2021-01-25,Female,55+,paid_search
+7033,19363,Ha Long,2017-10-08,Male,45-54,social_media
+7244,17967,Bac Ninh,2013-10-08,Male,35-44,email_campaign
+7310,18017,Bac Ninh,2020-02-21,Male,25-34,social_media
+7331,18037,Ha Long,2021-11-03,Female,35-44,email_campaign
+7349,18042,Bac Ninh,2018-10-17,Female,25-34,paid_search
+7372,18052,Bac Ninh,2021-06-19,Female,45-54,email_campaign
+7421,18071,Ha Long,2018-01-02,Female,25-34,referral
+7655,18322,Ha Long,2018-07-26,Female,35-44,paid_search
+7816,18661,Thai Nguyen,2018-01-12,Female,25-34,paid_search
+7830,19506,Ninh Binh,2017-08-28,Male,18-24,paid_search
+7833,19508,Viet Tri,2021-09-01,Female,55+,social_media
+7879,19530,Bac Giang,2021-12-19,Male,35-44,social_media
+8061,18407,Hai Phong,2013-08-16,Female,25-34,organic_search
+8068,18411,Son Tay,2019-11-29,Male,25-34,paid_search
+8069,18411,Son Tay,2021-10-14,Male,18-24,organic_search
+8269,18504,Thai Nguyen,2022-01-14,Male,35-44,direct
+8315,18519,Phu Ly,2020-05-04,Male,55+,paid_search
+8332,18618,Lao Cai,2019-06-30,Female,25-34,email_campaign
+8451,18801,Viet Tri,2022-10-28,Female,35-44,paid_search
+8592,16125,Nam Dinh,2020-08-27,Male,45-54,paid_search
+8595,16125,Nam Dinh,2018-11-25,Female,18-24,social_media
+8642,16159,Uong Bi,2022-08-12,Male,25-34,social_media
+8764,10576,Hai Phong,2022-08-28,Female,45-54,social_media
+8792,10590,Bac Ninh,2022-05-26,Female,25-34,social_media
+8894,14006,Bac Giang,2018-02-28,Male,45-54,social_media
+8974,14033,Ninh Binh,2021-12-27,Female,25-34,social_media
+8993,14037,Hanoi,2015-11-28,Male,25-34,email_campaign
+9031,14051,Son Tay,2016-11-20,Male,35-44,referral
+9157,14094,Bac Giang,2019-01-14,Male,18-24,organic_search
+9206,14120,Hanoi,2020-04-09,Male,25-34,direct
+9319,14174,Bac Ninh,2020-10-15,Female,18-24,paid_search
+9473,14304,Son Tay,2014-09-29,Female,55+,email_campaign
+9525,14424,Hanoi,2013-06-11,Male,25-34,email_campaign
+9583,14456,Thai Nguyen,2017-11-11,Female,35-44,referral
+9899,14564,Uong Bi,2016-01-31,Female,25-34,direct
+9999,14611,Ninh Binh,2018-01-27,Male,55+,paid_search
+10046,14622,Bac Giang,2017-12-18,Male,25-34,referral
+10441,14821,Son Tay,2018-08-26,Female,35-44,organic_search
+10479,14840,Ninh Binh,2016-03-21,Female,35-44,email_campaign
+10606,10307,Hai Phong,2021-10-25,Female,18-24,organic_search
+10648,10453,Uong Bi,2019-11-26,Female,45-54,direct
+10712,10466,Uong Bi,2021-08-15,Female,25-34,paid_search
+10737,10471,Hai Phong,2019-10-07,Female,35-44,email_campaign
+10741,10472,Bac Ninh,2021-02-08,Male,25-34,social_media
+10813,10530,Cam Pha,2013-08-16,Female,25-34,paid_search
+11011,10913,Bac Ninh,2017-10-01,Male,35-44,paid_search
+11148,11003,Hanoi,2013-09-10,Male,45-54,social_media
+11220,11102,Cam Pha,2020-07-07,Female,35-44,referral
+11379,11229,Bac Giang,2022-01-29,Female,45-54,social_media
+11538,11375,Hanoi,2014-09-10,Female,25-34,direct
+11631,11423,Thai Nguyen,2021-06-24,Female,25-34,social_media
+11672,11433,Bac Ninh,2019-08-29,Male,45-54,organic_search
+11700,11501,Uong Bi,2013-01-28,Male,45-54,social_media
+11712,11510,Viet Tri,2022-01-11,Female,45-54,direct
+11714,11510,Viet Tri,2020-08-01,Male,25-34,organic_search
+11783,11557,Cam Pha,2017-11-10,Male,25-34,organic_search
+11837,11572,Lao Cai,2021-04-06,Male,25-34,social_media
+11865,11580,Uong Bi,2013-08-17,Female,55+,paid_search
+11891,11598,Hanoi,2018-10-23,Female,35-44,referral
+11966,11713,Bac Ninh,2021-12-26,Male,25-34,social_media
+12014,11722,Bac Giang,2022-03-23,Non-binary,25-34,organic_search
+12024,11725,Phu Ly,2018-04-19,Female,45-54,organic_search
+12029,11726,Viet Tri,2020-05-08,Female,35-44,paid_search
+12212,11777,Cam Pha,2019-06-15,Female,35-44,organic_search
+12213,11777,Cam Pha,2022-07-06,Female,18-24,email_campaign
+12322,11901,Bac Giang,2021-03-18,Female,45-54,social_media
+12349,11934,Hai Phong,2017-09-05,Male,18-24,paid_search
+12402,11949,Ha Long,2016-02-15,Male,25-34,organic_search
+12481,11967,Viet Tri,2021-10-14,Male,35-44,organic_search
+12502,11972,Nam Dinh,2017-12-17,Female,25-34,social_media
+12517,11976,Hanoi,2017-10-29,Male,45-54,referral
+12621,10019,Hai Phong,2018-11-08,Female,45-54,referral
+12622,10019,Hai Phong,2019-11-05,Female,55+,organic_search
+12634,10022,Uong Bi,2013-08-03,Male,25-34,organic_search
+12897,10940,Bac Giang,2020-09-07,Non-binary,45-54,organic_search
+12962,10990,Nam Dinh,2021-01-15,Male,25-34,organic_search
+12964,10990,Nam Dinh,2018-01-24,Female,25-34,social_media
+13246,12083,Nam Dinh,2021-10-20,Female,55+,direct
+13426,12148,Son Tay,2019-08-08,Female,35-44,organic_search
+13471,12158,Cam Pha,2022-12-20,Female,25-34,organic_search
+13578,12185,Bac Giang,2021-03-13,Male,45-54,direct
+13748,12402,Lao Cai,2014-11-21,Female,35-44,paid_search
+14016,12477,Phu Ly,2019-08-22,Male,18-24,email_campaign
+14124,12515,Viet Tri,2020-07-12,Male,18-24,organic_search
+14287,12572,Hai Phong,2019-05-04,Female,45-54,paid_search
+14351,12590,Cam Pha,2018-09-14,Female,25-34,organic_search
+14417,12729,Phu Ly,2019-09-16,Male,35-44,organic_search
+14545,12769,Ninh Binh,2020-07-11,Female,35-44,organic_search
+14637,12804,Lao Cai,2014-01-13,Female,25-34,organic_search
+15269,13027,Uong Bi,2021-03-30,Male,35-44,email_campaign
+15438,13077,Nam Dinh,2019-07-27,Male,25-34,direct
+15441,13077,Nam Dinh,2020-08-16,Female,25-34,social_media
+15526,13110,Phu Ly,2015-04-19,Female,25-34,email_campaign
+15984,13346,Thai Nguyen,2021-08-04,Non-binary,35-44,social_media
+16144,13431,Hanoi,2014-08-19,Female,25-34,social_media
+16180,13440,Phu Ly,2019-06-17,Female,35-44,social_media
+16344,13502,Nam Dinh,2020-02-20,Female,18-24,paid_search
+16744,13736,Cam Pha,2020-06-14,Male,25-34,paid_search
+16823,13760,Ninh Binh,2015-01-16,Female,18-24,paid_search
+16824,13760,Ninh Binh,2019-06-01,Female,35-44,email_campaign
+17339,32911,Uong Bi,2021-09-20,Male,55+,social_media
+17352,32922,Son Tay,2018-10-19,Female,45-54,organic_search
+17374,32927,Bac Ninh,2016-10-22,Male,55+,organic_search
+17437,32953,Hanoi,2019-04-30,Non-binary,45-54,organic_search
+17486,32962,Ha Long,2022-04-25,Male,45-54,social_media
+17572,33015,Lao Cai,2019-05-30,Male,45-54,direct
+17691,33040,Viet Tri,2020-09-17,Male,25-34,referral
+17761,33064,Lao Cai,2017-10-23,Female,18-24,referral
+17884,33160,Nam Dinh,2022-11-05,Female,35-44,social_media
+17909,33304,Phu Ly,2021-01-13,Male,35-44,referral
+17960,33314,Lao Cai,2020-03-15,Male,35-44,email_campaign
+18114,33407,Viet Tri,2021-03-14,Female,25-34,social_media
+18184,33421,Thai Nguyen,2017-04-02,Male,35-44,direct
+18262,33441,Nam Dinh,2022-08-17,Non-binary,45-54,paid_search
+18328,33463,Son Tay,2020-04-01,Female,55+,social_media
+18440,33498,Phu Ly,2017-05-30,Female,45-54,referral
+18515,33541,Bac Ninh,2020-04-10,Female,45-54,paid_search
+18770,33617,Hanoi,2020-08-29,Female,18-24,paid_search
+18921,33704,Thai Nguyen,2018-12-31,Female,45-54,social_media
+19073,33766,Ninh Binh,2022-07-05,Female,25-34,direct
+19105,33773,Ha Long,2018-01-20,Female,45-54,referral
+19106,33773,Ha Long,2019-12-15,Male,25-34,organic_search
+19191,33805,Lao Cai,2016-11-14,Male,45-54,direct
+19212,33811,Cam Pha,2014-01-10,Male,35-44,social_media
+19374,33860,Hai Phong,2019-12-10,Female,25-34,organic_search
+19514,33912,Son Tay,2015-08-29,Male,55+,paid_search
+19547,33919,Thai Nguyen,2020-04-17,Male,25-34,email_campaign
+19582,33931,Uong Bi,2022-06-13,Male,35-44,direct
+20317,34688,Nam Dinh,2014-12-31,Female,18-24,email_campaign
+20320,34688,Nam Dinh,2022-03-13,Male,35-44,organic_search
+20381,34951,Ha Long,2020-04-29,Male,35-44,paid_search
+20391,34953,Thai Nguyen,2015-03-29,Female,45-54,email_campaign
+20414,34974,Bac Giang,2020-09-18,Male,35-44,organic_search
+20474,34994,Uong Bi,2019-04-18,Female,35-44,organic_search
+20488,34997,Thai Nguyen,2022-12-24,Female,18-24,organic_search
+20526,33126,Viet Tri,2019-02-02,Male,45-54,social_media
+20661,33165,Cam Pha,2022-12-11,Female,45-54,referral
+20864,32025,Bac Giang,2018-07-11,Female,18-24,organic_search
+21057,32086,Nam Dinh,2020-09-13,Female,18-24,social_media
+21119,32114,Son Tay,2014-10-27,Female,35-44,email_campaign
+21144,32119,Lao Cai,2021-03-22,Male,25-34,email_campaign
+21174,32127,Bac Giang,2020-03-21,Female,25-34,email_campaign
+21177,32127,Bac Giang,2021-09-22,Female,25-34,email_campaign
+21298,32168,Son Tay,2022-08-01,Female,55+,organic_search
+21421,32205,Nam Dinh,2018-03-09,Female,35-44,email_campaign
+21610,32258,Bac Ninh,2022-06-16,Female,45-54,organic_search
+21651,32303,Son Tay,2022-10-22,Male,45-54,social_media
+21689,32311,Lao Cai,2022-11-02,Female,55+,social_media
+21751,32328,Cam Pha,2013-05-21,Female,25-34,organic_search
+21865,32399,Thai Nguyen,2020-11-05,Male,55+,email_campaign
+22116,32701,Bac Ninh,2022-10-10,Female,35-44,paid_search
+22295,32754,Hai Phong,2020-11-10,Male,45-54,referral
+22330,32765,Hanoi,2015-05-14,Female,35-44,organic_search
+22389,32779,Nam Dinh,2019-09-12,Male,55+,direct
+22444,32804,Hai Phong,2018-11-08,Female,35-44,organic_search
+22522,32821,Bac Ninh,2012-10-22,Female,25-34,direct
+22589,32837,Ninh Binh,2021-07-25,Male,25-34,social_media
+22851,34476,Lao Cai,2020-07-09,Male,45-54,direct
+22969,34705,Ha Long,2018-12-09,Female,45-54,social_media
+23015,34736,Phu Ly,2018-11-16,Male,35-44,organic_search
+23088,34759,Son Tay,2020-05-01,Male,45-54,email_campaign
+23146,34786,Thai Nguyen,2013-11-05,Male,25-34,email_campaign
+23196,32405,Son Tay,2019-01-12,Male,25-34,paid_search
+23291,32433,Cam Pha,2017-07-22,Male,35-44,organic_search
+23436,32504,Cam Pha,2021-08-02,Male,55+,social_media
+23472,32514,Uong Bi,2021-05-10,Male,18-24,social_media
+23551,32547,Bac Ninh,2017-07-10,Male,35-44,referral
+23609,32569,Ninh Binh,2021-06-11,Male,25-34,organic_search
+23718,43938,Bac Giang,2022-06-10,Female,35-44,organic_search
+23719,43938,Bac Giang,2018-05-03,Female,25-34,referral
+23721,43938,Bac Giang,2012-10-11,Male,18-24,email_campaign
+23745,43948,Uong Bi,2018-01-14,Female,55+,email_campaign
+23789,43976,Thai Nguyen,2022-04-12,Female,55+,social_media
+23859,44442,Viet Tri,2020-11-26,Female,25-34,paid_search
+23881,44455,Hai Phong,2016-08-14,Female,35-44,social_media
+23882,44455,Hai Phong,2018-05-26,Male,45-54,referral
+23922,43318,Hai Phong,2019-06-10,Female,18-24,email_campaign
+24030,45036,Thai Nguyen,2019-12-02,Female,35-44,organic_search
+24142,45102,Uong Bi,2020-08-01,Male,18-24,referral
+24192,45122,Bac Giang,2018-03-17,Male,45-54,direct
+24424,45322,Viet Tri,2015-08-03,Male,35-44,social_media
+24429,45324,Cam Pha,2021-01-01,Male,25-34,organic_search
+24432,45324,Cam Pha,2020-05-09,Male,55+,direct
+24459,45331,Nam Dinh,2022-09-26,Female,45-54,organic_search
+24506,45341,Uong Bi,2017-06-07,Male,25-34,direct
+24527,45345,Ha Long,2018-10-21,Male,25-34,email_campaign
+24599,45371,Nam Dinh,2021-10-10,Male,18-24,organic_search
+24711,45415,Thai Nguyen,2015-03-17,Female,45-54,paid_search
+24728,45419,Ninh Binh,2017-06-22,Male,18-24,social_media
+24738,45424,Bac Giang,2019-09-21,Female,55+,paid_search
+24740,45424,Bac Giang,2018-04-23,Female,18-24,email_campaign
+24783,45439,Ha Long,2012-11-07,Female,45-54,social_media
+24824,45801,Bac Ninh,2020-03-21,Female,35-44,email_campaign
+24951,45840,Nam Dinh,2019-10-16,Male,18-24,organic_search
+25060,45875,Hanoi,2022-01-23,Female,35-44,referral
+25179,45206,Ha Long,2015-11-26,Male,35-44,social_media
+25345,45244,Nam Dinh,2020-05-25,Female,35-44,organic_search
+25358,45247,Viet Tri,2022-05-14,Female,45-54,direct
+25558,43055,Lao Cai,2015-05-13,Female,45-54,email_campaign
+25605,43068,Phu Ly,2022-08-17,Female,18-24,paid_search
+25636,43078,Hanoi,2020-06-11,Male,18-24,social_media
+25637,43078,Hanoi,2019-08-28,Female,25-34,social_media
+25646,43081,Cam Pha,2015-12-20,Male,55+,paid_search
+25714,43119,Viet Tri,2020-09-24,Female,18-24,paid_search
+25719,43123,Hanoi,2017-10-15,Female,35-44,organic_search
+25819,43154,Uong Bi,2020-06-06,Female,35-44,organic_search
+25962,43224,Bac Ninh,2020-09-09,Male,45-54,social_media
+25991,43232,Son Tay,2018-05-04,Male,25-34,paid_search
+26013,43311,Uong Bi,2022-07-01,Male,45-54,social_media
+26033,43344,Hai Phong,2016-08-29,Male,25-34,paid_search
+26037,43344,Hai Phong,2012-09-29,Male,25-34,organic_search
+26362,43912,Thai Nguyen,2022-02-15,Male,45-54,email_campaign
+26498,45601,Viet Tri,2017-01-30,Female,18-24,email_campaign
+26501,45601,Viet Tri,2020-08-18,Male,18-24,paid_search
+26574,45640,Ha Long,2021-06-25,Female,45-54,organic_search
+26588,45645,Uong Bi,2013-10-09,Male,25-34,paid_search
+26612,45651,Hai Phong,2022-07-02,Male,25-34,email_campaign
+26671,45669,Bac Giang,2019-02-14,Male,35-44,paid_search
+26688,45680,Bac Giang,2016-11-17,Male,55+,direct
+26732,45692,Son Tay,2018-08-04,Female,55+,paid_search
+26756,45710,Ha Long,2022-03-19,Female,35-44,social_media
+27286,43506,Ninh Binh,2018-02-04,Female,18-24,organic_search
+27342,43528,Son Tay,2015-05-26,Female,25-34,referral
+27433,43556,Lao Cai,2019-01-30,Female,45-54,social_media
+27464,43567,Viet Tri,2018-10-25,Male,55+,referral
+27547,43616,Bac Giang,2020-03-13,Male,45-54,email_campaign
+27725,44044,Lao Cai,2018-04-04,Male,35-44,organic_search
+27748,44053,Cam Pha,2020-12-18,Male,25-34,organic_search
+27750,44053,Cam Pha,2020-03-23,Female,35-44,social_media
+27751,44053,Cam Pha,2022-10-24,Female,35-44,paid_search
+27756,44054,Ha Long,2021-10-28,Female,35-44,organic_search
+27757,44054,Ha Long,2017-12-18,Female,55+,email_campaign
+27766,44056,Lao Cai,2022-11-11,Male,45-54,social_media
+27823,44077,Hanoi,2022-01-01,Female,25-34,referral
+27864,44089,Hanoi,2017-09-28,Female,45-54,organic_search
+27868,44090,Lao Cai,2022-05-11,Male,25-34,social_media
+27947,44110,Ninh Binh,2019-02-17,Male,35-44,organic_search
+27998,44121,Son Tay,2017-05-13,Female,45-54,email_campaign
+28004,44122,Ha Long,2013-12-03,Male,18-24,referral
+28053,44132,Thai Nguyen,2014-12-02,Female,55+,organic_search
+28098,44141,Uong Bi,2020-10-17,Female,18-24,direct
+28119,44145,Thai Nguyen,2016-08-15,Female,18-24,social_media
+28150,44203,Bac Giang,2016-05-24,Female,45-54,organic_search
+28166,44212,Son Tay,2013-10-07,Female,55+,email_campaign
+28191,44221,Thai Nguyen,2018-10-12,Male,18-24,social_media
+28199,44224,Ninh Binh,2022-04-12,Male,25-34,social_media
+28208,44231,Cam Pha,2018-09-22,Female,25-34,paid_search
+28265,44254,Uong Bi,2020-05-12,Female,45-54,direct
+28272,44255,Son Tay,2019-05-01,Male,25-34,direct
+28279,44260,Ninh Binh,2018-10-31,Male,25-34,email_campaign
+28280,44260,Ninh Binh,2022-08-19,Male,35-44,social_media
+28441,44319,Son Tay,2022-02-18,Male,55+,organic_search
+28488,44405,Cam Pha,2019-02-22,Female,35-44,direct
+28494,44406,Ninh Binh,2022-04-25,Female,25-34,social_media
+28496,44406,Ninh Binh,2016-09-04,Male,35-44,paid_search
+28534,44420,Bac Ninh,2020-04-05,Female,25-34,organic_search
+28549,44425,Bac Giang,2018-03-03,Female,35-44,organic_search
+28604,44444,Hanoi,2022-06-18,Male,35-44,paid_search
+28666,44483,Ninh Binh,2021-06-27,Male,18-24,direct
+28755,44601,Bac Giang,2021-11-13,Female,35-44,paid_search
+28756,44601,Bac Giang,2018-05-28,Male,55+,organic_search
+28899,44646,Bac Giang,2019-05-14,Female,35-44,organic_search
+29104,44710,Nam Dinh,2019-08-01,Female,25-34,paid_search
+29113,44718,Hai Phong,2014-02-25,Female,45-54,organic_search
+29120,44720,Nam Dinh,2015-04-23,Female,25-34,social_media
+29210,44830,Ha Long,2022-07-02,Female,35-44,organic_search
+29233,44839,Nam Dinh,2018-07-19,Male,45-54,email_campaign
+29237,44839,Nam Dinh,2015-08-10,Male,18-24,referral
+29343,44865,Uong Bi,2014-05-27,Male,45-54,paid_search
+29407,44889,Viet Tri,2022-09-12,Female,18-24,organic_search
+29409,44890,Lao Cai,2015-09-08,Male,25-34,social_media
+29435,44905,Hai Phong,2021-02-15,Female,35-44,direct
+29525,48021,Viet Tri,2021-10-16,Female,45-54,social_media
+29562,48030,Hanoi,2021-05-08,Male,45-54,organic_search
+29596,48038,Nam Dinh,2014-03-22,Male,45-54,organic_search
+29627,48044,Son Tay,2020-03-16,Female,55+,social_media
+29636,48047,Thai Nguyen,2020-05-12,Male,55+,direct
+29680,48063,Bac Ninh,2014-03-05,Female,35-44,organic_search
+29685,48064,Viet Tri,2017-06-22,Male,45-54,social_media
+29699,48067,Hanoi,2020-11-29,Female,45-54,social_media
+29788,48091,Lao Cai,2019-06-10,Male,18-24,organic_search
+29843,48105,Bac Ninh,2014-07-29,Female,35-44,organic_search
+29877,48114,Phu Ly,2015-10-29,Female,35-44,social_media
+29882,48116,Ha Long,2021-03-16,Non-binary,45-54,email_campaign
+29967,48141,Nam Dinh,2022-02-09,Male,25-34,paid_search
+29974,48146,Uong Bi,2013-08-06,Female,25-34,email_campaign
+29993,48158,Son Tay,2018-09-08,Female,25-34,organic_search
+30048,48170,Lao Cai,2022-10-16,Female,45-54,email_campaign
+30050,48170,Lao Cai,2021-11-02,Non-binary,55+,direct
+30121,48189,Viet Tri,2018-12-21,Male,25-34,paid_search
+30147,48195,Phu Ly,2016-06-26,Non-binary,25-34,organic_search
+30153,48198,Ha Long,2021-05-01,Female,55+,paid_search
+30155,48198,Ha Long,2013-12-30,Male,45-54,social_media
+30292,48228,Phu Ly,2019-09-08,Female,25-34,paid_search
+30331,48239,Son Tay,2017-05-02,Female,25-34,paid_search
+30351,48302,Ha Long,2021-05-02,Female,45-54,organic_search
+30427,48322,Ha Long,2015-09-12,Male,35-44,social_media
+30476,48334,Thai Nguyen,2017-07-14,Female,45-54,organic_search
+30478,48335,Bac Giang,2020-09-28,Male,35-44,social_media
+30579,48374,Nam Dinh,2018-11-19,Male,45-54,organic_search
+30608,48383,Son Tay,2018-08-19,Male,25-34,social_media
+30657,48415,Uong Bi,2021-08-08,Male,25-34,referral
+30676,48419,Hai Phong,2022-04-23,Male,35-44,email_campaign
+30710,48428,Son Tay,2020-03-04,Female,25-34,paid_search
+30754,48438,Cam Pha,2021-04-12,Male,35-44,referral
+30774,48442,Uong Bi,2022-01-26,Female,18-24,paid_search
+30791,48446,Nam Dinh,2022-01-08,Female,25-34,email_campaign
+30857,48463,Bac Giang,2019-07-23,Non-binary,55+,paid_search
+31255,48722,Nam Dinh,2016-06-17,Male,25-34,organic_search
+31278,48729,Son Tay,2018-12-27,Female,35-44,organic_search
+31358,48746,Hanoi,2019-08-12,Male,18-24,paid_search
+31424,48762,Cam Pha,2021-11-11,Female,35-44,social_media
+31610,48843,Nam Dinh,2021-07-03,Female,25-34,organic_search
+31661,48854,Son Tay,2018-08-01,Female,55+,social_media
+31678,48858,Hanoi,2018-11-15,Female,35-44,referral
+31717,48867,Phu Ly,2015-01-31,Female,35-44,organic_search
+31745,48877,Cam Pha,2017-09-26,Female,25-34,direct
+31886,49001,Cam Pha,2018-10-27,Male,35-44,organic_search
+31948,49017,Bac Giang,2022-02-03,Male,35-44,email_campaign
+31965,49026,Viet Tri,2022-01-30,Female,55+,paid_search
+32025,49051,Ha Long,2021-01-09,Male,35-44,organic_search
+32042,49055,Ha Long,2012-09-23,Female,45-54,email_campaign
+32093,49071,Son Tay,2020-03-10,Female,45-54,organic_search
+32174,49097,Hai Phong,2022-07-04,Female,45-54,social_media
+32185,49201,Son Tay,2017-06-23,Female,25-34,organic_search
+32353,49264,Bac Giang,2019-12-08,Male,18-24,referral
+32426,49301,Lao Cai,2018-03-12,Male,25-34,paid_search
+32484,49318,Bac Giang,2017-08-07,Non-binary,55+,organic_search
+32554,49333,Cam Pha,2018-06-08,Male,25-34,social_media
+32699,49417,Ha Long,2018-07-15,Female,25-34,paid_search
+32701,49417,Ha Long,2017-09-26,Male,25-34,paid_search
+32703,49418,Bac Ninh,2017-10-30,Female,18-24,direct
+32704,49418,Bac Ninh,2022-11-03,Female,25-34,referral
+32737,49424,Nam Dinh,2020-08-18,Male,35-44,paid_search
+32755,49431,Bac Giang,2016-07-08,Male,45-54,referral
+33192,49663,Bac Ninh,2017-08-23,Male,45-54,paid_search
+33309,49707,Ha Long,2013-12-18,Female,25-34,social_media
+33310,49707,Ha Long,2018-06-10,Non-binary,18-24,organic_search
+33573,48131,Cam Pha,2019-09-06,Male,25-34,direct
+33589,48144,Lao Cai,2017-04-27,Male,18-24,direct
+33600,48157,Phu Ly,2020-05-14,Male,18-24,social_media
+33610,49022,Hanoi,2020-08-09,Male,45-54,social_media
+33611,49022,Hanoi,2014-12-08,Male,45-54,paid_search
+33774,49129,Nam Dinh,2021-09-08,Female,45-54,paid_search
+33861,46714,Viet Tri,2013-02-11,Female,35-44,referral
+33999,46788,Cam Pha,2022-08-17,Female,45-54,paid_search
+34077,46809,Thai Nguyen,2019-10-14,Male,35-44,organic_search
+34176,47022,Lao Cai,2021-04-22,Female,45-54,organic_search
+34309,47126,Hanoi,2019-03-13,Female,25-34,paid_search
+34312,47126,Hanoi,2018-09-28,Male,25-34,paid_search
+34389,47161,Phu Ly,2015-03-22,Female,35-44,paid_search
+34560,47374,Cam Pha,2022-01-05,Female,55+,direct
+34561,47374,Cam Pha,2019-05-02,Female,25-34,email_campaign
+34572,47380,Ninh Binh,2020-10-19,Female,35-44,organic_search
+34663,46032,Bac Ninh,2020-10-17,Female,35-44,organic_search
+34733,46051,Ha Long,2022-11-05,Male,25-34,organic_search
+34883,46113,Nam Dinh,2022-12-04,Female,25-34,social_media
+34919,46123,Ninh Binh,2017-01-25,Male,25-34,email_campaign
+35000,46151,Thai Nguyen,2019-12-05,Male,25-34,paid_search
+35018,46158,Bac Ninh,2021-12-24,Female,45-54,social_media
+35120,46201,Ninh Binh,2020-09-28,Female,45-54,referral
+35203,46227,Ninh Binh,2022-12-18,Male,18-24,organic_search
+35233,46236,Thai Nguyen,2018-04-08,Male,45-54,direct
+35234,46236,Thai Nguyen,2020-02-01,Male,25-34,social_media
+35241,46237,Hanoi,2019-05-05,Male,35-44,paid_search
+35245,46239,Lao Cai,2022-11-03,Male,35-44,direct
+35252,46240,Bac Giang,2021-10-08,Female,25-34,paid_search
+35270,46250,Hanoi,2015-11-09,Female,45-54,social_media
+35276,46254,Ninh Binh,2017-01-26,Female,35-44,social_media
+35309,46304,Ninh Binh,2017-03-14,Non-binary,25-34,paid_search
+35313,46307,Cam Pha,2018-10-05,Male,18-24,social_media
+35316,46307,Cam Pha,2019-10-11,Female,35-44,email_campaign
+35358,46350,Nam Dinh,2017-11-26,Male,18-24,direct
+35376,46360,Son Tay,2019-03-14,Female,35-44,organic_search
+35388,46368,Bac Giang,2014-05-24,Non-binary,25-34,social_media
+35439,46392,Phu Ly,2017-02-22,Male,18-24,organic_search
+35541,46534,Ha Long,2022-02-28,Male,35-44,email_campaign
+35641,46567,Cam Pha,2017-04-28,Male,35-44,social_media
+35664,46574,Phu Ly,2021-02-19,Female,25-34,organic_search
+36119,46996,Lao Cai,2021-05-28,Male,25-34,referral
+36121,46996,Lao Cai,2019-11-16,Female,45-54,social_media
+36307,47303,Lao Cai,2018-06-04,Female,25-34,referral
+36354,47356,Viet Tri,2022-04-30,Female,45-54,email_campaign
+36458,47429,Hai Phong,2022-06-27,Female,25-34,paid_search
+36460,47429,Hai Phong,2018-10-27,Non-binary,18-24,organic_search
+36514,47448,Nam Dinh,2020-08-12,Female,25-34,social_media
+36674,47802,Hai Phong,2022-05-23,Female,45-54,organic_search
+36680,47803,Uong Bi,2012-12-16,Female,45-54,referral
+36917,47909,Bac Giang,2018-03-22,Female,25-34,direct
+36929,47920,Nam Dinh,2022-05-10,Female,25-34,organic_search
+36977,47933,Bac Giang,2022-07-19,Male,25-34,paid_search
+37009,47946,Nam Dinh,2017-12-05,Female,35-44,direct
+37167,24712,Ninh Binh,2021-03-21,Female,45-54,referral
+37274,24822,Viet Tri,2019-10-31,Female,25-34,organic_search
+37565,24981,Hai Phong,2018-08-15,Female,35-44,organic_search
+37729,25064,Lao Cai,2017-06-26,Non-binary,18-24,organic_search
+37843,25123,Lao Cai,2021-12-29,Male,55+,social_media
+38212,25313,Hai Phong,2016-07-03,Female,25-34,paid_search
+38296,25504,Phu Ly,2018-10-20,Female,45-54,organic_search
+38313,25508,Nam Dinh,2021-09-14,Female,18-24,paid_search
+38400,25541,Phu Ly,2019-04-16,Female,35-44,organic_search
+38431,25557,Thai Nguyen,2016-06-16,Female,55+,paid_search
+38468,25571,Thai Nguyen,2020-01-23,Female,25-34,organic_search
+38541,25632,Cam Pha,2020-03-01,Male,35-44,organic_search
+38634,25669,Lao Cai,2016-10-07,Female,18-24,social_media
+38774,25812,Ninh Binh,2013-01-16,Male,18-24,paid_search
+39489,26201,Ninh Binh,2020-03-26,Male,35-44,email_campaign
+39584,26264,Cam Pha,2022-12-31,Female,35-44,organic_search
+39663,26301,Cam Pha,2017-12-21,Male,25-34,paid_search
+39664,26301,Cam Pha,2022-08-03,Male,55+,organic_search
+39696,26330,Hai Phong,2014-04-03,Female,25-34,organic_search
+39739,26351,Ninh Binh,2022-12-26,Female,35-44,organic_search
+40222,7005,Uong Bi,2015-08-15,Female,25-34,social_media
+40226,7006,Bac Ninh,2015-10-22,Male,18-24,social_media
+40228,7009,Hanoi,2021-05-05,Female,35-44,paid_search
+40359,7052,Hai Phong,2016-08-11,Male,25-34,social_media
+40390,7070,Viet Tri,2015-06-09,Male,45-54,email_campaign
+40411,7074,Uong Bi,2016-11-24,Male,35-44,organic_search
+40464,7109,Nam Dinh,2021-10-16,Male,45-54,paid_search
+40465,7109,Nam Dinh,2015-05-24,Male,45-54,paid_search
+40479,7304,Phu Ly,2015-04-14,Male,25-34,organic_search
+40535,7417,Ha Long,2021-09-02,Female,35-44,organic_search
+40630,7450,Bac Giang,2019-09-09,Male,25-34,social_media
+40635,7452,Lao Cai,2015-06-04,Female,18-24,organic_search
+40638,7456,Bac Ninh,2017-09-10,Male,45-54,email_campaign
+40881,7644,Son Tay,2021-02-02,Male,18-24,paid_search
+40894,7647,Son Tay,2016-05-17,Female,45-54,organic_search
+40980,7801,Uong Bi,2020-05-16,Female,35-44,referral
+40981,7801,Uong Bi,2021-01-01,Male,35-44,organic_search
+41000,7822,Ha Long,2022-10-27,Female,25-34,paid_search
+41028,7830,Lao Cai,2022-09-14,Male,25-34,email_campaign
+41073,7843,Bac Ninh,2017-05-18,Female,18-24,social_media
+41261,7960,Thai Nguyen,2020-10-21,Female,25-34,paid_search
+41328,8804,Hanoi,2020-11-11,Female,55+,social_media
+41334,8807,Lao Cai,2017-02-08,Male,25-34,direct
+41336,8807,Lao Cai,2019-07-31,Male,35-44,email_campaign
+41498,7039,Cam Pha,2021-11-17,Female,35-44,paid_search
+41585,7078,Son Tay,2020-08-24,Male,55+,organic_search
+41602,7081,Son Tay,2017-12-15,Female,25-34,email_campaign
+41695,7206,Lao Cai,2022-08-02,Male,45-54,referral
+41765,7722,Hanoi,2018-03-11,Male,25-34,social_media
+41766,7722,Hanoi,2022-12-06,Female,55+,direct
+41782,7726,Cam Pha,2022-07-20,Female,35-44,social_media
+41791,7728,Thai Nguyen,2019-05-22,Male,55+,email_campaign
+41966,7980,Hanoi,2016-02-01,Female,55+,direct
+42030,8016,Lao Cai,2020-03-09,Male,35-44,paid_search
+42050,8021,Cam Pha,2022-11-26,Male,45-54,paid_search
+42051,8021,Cam Pha,2022-07-30,Female,25-34,organic_search
+42282,8075,Hai Phong,2014-07-11,Male,45-54,organic_search
+42465,8210,Lao Cai,2015-04-30,Female,25-34,organic_search
+42511,8225,Hai Phong,2014-11-20,Male,25-34,social_media
+42537,8234,Nam Dinh,2015-09-06,Male,35-44,paid_search
+42680,8330,Bac Ninh,2019-05-04,Male,35-44,social_media
+42759,8361,Hanoi,2018-06-06,Female,25-34,social_media
+42800,8505,Bac Giang,2014-02-02,Female,45-54,paid_search
+42818,8514,Uong Bi,2021-06-19,Female,18-24,social_media
+42865,8534,Son Tay,2016-07-05,Non-binary,25-34,paid_search
+42962,8620,Uong Bi,2020-09-26,Female,45-54,organic_search
+43029,8724,Uong Bi,2018-06-30,Male,35-44,paid_search
+43103,8753,Nam Dinh,2021-09-01,Female,35-44,social_media
+43106,8753,Nam Dinh,2020-05-23,Male,35-44,email_campaign
+43121,8757,Nam Dinh,2022-08-12,Female,35-44,email_campaign
+43166,8820,Cam Pha,2021-04-18,Non-binary,18-24,referral
+43597,20853,Hanoi,2015-10-21,Female,25-34,paid_search
+43648,20874,Ha Long,2022-12-25,Male,25-34,direct
+43652,20874,Ha Long,2018-05-13,Male,25-34,organic_search
+43655,20876,Ninh Binh,2018-09-03,Male,45-54,social_media
+43765,21009,Viet Tri,2013-06-09,Male,55+,referral
+43949,21075,Phu Ly,2021-04-30,Male,25-34,organic_search
+43952,21075,Phu Ly,2018-05-22,Male,45-54,direct
+44025,21111,Hanoi,2022-02-02,Female,18-24,social_media
+44041,21117,Viet Tri,2018-05-17,Male,25-34,referral
+44051,21122,Bac Ninh,2021-12-21,Male,35-44,referral
+44086,21144,Son Tay,2020-02-26,Female,18-24,referral
+44091,21146,Phu Ly,2022-04-07,Male,35-44,organic_search
+44120,21157,Ninh Binh,2016-09-12,Male,18-24,organic_search
+44176,21206,Phu Ly,2017-03-26,Male,25-34,email_campaign
+44223,21216,Lao Cai,2014-03-10,Female,35-44,social_media
+44231,21217,Ha Long,2021-12-14,Female,55+,paid_search
+44235,21218,Son Tay,2016-09-10,Female,35-44,email_campaign
+44238,21219,Son Tay,2021-10-23,Male,55+,social_media
+44382,21601,Hanoi,2021-08-26,Female,35-44,social_media
+44434,21629,Ha Long,2019-02-23,Female,45-54,paid_search
+44466,21640,Lao Cai,2013-07-03,Female,55+,email_campaign
+44737,21769,Son Tay,2021-07-09,Female,18-24,social_media
+44795,21784,Ninh Binh,2020-06-19,Male,55+,organic_search
+44797,21784,Ninh Binh,2021-01-18,Female,25-34,paid_search
+44800,21787,Thai Nguyen,2022-10-02,Female,35-44,organic_search
+44834,21797,Uong Bi,2015-02-05,Female,25-34,social_media
+44836,21797,Uong Bi,2022-01-06,Male,55+,email_campaign
+44873,21821,Bac Giang,2018-12-09,Female,25-34,paid_search
+45006,21901,Nam Dinh,2019-11-25,Non-binary,35-44,social_media
+45083,21531,Ha Long,2017-04-15,Male,45-54,organic_search
+45176,21649,Viet Tri,2016-09-15,Female,18-24,social_media
+45266,41129,Nam Dinh,2019-07-22,Male,25-34,social_media
+45342,41174,Bac Ninh,2019-01-04,Female,25-34,organic_search
+45494,40013,Ninh Binh,2021-10-25,Male,25-34,email_campaign
+45667,40104,Ha Long,2018-12-08,Female,25-34,organic_search
+45684,40115,Phu Ly,2022-09-30,Female,25-34,social_media
+45772,40162,Ha Long,2022-02-12,Female,35-44,email_campaign
+45846,40336,Hai Phong,2016-01-28,Female,25-34,referral
+45887,40353,Viet Tri,2017-04-07,Male,35-44,social_media
+46040,40475,Hai Phong,2021-03-18,Female,25-34,paid_search
+46056,40502,Cam Pha,2019-07-12,Male,18-24,referral
+46057,40502,Cam Pha,2020-10-04,Female,45-54,paid_search
+46086,40509,Ha Long,2017-08-31,Female,18-24,social_media
+46121,40517,Viet Tri,2016-08-16,Female,45-54,paid_search
+46143,40601,Cam Pha,2021-07-28,Non-binary,45-54,social_media
+46172,41005,Ninh Binh,2015-09-15,Male,45-54,social_media
+46188,41010,Hai Phong,2020-09-30,Female,25-34,organic_search
+46207,41015,Phu Ly,2022-02-23,Non-binary,35-44,organic_search
+46265,41042,Bac Ninh,2021-10-24,Male,25-34,organic_search
+46350,41075,Bac Ninh,2021-10-07,Female,35-44,referral
+46400,41097,Hanoi,2018-01-23,Female,18-24,social_media
+46468,42724,Phu Ly,2018-08-02,Female,25-34,paid_search
+46502,42748,Ha Long,2015-07-03,Male,18-24,social_media
+46588,40212,Ninh Binh,2013-12-21,Male,45-54,organic_search
+46618,40218,Ninh Binh,2016-12-25,Female,35-44,social_media
+46630,40220,Son Tay,2020-10-11,Female,25-34,organic_search
+46700,40272,Ninh Binh,2020-05-18,Male,25-34,social_media
+46788,62428,Uong Bi,2021-02-08,Female,45-54,direct
+46830,62441,Thai Nguyen,2012-07-07,Female,35-44,organic_search
+47026,62858,Cam Pha,2020-03-08,Female,25-34,social_media
+47027,62858,Cam Pha,2018-11-29,Male,45-54,organic_search
+47217,61844,Hanoi,2021-03-29,Female,25-34,paid_search
+47294,61866,Thai Nguyen,2016-06-03,Male,18-24,organic_search
+47296,61866,Thai Nguyen,2016-11-30,Male,35-44,paid_search
+47307,61872,Phu Ly,2019-03-11,Male,55+,organic_search
+47382,61920,Cam Pha,2016-05-10,Male,35-44,email_campaign
+47414,61938,Ha Long,2021-06-26,Female,25-34,direct
+47635,31516,Ninh Binh,2022-03-30,Female,18-24,email_campaign
+47690,31548,Uong Bi,2013-10-23,Non-binary,45-54,paid_search
+48161,19709,Ha Long,2016-08-12,Female,25-34,email_campaign
+48192,19720,Thai Nguyen,2022-12-21,Male,25-34,organic_search
+48401,19971,Hanoi,2017-07-17,Non-binary,35-44,social_media
+48406,19977,Lao Cai,2019-07-20,Male,25-34,organic_search
+48526,20176,Hai Phong,2022-10-24,Male,35-44,direct
+48587,6820,Lao Cai,2014-09-30,Male,35-44,social_media
+48619,6878,Lao Cai,2012-12-17,Male,25-34,social_media
+48950,1247,Bac Ninh,2018-09-28,Male,35-44,organic_search
+49101,5262,Thai Nguyen,2022-01-22,Female,45-54,email_campaign
+49102,5262,Thai Nguyen,2016-01-02,Female,18-24,social_media
+49484,24112,Thai Nguyen,2019-01-29,Female,25-34,organic_search
+49487,24112,Thai Nguyen,2014-06-08,Male,25-34,social_media
+49617,24541,Lao Cai,2021-10-31,Female,45-54,paid_search
+49708,27018,Son Tay,2018-08-07,Female,18-24,social_media
+49838,27103,Bac Ninh,2021-03-10,Male,25-34,direct
+49891,27127,Bac Ninh,2021-03-27,Female,45-54,organic_search
+50028,27253,Bac Ninh,2021-05-15,Male,55+,referral
+50063,27263,Ha Long,2019-11-04,Male,45-54,organic_search
+50263,27360,Bac Giang,2014-06-13,Male,35-44,email_campaign
+50508,27526,Son Tay,2018-05-06,Female,55+,organic_search
+50598,27551,Bac Giang,2022-05-19,Male,25-34,organic_search
+50635,27563,Uong Bi,2014-09-22,Male,25-34,email_campaign
+50755,27603,Cam Pha,2020-05-28,Male,18-24,organic_search
+50793,27612,Lao Cai,2021-12-21,Female,45-54,social_media
+50798,27613,Lao Cai,2020-10-08,Non-binary,55+,email_campaign
+50806,27614,Ninh Binh,2022-09-09,Female,45-54,paid_search
+50861,27707,Ha Long,2019-06-15,Female,45-54,organic_search
+50882,27713,Ha Long,2016-07-26,Male,35-44,social_media
+50911,27804,Thai Nguyen,2018-03-28,Female,45-54,organic_search
+51073,27850,Bac Giang,2015-03-09,Female,45-54,direct
+51389,28314,Ninh Binh,2019-09-28,Male,45-54,organic_search
+51392,28314,Ninh Binh,2021-07-19,Female,35-44,referral
+51469,28338,Bac Giang,2018-03-24,Female,18-24,paid_search
+51663,28390,Hai Phong,2019-05-26,Female,35-44,social_media
+51862,28451,Hai Phong,2019-07-29,Male,45-54,organic_search
+51904,28462,Uong Bi,2017-10-07,Male,25-34,social_media
+51973,28510,Ninh Binh,2018-01-31,Male,18-24,paid_search
+51999,28518,Lao Cai,2019-11-11,Male,35-44,referral
+52078,28539,Thai Nguyen,2019-05-10,Female,25-34,referral
+52233,28584,Phu Ly,2022-07-17,Male,25-34,referral
+52249,28590,Ninh Binh,2017-10-02,Female,25-34,paid_search
+52323,28635,Bac Giang,2018-01-27,Male,45-54,direct
+52358,28659,Lao Cai,2016-03-21,Female,35-44,social_media
+52492,35160,Ha Long,2021-12-11,Male,45-54,organic_search
+52789,36067,Bac Giang,2021-03-27,Male,45-54,email_campaign
+52862,36092,Lao Cai,2021-10-18,Male,25-34,referral
+52885,36106,Son Tay,2017-08-23,Female,25-34,social_media
+52936,36117,Nam Dinh,2021-05-12,Female,35-44,paid_search
+53240,36351,Bac Ninh,2016-06-10,Male,18-24,organic_search
+53305,36420,Hai Phong,2019-10-29,Male,45-54,paid_search
+53482,36580,Ninh Binh,2018-04-09,Female,25-34,referral
+53551,36801,Viet Tri,2013-10-05,Male,45-54,referral
+53783,30004,Nam Dinh,2015-11-12,Male,45-54,organic_search
+53784,30004,Nam Dinh,2019-06-30,Female,25-34,social_media
+53843,30017,Phu Ly,2018-08-30,Female,35-44,organic_search
+53856,30019,Ninh Binh,2017-06-27,Male,25-34,email_campaign
+53896,30032,Uong Bi,2013-01-30,Male,35-44,social_media
+53959,30052,Hai Phong,2019-10-23,Male,55+,organic_search
+53962,30052,Hai Phong,2019-01-09,Male,25-34,direct
+53984,30060,Ninh Binh,2012-12-15,Female,25-34,social_media
+54035,30075,Phu Ly,2018-07-16,Female,45-54,organic_search
+54071,30082,Bac Giang,2021-01-19,Male,25-34,organic_search
+54205,30116,Ha Long,2017-09-24,Female,18-24,direct
+54226,30120,Thai Nguyen,2016-04-19,Male,35-44,organic_search
+54254,30126,Ninh Binh,2021-06-11,Female,25-34,social_media
+54260,30127,Uong Bi,2022-05-15,Non-binary,45-54,organic_search
+54293,30139,Ninh Binh,2022-11-06,Female,25-34,social_media
+54296,30139,Ninh Binh,2021-04-15,Female,18-24,social_media
+54306,30141,Hanoi,2022-11-12,Female,25-34,direct
+54340,30152,Hanoi,2017-09-21,Male,25-34,direct
+54346,30153,Nam Dinh,2022-03-04,Female,55+,referral
+54356,30157,Phu Ly,2016-12-07,Female,18-24,paid_search
+54429,30180,Uong Bi,2022-10-03,Female,25-34,organic_search
+54454,30187,Thai Nguyen,2022-01-01,Female,35-44,social_media
+54463,30189,Hai Phong,2021-08-16,Female,45-54,direct
+54465,30189,Hai Phong,2022-06-28,Male,35-44,referral
+54489,30213,Hanoi,2022-04-03,Male,25-34,social_media
+54520,30220,Hai Phong,2017-01-09,Female,35-44,social_media
+54545,30230,Ha Long,2014-10-18,Male,45-54,paid_search
+54546,30230,Ha Long,2018-08-27,Female,25-34,email_campaign
+54561,30236,Nam Dinh,2017-06-26,Male,18-24,organic_search
+54840,30518,Uong Bi,2022-02-06,Male,25-34,organic_search
+54888,30533,Nam Dinh,2018-08-12,Male,35-44,social_media
+55168,30656,Bac Giang,2020-06-22,Female,35-44,social_media
+55197,30666,Bac Ninh,2018-11-11,Female,25-34,social_media
+55223,30683,Uong Bi,2022-12-31,Male,45-54,paid_search
+55249,30711,Uong Bi,2019-02-27,Male,45-54,paid_search
+55252,30711,Uong Bi,2020-06-22,Female,35-44,organic_search
+55334,31002,Phu Ly,2019-07-27,Male,45-54,email_campaign
+55365,31008,Hai Phong,2015-12-21,Non-binary,25-34,organic_search
+55429,31027,Son Tay,2022-01-14,Male,45-54,direct
+55492,31046,Nam Dinh,2022-03-19,Male,35-44,organic_search
+55909,30306,Phu Ly,2021-10-22,Female,55+,referral
+56063,30345,Son Tay,2018-09-02,Male,55+,social_media
+56143,6010,Nam Dinh,2019-12-29,Female,25-34,organic_search
+56204,6029,Cam Pha,2021-07-24,Male,25-34,organic_search
+56230,6037,Phu Ly,2014-10-22,Male,35-44,referral
+56505,6118,Cam Pha,2014-11-25,Male,55+,paid_search
+56576,6239,Hai Phong,2022-07-27,Female,18-24,organic_search
+56609,6250,Lao Cai,2022-10-26,Male,45-54,email_campaign
+56671,6277,Phu Ly,2013-06-22,Female,25-34,social_media
+56672,6277,Phu Ly,2020-08-26,Male,35-44,paid_search
+56788,6360,Son Tay,2014-09-27,Female,45-54,organic_search
+56790,6360,Son Tay,2020-03-12,Female,35-44,referral
+56820,6374,Son Tay,2017-12-01,Male,35-44,email_campaign
+56876,6388,Thai Nguyen,2016-12-08,Female,55+,direct
+56901,6410,Ha Long,2021-08-17,Male,45-54,organic_search
+56921,6415,Ninh Binh,2022-01-01,Male,35-44,email_campaign
+56959,6424,Viet Tri,2020-12-04,Male,35-44,paid_search
+57070,6470,Nam Dinh,2021-02-04,Female,35-44,paid_search
+57099,6478,Uong Bi,2014-03-07,Male,35-44,email_campaign
+57105,6479,Phu Ly,2018-07-28,Male,25-34,organic_search
+57130,6484,Nam Dinh,2020-01-06,Female,25-34,email_campaign
+57173,6513,Nam Dinh,2019-12-09,Male,25-34,social_media
+57215,6525,Hanoi,2019-04-03,Male,35-44,referral
+57220,6604,Son Tay,2016-11-22,Female,35-44,paid_search
+57222,6604,Son Tay,2017-08-28,Female,35-44,paid_search
+57228,6606,Cam Pha,2019-09-15,Female,45-54,social_media
+57250,6611,Hanoi,2018-12-01,Male,55+,social_media
+57252,6611,Hanoi,2020-08-21,Female,18-24,organic_search
+57258,6614,Phu Ly,2020-11-07,Male,25-34,referral
+57431,6791,Nam Dinh,2017-06-05,Non-binary,45-54,referral
+57470,6810,Phu Ly,2022-12-16,Male,35-44,social_media
+57514,6840,Phu Ly,2021-03-15,Male,35-44,paid_search
+57517,6840,Phu Ly,2021-06-28,Female,18-24,referral
+57534,6877,Ninh Binh,2019-01-30,Male,35-44,referral
+57535,6877,Ninh Binh,2020-08-04,Male,25-34,email_campaign
+57607,2814,Cam Pha,2019-05-17,Male,55+,social_media
+57704,2840,Viet Tri,2022-12-12,Male,35-44,social_media
+57818,2886,Uong Bi,2017-04-26,Female,35-44,paid_search
+57820,2886,Uong Bi,2014-09-22,Female,45-54,paid_search
+57821,2886,Uong Bi,2017-07-11,Male,18-24,social_media
+57829,2889,Ha Long,2022-10-21,Female,35-44,organic_search
+58293,1010,Cam Pha,2022-06-08,Male,25-34,direct
+58387,1040,Uong Bi,2017-05-04,Non-binary,25-34,email_campaign
+58578,1109,Hanoi,2020-06-06,Female,35-44,social_media
+58586,1118,Viet Tri,2022-07-12,Female,55+,referral
+58621,1330,Phu Ly,2021-11-03,Female,18-24,social_media
+58766,1450,Viet Tri,2018-07-20,Female,45-54,email_campaign
+58811,1473,Lao Cai,2020-09-18,Female,35-44,direct
+58969,1540,Thai Nguyen,2014-01-25,Male,35-44,social_media
+59239,2050,Hai Phong,2022-11-09,Female,18-24,email_campaign
+59431,2351,Thai Nguyen,2020-03-21,Female,25-34,organic_search
+59440,2356,Thai Nguyen,2018-08-15,Male,35-44,paid_search
+59453,2360,Son Tay,2016-05-29,Male,45-54,direct
+59718,2648,Phu Ly,2016-09-19,Female,35-44,social_media
+59767,2660,Ha Long,2018-05-29,Female,55+,social_media
+59860,2720,Thai Nguyen,2022-10-08,Male,25-34,referral
+59861,2720,Thai Nguyen,2018-11-12,Male,45-54,referral
+59887,2725,Ninh Binh,2019-04-21,Male,45-54,organic_search
+59914,2743,Lao Cai,2022-06-29,Male,18-24,paid_search
+59937,2747,Son Tay,2016-09-11,Male,45-54,organic_search
+59989,2771,Ninh Binh,2017-11-26,Female,18-24,referral
+59997,2777,Viet Tri,2015-07-09,Male,55+,paid_search
+60007,2780,Ha Long,2015-10-18,Female,18-24,paid_search
+60012,2790,Hanoi,2019-04-18,Female,25-34,organic_search
+60048,27295,Thai Nguyen,2022-01-08,Male,45-54,social_media
+60124,28021,Uong Bi,2020-06-14,Male,45-54,paid_search
+60135,28025,Hai Phong,2022-03-16,Female,25-34,social_media
+60157,28032,Bac Giang,2018-04-27,Male,35-44,paid_search
+60194,28043,Viet Tri,2015-09-09,Male,35-44,social_media
+60377,28114,Ninh Binh,2022-01-09,Female,45-54,organic_search
+60380,28115,Bac Ninh,2013-09-23,Female,25-34,referral
+60389,28120,Ninh Binh,2013-11-05,Male,45-54,organic_search
+60409,28127,Hanoi,2018-07-22,Male,18-24,direct
+60410,28127,Hanoi,2018-10-04,Female,35-44,paid_search
+60635,28610,Hanoi,2020-05-07,Female,35-44,paid_search
+60791,28704,Lao Cai,2021-12-24,Male,25-34,organic_search
+60826,28715,Viet Tri,2015-02-19,Male,35-44,referral
+60924,28739,Bac Giang,2017-06-26,Female,25-34,organic_search
+61244,28216,Hai Phong,2019-02-03,Female,45-54,direct
+61539,30635,Bac Giang,2022-07-20,Female,25-34,email_campaign
+61542,30635,Bac Giang,2016-01-15,Female,18-24,organic_search
+61594,30813,Phu Ly,2019-04-23,Female,55+,direct
+61595,30813,Phu Ly,2014-12-13,Female,45-54,email_campaign
+61684,30907,Bac Giang,2018-08-29,Male,25-34,referral
+61685,30907,Bac Giang,2021-12-21,Female,45-54,organic_search
+61687,30907,Bac Giang,2021-07-07,Male,25-34,organic_search
+61812,31326,Nam Dinh,2020-08-31,Female,18-24,social_media
+61947,31525,Viet Tri,2022-06-04,Female,45-54,organic_search
+62047,29020,Nam Dinh,2015-07-02,Female,55+,organic_search
+62092,29040,Hanoi,2013-09-08,Female,25-34,direct
+62199,29073,Cam Pha,2019-07-11,Male,18-24,organic_search
+62366,29150,Hanoi,2020-06-11,Male,45-54,paid_search
+62392,29160,Bac Giang,2014-07-15,Female,25-34,social_media
+62718,29384,Cam Pha,2018-11-13,Female,35-44,email_campaign
+62776,29412,Phu Ly,2015-06-21,Female,35-44,referral
+62859,29440,Thai Nguyen,2021-05-30,Male,25-34,referral
+63052,29510,Ha Long,2021-10-21,Female,35-44,email_campaign
+63130,29544,Phu Ly,2017-06-30,Female,18-24,social_media
+63234,29576,Viet Tri,2020-03-26,Female,25-34,paid_search
+63238,29577,Nam Dinh,2021-07-11,Male,25-34,direct
+63357,29611,Phu Ly,2019-12-20,Female,18-24,organic_search
+63463,29642,Son Tay,2018-12-21,Male,45-54,organic_search
+63466,29642,Son Tay,2015-02-12,Female,35-44,organic_search
+63498,29651,Phu Ly,2021-10-07,Female,55+,paid_search
+63551,29669,Cam Pha,2021-07-18,Male,18-24,organic_search
+63655,29693,Ninh Binh,2021-11-09,Female,18-24,direct
+63687,29704,Ha Long,2014-10-13,Male,45-54,paid_search
+63688,29706,Bac Ninh,2022-07-31,Female,45-54,organic_search
+63765,29728,Lao Cai,2020-05-15,Female,25-34,paid_search
+63788,29742,Son Tay,2018-09-02,Male,18-24,email_campaign
+63806,29745,Uong Bi,2015-03-02,Non-binary,35-44,organic_search
+63861,29816,Ha Long,2020-10-19,Female,35-44,email_campaign
+63878,29822,Bac Giang,2022-03-30,Female,45-54,organic_search
+64032,29906,Hai Phong,2022-11-07,Male,35-44,paid_search
+64043,29910,Son Tay,2022-12-19,Male,25-34,email_campaign
+64309,20650,Phu Ly,2021-04-04,Female,35-44,paid_search
+64459,20745,Son Tay,2017-11-06,Male,18-24,social_media
+64460,20745,Son Tay,2018-12-31,Male,35-44,referral
+64461,20745,Son Tay,2022-04-18,Male,25-34,organic_search
+64508,20816,Son Tay,2022-05-29,Male,45-54,email_campaign
+65065,20002,Uong Bi,2022-01-06,Male,45-54,paid_search
+65096,20008,Hai Phong,2017-11-12,Male,25-34,referral
+65098,20009,Cam Pha,2021-08-04,Female,35-44,social_media
+65123,20019,Uong Bi,2018-06-11,Male,25-34,social_media
+65125,20019,Uong Bi,2021-11-17,Male,25-34,direct
+65206,20111,Uong Bi,2021-09-05,Male,25-34,social_media
+65343,20152,Nam Dinh,2014-06-24,Male,35-44,social_media
+65382,20166,Son Tay,2016-05-17,Male,25-34,organic_search
+65411,20181,Uong Bi,2018-12-06,Female,35-44,email_campaign
+65423,20186,Lao Cai,2021-08-25,Female,55+,email_campaign
+65506,22032,Hai Phong,2021-10-25,Female,18-24,social_media
+65655,22192,Nam Dinh,2020-12-01,Female,25-34,social_media
+65779,22309,Ninh Binh,2015-01-27,Female,35-44,direct
+65847,22407,Ninh Binh,2017-11-25,Male,25-34,paid_search
+66149,22630,Hanoi,2021-08-20,Male,35-44,referral
+66173,22642,Phu Ly,2017-12-28,Non-binary,35-44,organic_search
+66365,22742,Cam Pha,2019-01-04,Male,18-24,social_media
+66366,22742,Cam Pha,2018-06-06,Female,35-44,organic_search
+66518,22903,Hanoi,2018-03-05,Male,35-44,organic_search
+66536,22906,Viet Tri,2017-04-25,Male,55+,organic_search
+66545,22911,Son Tay,2014-11-25,Male,45-54,paid_search
+66655,22960,Viet Tri,2020-05-08,Male,25-34,email_campaign
+67035,23139,Hanoi,2018-06-03,Male,45-54,organic_search
+67225,23234,Viet Tri,2019-06-04,Female,45-54,organic_search
+67330,23323,Son Tay,2020-03-23,Female,35-44,organic_search
+67339,23325,Lao Cai,2017-12-27,Male,18-24,referral
+67769,23666,Ninh Binh,2016-12-06,Male,25-34,email_campaign
+67805,23701,Uong Bi,2021-11-23,Male,25-34,organic_search
+67884,23834,Uong Bi,2020-03-05,Male,55+,organic_search
+67885,23834,Uong Bi,2018-05-20,Female,55+,organic_search
+68104,24015,Phu Ly,2017-04-12,Female,45-54,organic_search
+68317,24141,Bac Ninh,2016-07-28,Male,45-54,social_media
+68329,24153,Ha Long,2013-05-23,Female,45-54,organic_search
+68550,24477,Phu Ly,2020-07-10,Female,25-34,social_media
+68613,24521,Thai Nguyen,2020-05-26,Male,35-44,social_media
+68621,24522,Ha Long,2019-12-07,Female,45-54,social_media
+68627,24523,Hanoi,2022-04-22,Male,35-44,referral
+68705,24571,Cam Pha,2020-11-25,Female,18-24,social_media
+68883,40769,Phu Ly,2018-04-07,Female,25-34,email_campaign
+69143,40962,Hai Phong,2018-11-11,Male,25-34,paid_search
+69287,41311,Son Tay,2022-07-12,Male,25-34,paid_search
+69370,41501,Nam Dinh,2022-05-05,Female,55+,social_media
+69814,41763,Uong Bi,2022-01-19,Female,55+,organic_search
+70475,42633,Nam Dinh,2020-03-17,Female,35-44,paid_search
+70880,35126,Viet Tri,2019-01-15,Female,55+,direct
+70919,35146,Bac Giang,2015-09-06,Female,18-24,email_campaign
+71074,35216,Phu Ly,2015-03-24,Female,55+,direct
+71227,35453,Viet Tri,2016-12-07,Female,45-54,referral
+71436,35576,Thai Nguyen,2018-09-25,Male,25-34,organic_search
+71549,35620,Bac Ninh,2019-01-24,Non-binary,18-24,referral
+71673,35674,Ha Long,2013-09-30,Male,25-34,paid_search
+71676,35674,Ha Long,2019-10-09,Female,55+,referral
+71723,35749,Hai Phong,2018-04-28,Male,25-34,direct
+71832,35801,Bac Ninh,2019-11-09,Male,18-24,paid_search
+71853,35806,Lao Cai,2013-12-22,Male,45-54,social_media
+72063,24212,Bac Ninh,2019-08-04,Female,45-54,organic_search
+72620,30757,Nam Dinh,2021-08-01,Female,35-44,organic_search
+72622,30757,Nam Dinh,2022-05-14,Male,25-34,email_campaign
+72713,42223,Phu Ly,2014-03-14,Female,45-54,organic_search
+72845,37042,Nam Dinh,2015-10-05,Female,25-34,organic_search
+72846,37042,Nam Dinh,2017-03-11,Male,35-44,organic_search
+72850,37043,Nam Dinh,2022-09-21,Male,25-34,organic_search
+72925,37064,Son Tay,2022-09-21,Male,45-54,email_campaign
+72949,37069,Phu Ly,2018-07-30,Female,25-34,organic_search
+72951,37069,Phu Ly,2022-09-30,Female,25-34,paid_search
+73095,37121,Ninh Binh,2018-03-22,Male,35-44,paid_search
+73205,37160,Viet Tri,2017-11-29,Male,18-24,paid_search
+73321,37204,Uong Bi,2022-04-20,Female,18-24,social_media
+73344,37209,Ninh Binh,2018-11-05,Female,35-44,social_media
+73432,37303,Phu Ly,2015-01-09,Male,45-54,organic_search
+73519,37323,Son Tay,2019-05-08,Female,55+,referral
+73720,37370,Hai Phong,2014-12-12,Female,45-54,social_media
+73912,37601,Viet Tri,2020-03-04,Female,45-54,paid_search
+74024,37663,Bac Ninh,2021-09-28,Female,35-44,paid_search
+74095,37705,Hanoi,2018-04-22,Male,18-24,direct
+74134,37716,Hanoi,2021-06-27,Male,25-34,social_media
+74251,37757,Cam Pha,2017-04-04,Female,35-44,email_campaign
+74332,37803,Hai Phong,2022-03-07,Male,25-34,social_media
+74367,37813,Nam Dinh,2017-06-13,Female,45-54,direct
+74468,37849,Thai Nguyen,2021-07-14,Female,25-34,email_campaign
+74677,37918,Viet Tri,2019-01-01,Female,18-24,paid_search
+74680,37919,Lao Cai,2014-03-21,Female,25-34,referral
+74690,37921,Viet Tri,2022-07-31,Female,25-34,direct
+74922,38488,Ha Long,2018-01-28,Female,55+,direct
+74983,38551,Cam Pha,2019-01-22,Male,25-34,referral
+75119,38583,Hai Phong,2017-05-12,Male,45-54,email_campaign
+75222,38024,Phan Thiet,2015-04-15,Male,45-54,organic_search
+75426,38109,Quy Nhon,2017-12-25,Male,18-24,organic_search
+75477,38122,Quang Ngai,2019-04-05,Female,35-44,paid_search
+75517,38135,Hue,2021-10-22,Male,45-54,organic_search
+75679,38261,Phan Thiet,2018-03-20,Female,25-34,organic_search
+75829,38344,Hoi An,2021-07-21,Female,45-54,paid_search
+75851,38351,Tuy Hoa,2018-02-06,Male,45-54,referral
+75929,38375,Da Nang,2022-03-10,Female,18-24,organic_search
+76109,62832,Tam Ky,2017-11-03,Female,35-44,social_media
+76212,62864,Quy Nhon,2019-06-20,Female,45-54,social_media
+76325,62896,Da Nang,2021-05-13,Female,45-54,direct
+76340,62901,Hue,2022-09-18,Male,25-34,organic_search
+76341,62901,Hue,2017-01-16,Female,55+,organic_search
+76376,62910,Quy Nhon,2015-04-07,Female,55+,social_media
+76641,62983,Hue,2021-07-13,Male,18-24,organic_search
+76805,63755,Quy Nhon,2015-11-08,Female,45-54,organic_search
+76983,63857,Nha Trang,2021-07-15,Female,18-24,social_media
+77340,38606,Dong Hoi,2017-01-09,Female,45-54,social_media
+77341,38606,Dong Hoi,2021-08-28,Male,25-34,organic_search
+77600,38732,Hoi An,2021-07-18,Male,35-44,paid_search
+77676,42003,Nha Trang,2022-09-02,Female,35-44,paid_search
+77913,42325,Tuy Hoa,2021-11-18,Female,45-54,organic_search
+78038,42431,Quy Nhon,2021-03-19,Female,18-24,social_media
+78120,47513,Hoi An,2017-01-10,Male,35-44,organic_search
+78121,47513,Hoi An,2021-03-28,Male,35-44,social_media
+78260,47591,Quang Ngai,2016-11-06,Male,25-34,paid_search
+78423,47713,Tam Ky,2016-08-15,Male,55+,social_media
+78429,47714,Quy Nhon,2021-05-15,Female,25-34,organic_search
+78448,47720,Phan Thiet,2018-11-23,Male,35-44,referral
+78458,47725,Phan Rang-Thap Cham,2019-01-14,Female,45-54,direct
+78633,74728,Nha Trang,2018-10-17,Male,35-44,email_campaign
+78826,71601,Phan Thiet,2022-04-11,Male,35-44,social_media
+78967,71801,Quy Nhon,2017-01-31,Male,45-54,organic_search
+79136,71923,Kon Tum,2019-01-29,Male,35-44,organic_search
+79363,72023,Nha Trang,2020-03-28,Male,35-44,social_media
+79421,72034,Phan Thiet,2021-07-01,Female,35-44,organic_search
+79638,72104,Tam Ky,2013-08-25,Male,45-54,paid_search
+79915,72206,Quang Ngai,2021-10-07,Male,45-54,organic_search
+80214,72401,Tam Ky,2016-06-19,Female,45-54,referral
+80226,72403,Nha Trang,2021-07-29,Female,35-44,social_media
+80375,72450,Tuy Hoa,2022-09-01,Female,18-24,email_campaign
+80954,72923,Da Nang,2019-08-29,Male,55+,organic_search
+80990,72936,Da Nang,2014-05-11,Female,25-34,organic_search
+81276,68104,Tuy Hoa,2016-01-01,Female,25-34,paid_search
+81343,68123,Phan Thiet,2021-06-05,Female,25-34,paid_search
+81902,68516,Kon Tum,2018-09-05,Female,35-44,organic_search
+81917,68521,Quang Ngai,2013-07-04,Male,35-44,organic_search
+81937,68526,Quy Nhon,2022-02-01,Male,35-44,social_media
+82015,68640,Hoi An,2016-12-25,Female,45-54,organic_search
+82299,68823,Phan Thiet,2016-04-04,Male,25-34,social_media
+82335,68832,Dong Hoi,2021-02-24,Male,45-54,paid_search
+82380,68845,Kon Tum,2022-03-06,Male,45-54,email_campaign
+82388,68847,Tam Ky,2022-07-26,Female,25-34,direct
+82456,68866,Hue,2022-09-30,Male,18-24,paid_search
+82990,63565,Phan Rang-Thap Cham,2017-10-18,Male,55+,social_media
+83110,64050,Hue,2020-03-23,Female,35-44,social_media
+83121,64052,Da Nang,2018-09-13,Male,55+,organic_search
+83154,64060,Hoi An,2020-06-07,Male,25-34,organic_search
+83158,64061,Hue,2019-09-11,Male,25-34,social_media
+83175,64064,Tam Ky,2016-05-14,Male,45-54,social_media
+83251,64080,Hoi An,2021-07-10,Female,45-54,referral
+83257,64081,Da Nang,2022-01-21,Female,18-24,organic_search
+83555,64490,Quy Nhon,2014-10-15,Female,25-34,organic_search
+83599,64503,Phan Thiet,2021-12-08,Male,25-34,referral
+83836,64701,Phan Rang-Thap Cham,2021-05-02,Male,25-34,organic_search
+83867,64730,Da Nang,2015-09-17,Non-binary,35-44,paid_search
+84112,65340,Tuy Hoa,2020-03-01,Male,35-44,social_media
+84157,65360,Hue,2022-05-18,Male,18-24,organic_search
+84222,64118,Phan Thiet,2021-05-12,Female,45-54,paid_search
+84339,64152,Hoi An,2020-12-27,Female,35-44,paid_search
+84456,50010,Tuy Hoa,2015-07-11,Female,25-34,paid_search
+84486,50032,Quang Ngai,2018-09-18,Female,35-44,email_campaign
+84675,50125,Da Nang,2022-12-02,Male,25-34,direct
+85089,50315,Quang Ngai,2021-11-14,Male,45-54,paid_search
+85170,50801,Hoi An,2019-04-12,Male,35-44,paid_search
+85264,51503,Hoi An,2019-11-04,Female,55+,paid_search
+85299,51534,Hue,2018-05-03,Male,45-54,organic_search
+85335,51546,Quang Ngai,2019-06-17,Female,25-34,organic_search
+85445,51579,Dong Hoi,2022-09-26,Male,45-54,social_media
+85640,66030,Tam Ky,2019-12-18,Female,18-24,direct
+85748,66062,Quang Ngai,2021-05-05,Female,35-44,social_media
+85813,66085,Phan Rang-Thap Cham,2020-08-09,Male,35-44,organic_search
+85866,66102,Da Nang,2017-05-19,Male,45-54,social_media
+85937,66206,Tam Ky,2014-01-13,Male,18-24,organic_search
+85955,66210,Phan Rang-Thap Cham,2020-03-11,Male,18-24,paid_search
+85987,66216,Phan Rang-Thap Cham,2017-12-28,Male,35-44,organic_search
+86195,66508,Dong Hoi,2013-10-23,Male,45-54,email_campaign
+86868,59263,Phan Rang-Thap Cham,2021-09-11,Male,35-44,paid_search
+86929,59330,Quang Ngai,2017-12-12,Male,45-54,referral
+87112,68776,Tam Ky,2022-07-28,Male,35-44,direct
+87236,82401,Kon Tum,2019-05-09,Female,25-34,social_media
+87305,82633,Quy Nhon,2014-04-21,Female,25-34,organic_search
+87307,82633,Quy Nhon,2016-07-15,Male,35-44,social_media
+87380,82718,Kon Tum,2018-07-20,Male,25-34,organic_search
+87544,50216,Tam Ky,2019-05-12,Female,35-44,paid_search
+87579,50538,Quang Ngai,2015-08-26,Female,45-54,organic_search
+88049,51401,Hue,2020-03-28,Male,18-24,paid_search
+88710,56334,Quang Ngai,2022-06-15,Female,35-44,direct
+88721,56336,Kon Tum,2021-11-01,Female,45-54,organic_search
+89734,57104,Phan Thiet,2020-06-07,Female,25-34,organic_search
+89740,57105,Quang Ngai,2017-06-06,Male,25-34,referral
+89744,57106,Tam Ky,2012-12-23,Male,25-34,organic_search
+89770,57201,Phan Thiet,2021-06-25,Non-binary,18-24,email_campaign
+90215,57401,Hue,2020-08-28,Male,45-54,email_campaign
+90406,57501,Phan Rang-Thap Cham,2018-01-17,Female,35-44,email_campaign
+90669,57717,Phan Thiet,2019-01-06,Female,45-54,organic_search
+91075,58103,Phan Thiet,2020-03-14,Female,35-44,social_media
+91101,58201,Dong Hoi,2022-04-15,Male,25-34,referral
+91458,58401,Phan Rang-Thap Cham,2022-08-06,Female,18-24,referral
+91550,58448,Dong Hoi,2022-10-02,Male,25-34,email_campaign
+91758,58554,Quy Nhon,2020-11-09,Female,45-54,organic_search
+91799,58572,Phan Thiet,2019-07-23,Female,25-34,paid_search
+91983,58704,Kon Tum,2019-08-21,Male,45-54,email_campaign
+92184,58788,Hue,2016-12-02,Male,55+,referral
+92267,58854,Phan Thiet,2016-05-19,Male,25-34,direct
+92608,73099,Quang Ngai,2017-07-04,Female,45-54,organic_search
+93100,74014,Tuy Hoa,2022-04-21,Female,25-34,organic_search
+93718,74365,Hue,2021-10-28,Male,25-34,paid_search
+93891,74501,Da Nang,2018-06-08,Male,55+,organic_search
+93892,74501,Da Nang,2016-10-19,Male,18-24,organic_search
+94017,74804,Kon Tum,2022-01-24,Female,35-44,email_campaign
+94274,73114,Tam Ky,2017-11-11,Male,45-54,social_media
+94280,73115,Quy Nhon,2022-04-05,Female,25-34,social_media
+94300,73119,Nha Trang,2021-08-07,Male,25-34,organic_search
+94482,73179,Nha Trang,2020-12-18,Male,35-44,social_media
+94589,66748,Quy Nhon,2021-07-09,Female,35-44,social_media
+94608,66762,Da Nang,2022-10-09,Female,35-44,organic_search
+94611,66762,Da Nang,2022-10-15,Male,35-44,organic_search
+94696,66901,Da Nang,2018-03-05,Male,35-44,social_media
+95003,67114,Kon Tum,2013-02-18,Male,35-44,organic_search
+95005,67114,Kon Tum,2018-07-18,Female,25-34,social_media
+95103,67156,Hue,2015-08-21,Non-binary,45-54,social_media
+95127,67204,Tuy Hoa,2020-05-30,Female,35-44,email_campaign
+95172,67213,Kon Tum,2019-04-02,Female,45-54,organic_search
+95365,67401,Dong Hoi,2019-03-08,Male,18-24,paid_search
+95802,67658,Da Nang,2019-11-19,Non-binary,25-34,paid_search
+95998,67851,Dong Hoi,2020-12-11,Female,35-44,organic_search
+96000,67851,Dong Hoi,2018-10-14,Male,35-44,organic_search
+96388,64870,Tuy Hoa,2016-02-01,Female,55+,organic_search
+96404,65020,Phan Rang-Thap Cham,2022-07-25,Female,35-44,social_media
+96590,65560,Tuy Hoa,2022-04-25,Female,25-34,paid_search
+96694,65616,Tam Ky,2020-04-21,Male,35-44,paid_search
+97146,65770,Hue,2021-05-26,Female,25-34,paid_search
+97196,65785,Nha Trang,2021-02-19,Male,45-54,referral
+97197,65785,Nha Trang,2018-10-25,Male,18-24,email_campaign
+97546,72727,Da Nang,2022-10-08,Male,25-34,organic_search
+97780,71655,Dong Hoi,2022-03-29,Male,25-34,organic_search
+97821,71730,Dong Hoi,2016-07-25,Male,55+,referral
+97857,71826,Dong Hoi,2020-03-09,Female,35-44,organic_search
+98102,36575,Phan Rang-Thap Cham,2016-08-02,Male,45-54,social_media
+98219,36619,Hue,2016-12-05,Male,45-54,social_media
+98610,39111,Hue,2021-04-07,Female,45-54,organic_search
+98626,39116,Quy Nhon,2022-01-13,Male,25-34,organic_search
+98689,39154,Tuy Hoa,2018-01-12,Male,25-34,social_media
+98692,39154,Tuy Hoa,2020-09-02,Female,25-34,paid_search
+98845,39211,Quy Nhon,2018-04-12,Female,25-34,email_campaign
+99131,39402,Nha Trang,2016-11-25,Female,35-44,organic_search
+99454,39564,Nha Trang,2020-02-13,Female,35-44,social_media
+99485,39571,Phan Rang-Thap Cham,2021-06-10,Female,55+,organic_search
+99748,39759,Dong Hoi,2020-01-24,Male,45-54,organic_search
+99785,39773,Da Nang,2021-05-12,Female,25-34,paid_search
+100125,70094,Tuy Hoa,2013-07-01,Female,25-34,paid_search
+100161,70118,Da Nang,2022-01-03,Non-binary,25-34,organic_search
+100185,70124,Quy Nhon,2016-12-21,Male,35-44,organic_search
+100283,70345,Quy Nhon,2018-05-01,Female,45-54,referral
+100321,70357,Hoi An,2021-02-24,Female,25-34,paid_search
+100348,70364,Phan Thiet,2022-05-04,Male,18-24,organic_search
+100350,70364,Phan Thiet,2021-12-28,Female,25-34,referral
+100411,70394,Hoi An,2022-12-21,Female,35-44,social_media
+100506,70444,Tam Ky,2022-11-07,Male,35-44,direct
+100511,70445,Phan Rang-Thap Cham,2019-04-11,Female,18-24,organic_search
+100519,70447,Phan Thiet,2016-03-28,Female,18-24,organic_search
+100563,70458,Hue,2018-09-27,Male,25-34,paid_search
+100613,70471,Da Nang,2017-08-01,Female,25-34,direct
+100634,70506,Tam Ky,2017-05-06,Male,45-54,email_campaign
+100708,70523,Phan Thiet,2017-11-05,Male,25-34,referral
+100710,70523,Phan Thiet,2018-10-24,Female,18-24,social_media
+101184,70714,Quang Ngai,2018-03-30,Female,25-34,email_campaign
+101695,71040,Phan Rang-Thap Cham,2022-09-05,Male,25-34,paid_search
+101706,71044,Kon Tum,2016-08-31,Male,18-24,organic_search
+101836,71105,Dong Hoi,2020-04-05,Female,35-44,paid_search
+102023,71235,Kon Tum,2020-06-13,Female,55+,email_campaign
+102139,71277,Phan Thiet,2021-06-03,Female,25-34,email_campaign
+102252,71334,Phan Rang-Thap Cham,2022-11-24,Female,45-54,email_campaign
+102284,71346,Dong Hoi,2014-04-09,Male,25-34,referral
+102519,71446,Nha Trang,2022-03-22,Male,18-24,referral
+102564,71459,Quy Nhon,2019-02-13,Male,25-34,organic_search
+102825,55044,Da Nang,2021-11-08,Male,45-54,organic_search
+102884,55060,Hoi An,2022-11-08,Female,55+,referral
+102906,55068,Phan Thiet,2019-11-11,Female,25-34,organic_search
+102907,55068,Phan Thiet,2014-05-19,Female,25-34,direct
+102945,55076,Nha Trang,2016-05-26,Male,35-44,social_media
+103018,55105,Phan Thiet,2016-01-06,Male,35-44,organic_search
+103041,55109,Kon Tum,2020-12-14,Non-binary,35-44,referral
+103045,55110,Hoi An,2018-05-26,Male,55+,organic_search
+103046,55110,Hoi An,2016-05-21,Male,35-44,referral
+103055,55112,Da Nang,2019-06-27,Male,25-34,direct
+103165,55302,Tam Ky,2018-11-01,Female,35-44,paid_search
+103168,55303,Quy Nhon,2022-11-01,Male,18-24,social_media
+103179,55305,Quang Ngai,2022-03-24,Female,45-54,organic_search
+103194,55308,Quang Ngai,2020-10-04,Male,55+,organic_search
+103210,55311,Dong Hoi,2017-03-10,Female,55+,email_campaign
+103219,55313,Quang Ngai,2020-08-02,Female,18-24,referral
+103231,55315,Hoi An,2021-09-17,Female,55+,referral
+103243,55318,Da Nang,2014-12-19,Male,55+,organic_search
+103298,55330,Tam Ky,2021-09-01,Female,35-44,organic_search
+103300,55330,Tam Ky,2019-05-13,Male,35-44,organic_search
+103306,55331,Phan Thiet,2014-07-06,Male,55+,organic_search
+103394,55350,Dong Hoi,2022-10-29,Female,35-44,email_campaign
+103406,55353,Hue,2018-08-03,Female,35-44,email_campaign
+103493,55372,Dong Hoi,2017-05-16,Female,18-24,social_media
+103494,55372,Dong Hoi,2021-06-10,Male,45-54,email_campaign
+103495,55372,Dong Hoi,2016-03-14,Male,25-34,organic_search
+103521,55378,Hue,2022-02-05,Female,18-24,paid_search
+103524,55379,Quang Ngai,2016-05-14,Female,18-24,referral
+103531,55381,Tam Ky,2020-11-17,Female,55+,organic_search
+103557,55387,Hoi An,2021-05-24,Male,25-34,organic_search
+103595,55398,Phan Rang-Thap Cham,2019-06-06,Male,55+,organic_search
+103597,55398,Phan Rang-Thap Cham,2017-05-27,Male,55+,social_media
+103756,55731,Tuy Hoa,2021-11-07,Female,35-44,social_media
+104002,55901,Hoi An,2021-07-19,Male,45-54,social_media
+104044,55917,Dong Hoi,2014-11-13,Male,35-44,social_media
+104054,55920,Phan Thiet,2022-02-07,Female,18-24,direct
+104280,56001,Nha Trang,2022-02-04,Female,18-24,paid_search
+104301,56007,Kon Tum,2015-03-22,Male,45-54,organic_search
+104302,56007,Kon Tum,2021-09-27,Female,25-34,paid_search
+104518,56071,Dong Hoi,2021-03-29,Male,25-34,paid_search
+104836,56320,Hoi An,2019-10-04,Female,25-34,email_campaign
+104978,56425,Da Nang,2019-09-16,Female,25-34,paid_search
+105247,55415,Quang Ngai,2019-06-22,Male,18-24,organic_search
+105261,55418,Hoi An,2021-03-27,Male,55+,organic_search
+105278,55422,Nha Trang,2021-11-07,Non-binary,25-34,social_media
+105281,55422,Nha Trang,2021-10-09,Non-binary,25-34,social_media
+105286,55423,Da Nang,2021-07-06,Female,18-24,organic_search
+105341,55434,Tuy Hoa,2021-03-29,Male,35-44,social_media
+105373,55442,Tuy Hoa,2019-09-12,Female,25-34,referral
+105377,55442,Tuy Hoa,2020-01-20,Female,35-44,social_media
+105396,55446,Phan Thiet,2021-11-23,Female,45-54,referral
+105430,50071,Phan Thiet,2020-05-19,Non-binary,45-54,referral
+105436,50401,Phan Rang-Thap Cham,2018-04-21,Male,35-44,organic_search
+105788,50548,Quang Ngai,2020-07-16,Female,55+,direct
+105900,50616,Da Nang,2021-02-20,Male,35-44,social_media
+105939,51301,Quy Nhon,2021-10-08,Male,35-44,organic_search
+105977,51346,Phan Rang-Thap Cham,2022-12-10,Female,45-54,paid_search
+106052,54004,Tuy Hoa,2014-10-31,Female,18-24,email_campaign
+106097,54016,Quang Ngai,2018-05-28,Female,55+,email_campaign
+106099,54017,Hue,2014-07-02,Male,35-44,organic_search
+106100,54017,Hue,2018-06-04,Female,18-24,social_media
+106475,54889,Tam Ky,2020-03-12,Male,35-44,paid_search
+106538,69301,Hue,2017-07-16,Female,55+,paid_search
+106734,82001,Tam Ky,2020-06-24,Female,25-34,organic_search
+106756,82009,Phan Rang-Thap Cham,2022-09-02,Male,35-44,organic_search
+106775,82053,Hue,2019-02-09,Male,35-44,email_campaign
+106900,82520,Quy Nhon,2018-08-31,Female,25-34,social_media
+106903,82901,Tam Ky,2021-02-01,Female,25-34,organic_search
+107039,80011,Dong Hoi,2021-08-03,Female,25-34,organic_search
+107040,80011,Dong Hoi,2018-09-11,Female,25-34,social_media
+107051,80013,Quang Ngai,2017-12-23,Female,25-34,email_campaign
+107052,80013,Quang Ngai,2022-05-12,Non-binary,35-44,organic_search
+107059,80015,Kon Tum,2017-11-25,Female,45-54,organic_search
+107060,80015,Kon Tum,2017-04-24,Female,55+,social_media
+107062,80015,Kon Tum,2017-05-25,Male,35-44,email_campaign
+107193,80110,Hue,2021-10-31,Male,35-44,social_media
+107231,80120,Kon Tum,2017-11-16,Male,45-54,paid_search
+107261,80126,Kon Tum,2016-03-31,Male,25-34,organic_search
+107272,80128,Tam Ky,2017-07-08,Male,25-34,social_media
+107273,80129,Hoi An,2017-02-19,Male,55+,social_media
+107274,80129,Hoi An,2021-08-05,Female,35-44,direct
+107304,80135,Hoi An,2019-12-03,Male,35-44,social_media
+107356,80301,Kon Tum,2019-11-15,Female,35-44,social_media
+107361,80302,Phan Rang-Thap Cham,2020-07-09,Female,55+,organic_search
+107398,80401,Nha Trang,2014-11-27,Male,35-44,paid_search
+107477,80435,Da Nang,2020-04-09,Female,18-24,organic_search
+107487,80437,Nha Trang,2017-09-16,Female,25-34,paid_search
+107508,80443,Da Nang,2020-08-21,Male,45-54,paid_search
+107642,80480,Dong Hoi,2018-12-25,Female,25-34,referral
+107651,80482,Dong Hoi,2015-09-13,Female,25-34,social_media
+107679,80501,Quy Nhon,2014-11-11,Female,35-44,social_media
+107691,80503,Kon Tum,2018-12-10,Female,45-54,organic_search
+107725,80516,Kon Tum,2015-09-20,Female,35-44,organic_search
+107728,80517,Phan Rang-Thap Cham,2022-01-26,Female,55+,paid_search
+107788,80535,Kon Tum,2016-11-13,Male,35-44,paid_search
+107804,80538,Hue,2021-06-14,Female,25-34,social_media
+107934,80634,Nha Trang,2014-11-26,Female,35-44,social_media
+107936,80634,Nha Trang,2019-01-07,Male,25-34,social_media
+107967,80648,Hue,2013-01-13,Female,55+,paid_search
+108262,80903,Phan Thiet,2022-03-22,Female,55+,organic_search
+108266,80904,Phan Rang-Thap Cham,2018-01-02,Male,35-44,referral
+108278,80907,Tam Ky,2016-02-14,Male,18-24,referral
+108283,80908,Quy Nhon,2013-12-16,Female,18-24,paid_search
+108288,80909,Tam Ky,2015-05-21,Male,18-24,organic_search
+108293,80910,Dong Hoi,2017-04-12,Female,45-54,organic_search
+108331,80917,Quang Ngai,2015-06-25,Female,35-44,social_media
+108396,80930,Phan Thiet,2022-11-13,Female,35-44,social_media
+108459,81003,Quy Nhon,2018-05-16,Male,18-24,email_campaign
+108463,81004,Tam Ky,2019-05-13,Male,25-34,paid_search
+108819,81401,Da Nang,2016-08-03,Female,45-54,organic_search
+108820,81401,Da Nang,2019-09-16,Male,18-24,paid_search
+108911,81504,Tam Ky,2021-11-16,Female,45-54,email_campaign
+108918,81506,Phan Thiet,2019-11-18,Male,25-34,social_media
+109014,81625,Quy Nhon,2020-11-29,Male,25-34,email_campaign
+109136,80203,Da Nang,2015-12-12,Female,18-24,organic_search
+109145,80205,Quang Ngai,2014-08-08,Male,55+,referral
+109151,80206,Tuy Hoa,2021-12-31,Male,35-44,referral
+109169,80211,Kon Tum,2020-02-05,Male,45-54,paid_search
+109198,80219,Tam Ky,2017-08-23,Male,35-44,social_media
+109199,80219,Tam Ky,2022-03-23,Female,18-24,paid_search
+109201,80219,Tam Ky,2015-07-25,Male,25-34,paid_search
+109211,80221,Tam Ky,2016-09-29,Male,35-44,direct
+109256,80231,Phan Thiet,2018-11-26,Male,25-34,social_media
+109260,80232,Kon Tum,2022-10-26,Male,25-34,direct
+109271,80234,Nha Trang,2015-09-29,Male,35-44,organic_search
+109295,80239,Tam Ky,2019-01-05,Male,25-34,social_media
+109437,63123,Kon Tum,2022-02-16,Male,35-44,social_media
+109458,63128,Phan Thiet,2018-07-03,Male,25-34,social_media
+109463,63129,Hue,2013-08-29,Female,35-44,email_campaign
+109470,63130,Quang Ngai,2022-04-30,Male,25-34,organic_search
+109512,63138,Hoi An,2018-07-22,Female,35-44,organic_search
+109523,63143,Tam Ky,2017-10-20,Male,25-34,direct
+109567,63010,Tuy Hoa,2015-05-06,Male,35-44,organic_search
+109611,63020,Tam Ky,2021-03-23,Female,25-34,email_campaign
+109626,63025,Quang Ngai,2022-10-05,Female,25-34,referral
+109631,63026,Quang Ngai,2021-08-14,Female,45-54,social_media
+109632,63026,Quang Ngai,2021-06-18,Non-binary,35-44,organic_search
+109646,63031,Kon Tum,2017-01-05,Male,35-44,organic_search
+109762,63068,Tam Ky,2018-04-11,Male,35-44,social_media
+109853,63304,Hoi An,2022-06-06,Female,25-34,social_media
+109973,63366,Hoi An,2022-03-02,Male,35-44,paid_search
+110056,63401,Tam Ky,2022-08-03,Male,35-44,organic_search
+110057,63401,Tam Ky,2020-06-17,Female,25-34,organic_search
+110160,63459,Dong Hoi,2017-08-01,Male,25-34,direct
+110609,65109,Phan Thiet,2018-12-06,Female,35-44,organic_search
+110610,65109,Phan Thiet,2021-01-30,Male,45-54,email_campaign
+110926,52501,Nha Trang,2016-01-06,Female,18-24,email_campaign
+111024,52565,Nha Trang,2022-10-20,Female,18-24,paid_search
+111131,52632,Quang Ngai,2021-04-18,Male,25-34,social_media
+111176,52645,Phan Thiet,2016-07-21,Female,25-34,direct
+111579,50702,Dong Hoi,2020-02-25,Male,55+,organic_search
+112058,52233,Quy Nhon,2017-11-05,Male,35-44,organic_search
+112394,52403,Phan Rang-Thap Cham,2019-02-24,Female,45-54,email_campaign
+112399,52404,Tam Ky,2019-06-13,Female,45-54,organic_search
+112407,52405,Tuy Hoa,2018-04-22,Male,25-34,organic_search
+112415,52409,Kon Tum,2014-10-03,Male,25-34,paid_search
+112559,52761,Tam Ky,2016-07-04,Female,18-24,organic_search
+112711,73401,Quy Nhon,2015-11-10,Male,45-54,social_media
+112803,73458,Tuy Hoa,2021-02-18,Male,45-54,social_media
+112871,73507,Quy Nhon,2019-06-23,Male,35-44,paid_search
+113078,73573,Nha Trang,2016-05-09,Female,25-34,direct
+113497,46303,Quy Nhon,2020-01-12,Female,25-34,organic_search
+113500,46311,Tuy Hoa,2018-12-03,Male,45-54,social_media
+113518,46321,Phan Thiet,2015-02-20,Male,35-44,referral
+113534,46324,Phan Rang-Thap Cham,2019-02-07,Male,25-34,social_media
+113626,46410,Nha Trang,2019-06-29,Male,55+,social_media
+113801,49855,Nha Trang,2022-12-28,Non-binary,45-54,social_media
+113987,49930,Dong Hoi,2019-04-25,Female,25-34,direct
+114140,53142,Tuy Hoa,2018-02-28,Male,25-34,organic_search
+114149,53144,Hoi An,2018-11-11,Non-binary,35-44,organic_search
+114156,53147,Quy Nhon,2016-06-22,Female,35-44,organic_search
+114206,53177,Phan Thiet,2022-03-10,Male,35-44,direct
+114207,53177,Phan Thiet,2022-05-25,Male,35-44,organic_search
+114221,53182,Phan Thiet,2018-09-26,Male,35-44,organic_search
+114243,53402,Quang Ngai,2019-11-10,Male,55+,referral
+114265,53406,Hoi An,2015-06-06,Male,25-34,email_campaign
+114480,53545,Quang Ngai,2017-10-08,Female,18-24,paid_search
+114487,53546,Phan Rang-Thap Cham,2022-11-26,Non-binary,25-34,referral
+114661,53590,Kon Tum,2015-02-28,Male,55+,email_campaign
+114700,53703,Quang Ngai,2019-02-05,Female,35-44,organic_search
+114731,53713,Phan Rang-Thap Cham,2013-12-19,Male,45-54,social_media
+114839,53813,Kon Tum,2019-03-22,Female,35-44,referral
+114842,53813,Kon Tum,2016-09-21,Male,25-34,organic_search
+115020,54601,Hue,2016-02-27,Female,55+,email_campaign
+115352,53032,Phan Rang-Thap Cham,2019-07-22,Non-binary,25-34,referral
+115548,53089,Dong Hoi,2018-12-08,Male,45-54,organic_search
+115627,53129,Nha Trang,2017-05-09,Female,18-24,organic_search
+115641,53137,Nha Trang,2017-05-08,Male,35-44,email_campaign
+115655,53150,Quy Nhon,2014-11-24,Female,45-54,email_campaign
+115659,53151,Tam Ky,2021-04-18,Female,18-24,organic_search
+115661,53151,Tam Ky,2016-08-16,Male,35-44,email_campaign
+115699,53188,Nha Trang,2022-10-06,Female,25-34,paid_search
+115737,53206,Hoi An,2019-09-01,Female,25-34,organic_search
+115741,53207,Hue,2022-06-03,Female,25-34,paid_search
+115787,53216,Kon Tum,2020-08-03,Male,45-54,organic_search
+115801,53219,Phan Thiet,2015-10-25,Female,45-54,organic_search
+115808,53221,Tam Ky,2020-01-03,Male,45-54,organic_search
+115824,53224,Hue,2016-12-20,Female,18-24,email_campaign
+115830,53225,Phan Thiet,2013-07-06,Female,25-34,email_campaign
+115881,53549,Hue,2015-10-14,Male,25-34,paid_search
+115901,53919,Tam Ky,2019-04-26,Female,35-44,referral
+115946,53946,Tuy Hoa,2022-06-22,Female,45-54,email_campaign
+116302,54217,Nha Trang,2019-07-28,Male,25-34,organic_search
+116396,54311,Tam Ky,2022-04-04,Male,55+,direct
+116730,54494,Da Nang,2022-10-25,Male,25-34,email_campaign
+116865,54547,Tuy Hoa,2019-04-07,Male,25-34,paid_search
+117206,54904,Hue,2020-04-22,Female,35-44,organic_search
+117450,60002,Nha Trang,2013-03-28,Female,35-44,direct
+117475,60010,Phan Rang-Thap Cham,2019-09-23,Female,25-34,email_campaign
+117476,60010,Phan Rang-Thap Cham,2021-12-26,Male,55+,paid_search
+117484,60013,Nha Trang,2014-04-04,Female,45-54,referral
+117489,60014,Phan Rang-Thap Cham,2020-07-30,Female,18-24,paid_search
+117531,60025,Da Nang,2017-12-26,Male,45-54,paid_search
+117562,60035,Tam Ky,2017-11-06,Male,25-34,paid_search
+117577,60041,Dong Hoi,2022-04-10,Male,18-24,organic_search
+117595,60045,Phan Thiet,2016-12-23,Female,35-44,email_campaign
+117600,60046,Quy Nhon,2016-03-26,Male,35-44,email_campaign
+117602,60046,Quy Nhon,2020-05-12,Male,35-44,organic_search
+117617,60050,Da Nang,2020-09-10,Male,25-34,email_campaign
+117638,60060,Nha Trang,2019-12-31,Female,25-34,paid_search
+117641,60060,Nha Trang,2017-05-27,Female,25-34,organic_search
+117647,60061,Dong Hoi,2018-02-19,Female,35-44,organic_search
+117697,60073,Quy Nhon,2018-05-30,Male,18-24,direct
+117758,60091,Quy Nhon,2021-04-11,Female,45-54,social_media
+117779,60098,Tuy Hoa,2022-12-22,Female,35-44,referral
+117782,60098,Tuy Hoa,2017-09-23,Female,25-34,paid_search
+117812,60106,Tam Ky,2013-06-08,Female,25-34,organic_search
+117853,60118,Da Nang,2021-04-27,Female,35-44,email_campaign
+117866,60120,Quy Nhon,2020-02-06,Female,25-34,organic_search
+117892,60130,Tam Ky,2020-07-27,Non-binary,18-24,organic_search
+117924,60138,Dong Hoi,2020-07-24,Female,35-44,paid_search
+117977,60151,Hoi An,2021-10-18,Female,25-34,social_media
+118000,60156,Hue,2016-04-02,Female,25-34,organic_search
+118059,60175,Hoi An,2015-10-02,Male,25-34,organic_search
+118069,60177,Quang Ngai,2021-06-14,Male,25-34,social_media
+118070,60177,Quang Ngai,2017-02-21,Female,18-24,paid_search
+118075,60178,Tuy Hoa,2020-06-11,Male,25-34,social_media
+118082,60180,Tam Ky,2018-08-02,Female,35-44,organic_search
+118093,60185,Tuy Hoa,2022-05-22,Male,35-44,direct
+118102,60187,Quy Nhon,2019-07-11,Male,55+,paid_search
+118106,60188,Phan Thiet,2021-07-09,Female,25-34,organic_search
+118122,60191,Nha Trang,2019-04-19,Female,35-44,organic_search
+118185,60304,Kon Tum,2021-04-19,Male,45-54,organic_search
+118254,60417,Phan Rang-Thap Cham,2017-07-23,Female,35-44,social_media
+118260,60419,Hue,2016-07-15,Female,55+,organic_search
+118324,60433,Tam Ky,2019-01-20,Male,45-54,email_campaign
+118357,60440,Phan Rang-Thap Cham,2015-12-27,Female,25-34,email_campaign
+118362,60441,Phan Thiet,2019-07-07,Male,35-44,referral
+118380,60445,Phan Thiet,2017-12-08,Male,25-34,social_media
+118384,60446,Hue,2020-05-15,Male,18-24,paid_search
+118412,60451,Phan Thiet,2022-03-09,Female,25-34,paid_search
+118420,60453,Phan Thiet,2020-03-26,Female,25-34,organic_search
+118458,60463,Da Nang,2021-11-13,Male,18-24,direct
+118503,60473,Phan Thiet,2021-04-18,Male,35-44,paid_search
+118505,60473,Phan Thiet,2022-12-11,Female,25-34,social_media
+118588,60504,Tam Ky,2014-07-08,Female,55+,direct
+118599,60506,Tam Ky,2022-11-27,Female,35-44,social_media
+118601,60506,Tam Ky,2017-10-13,Male,18-24,direct
+118656,60521,Phan Thiet,2020-10-07,Female,25-34,social_media
+118672,60526,Phan Thiet,2017-11-11,Female,25-34,organic_search
+118675,60527,Tam Ky,2018-04-12,Male,35-44,paid_search
+118791,60563,Quy Nhon,2020-03-06,Female,45-54,organic_search
+118794,60564,Phan Thiet,2021-01-29,Female,35-44,email_campaign
+118825,60707,Tuy Hoa,2017-05-27,Female,25-34,organic_search
+118884,60914,Hue,2022-11-03,Male,35-44,referral
+119016,60970,Phan Thiet,2019-03-18,Male,55+,referral
+119118,60617,Da Nang,2017-10-21,Male,55+,social_media
+119200,60634,Dong Hoi,2016-10-06,Male,18-24,paid_search
+119259,60647,Nha Trang,2017-05-23,Male,25-34,paid_search
+119377,60548,Phan Thiet,2017-09-02,Female,25-34,paid_search
+119411,61008,Quy Nhon,2020-11-29,Non-binary,25-34,organic_search
+119431,61014,Phan Thiet,2021-09-04,Male,55+,social_media
+119433,61015,Quang Ngai,2020-10-24,Female,45-54,paid_search
+119458,61021,Da Nang,2020-09-05,Male,45-54,email_campaign
+119463,61024,Tuy Hoa,2020-12-05,Male,45-54,paid_search
+119468,61025,Kon Tum,2022-06-04,Male,45-54,social_media
+119489,61032,Nha Trang,2018-11-18,Male,25-34,organic_search
+119627,61072,Hoi An,2017-09-03,Female,25-34,paid_search
+119852,61254,Hue,2022-04-13,Male,25-34,organic_search
+119888,61265,Da Nang,2019-06-23,Female,45-54,organic_search
+119892,61265,Da Nang,2021-12-25,Female,45-54,social_media
+119913,61275,Nha Trang,2021-09-07,Female,25-34,referral
+119949,61283,Phan Thiet,2021-02-17,Male,55+,referral
+120700,62642,Nha Trang,2021-06-23,Female,35-44,email_campaign
+120871,62703,Phan Rang-Thap Cham,2022-02-26,Male,35-44,social_media
+121043,61448,Quy Nhon,2020-07-06,Female,55+,social_media
+121090,61462,Da Nang,2016-04-30,Female,35-44,paid_search
+121189,61523,Tam Ky,2022-11-27,Female,55+,email_campaign
+121307,61554,Quang Ngai,2019-03-22,Male,35-44,paid_search
+121343,61568,Tam Ky,2015-12-31,Male,45-54,email_campaign
+121393,61607,Hue,2022-12-25,Female,18-24,email_campaign
+121403,61611,Hue,2019-11-14,Male,55+,paid_search
+121451,61704,Quang Ngai,2020-04-04,Female,35-44,organic_search
+121490,61727,Dong Hoi,2016-06-28,Male,25-34,paid_search
+121534,61739,Quang Ngai,2022-03-03,Female,25-34,organic_search
+121632,61770,Tam Ky,2021-07-13,Male,25-34,paid_search
+121683,61830,Nha Trang,2016-10-03,Female,45-54,social_media
+121737,62002,Dong Hoi,2021-01-19,Female,45-54,email_campaign
+121790,62021,Nha Trang,2022-09-06,Female,18-24,organic_search
+121841,62035,Hue,2022-11-22,Male,55+,paid_search
+122087,62215,Kon Tum,2021-02-22,Male,45-54,organic_search
+122349,62294,Hoi An,2020-09-28,Female,25-34,social_media
+122606,75604,Kon Tum,2020-01-21,Female,25-34,direct
+122682,75650,Tam Ky,2019-06-24,Male,25-34,referral
+122760,75672,Dong Hoi,2022-10-01,Male,35-44,organic_search
+122806,75689,Nha Trang,2022-08-02,Male,55+,organic_search
+122830,75701,Hue,2019-11-10,Female,25-34,email_campaign
+122838,75703,Phan Thiet,2016-06-18,Male,35-44,organic_search
+123031,75801,Quang Ngai,2019-09-20,Female,18-24,social_media
+123528,77707,Hue,2019-03-03,Male,35-44,direct
+123612,79015,Nha Trang,2015-05-02,Female,25-34,paid_search
+123724,79070,Tuy Hoa,2018-11-04,Female,55+,email_campaign
+123891,79121,Da Nang,2020-02-04,Female,45-54,paid_search
+123910,79226,Phan Rang-Thap Cham,2015-05-10,Male,55+,paid_search
+123911,79226,Phan Rang-Thap Cham,2015-08-13,Female,45-54,organic_search
+123926,79255,Hoi An,2019-07-11,Female,55+,paid_search
+124131,75501,Phan Rang-Thap Cham,2014-11-16,Female,35-44,organic_search
+124133,75503,Nha Trang,2017-05-16,Male,35-44,referral
+124253,75002,Phan Thiet,2016-06-13,Female,25-34,paid_search
+124266,75007,Kon Tum,2016-11-08,Female,35-44,paid_search
+124284,75013,Phan Rang-Thap Cham,2021-02-21,Male,25-34,organic_search
+124306,75019,Quy Nhon,2022-01-17,Female,25-34,organic_search
+124352,75028,Kon Tum,2022-07-05,Female,25-34,paid_search
+124367,75032,Dong Hoi,2019-09-10,Female,35-44,organic_search
+124395,75040,Tuy Hoa,2021-10-31,Female,45-54,organic_search
+124425,75047,Tam Ky,2013-05-27,Female,55+,organic_search
+124440,75050,Da Nang,2021-09-09,Male,25-34,paid_search
+124474,75058,Phan Rang-Thap Cham,2021-04-02,Female,55+,referral
+124475,75058,Phan Rang-Thap Cham,2018-03-07,Male,25-34,paid_search
+124486,75061,Kon Tum,2021-12-26,Female,25-34,direct
+124530,75074,Hue,2014-12-29,Male,25-34,organic_search
+124547,75077,Tam Ky,2018-10-26,Female,35-44,referral
+124554,75080,Quang Ngai,2015-12-25,Male,35-44,paid_search
+124583,75088,Kon Tum,2021-09-15,Male,45-54,paid_search
+124593,75090,Phan Rang-Thap Cham,2022-01-20,Female,35-44,referral
+124610,75093,Kon Tum,2018-09-25,Male,25-34,paid_search
+124738,75150,Hue,2016-03-18,Male,35-44,referral
+124742,75150,Hue,2020-08-15,Male,25-34,social_media
+124848,75402,Quang Ngai,2013-11-29,Male,45-54,email_campaign
+125023,76008,Dong Hoi,2014-08-11,Female,35-44,social_media
+125027,76008,Dong Hoi,2022-10-20,Female,35-44,email_campaign
+125038,76011,Tam Ky,2021-04-30,Female,45-54,organic_search
+125056,76014,Quy Nhon,2020-08-10,Male,25-34,paid_search
+125086,76020,Quy Nhon,2019-01-30,Female,55+,organic_search
+125103,76028,Quy Nhon,2022-04-19,Male,55+,direct
+125105,76028,Quy Nhon,2021-11-22,Female,35-44,social_media
+125197,76058,Tuy Hoa,2019-05-24,Female,35-44,social_media
+125291,76087,Kon Tum,2021-03-13,Female,25-34,paid_search
+125448,76126,Kon Tum,2016-06-16,Male,35-44,organic_search
+125535,76179,Phan Rang-Thap Cham,2022-08-20,Female,25-34,direct
+125561,76201,Kon Tum,2022-09-10,Male,25-34,referral
+125675,76248,Hue,2021-09-26,Female,25-34,organic_search
+125676,76248,Hue,2018-03-01,Female,45-54,paid_search
+125766,76273,Quang Ngai,2019-08-13,Male,45-54,social_media
+125886,76384,Phan Thiet,2019-05-12,Female,45-54,organic_search
+126621,79403,Hue,2022-06-02,Male,25-34,organic_search
+126675,79423,Hue,2022-05-04,Male,45-54,paid_search
+126677,79423,Hue,2020-06-13,Female,35-44,social_media
+126678,79424,Quy Nhon,2020-09-25,Female,18-24,referral
+126680,79424,Quy Nhon,2022-08-15,Female,45-54,paid_search
+126859,79563,Hoi An,2022-08-30,Male,35-44,social_media
+126861,79563,Hoi An,2018-02-22,Male,25-34,organic_search
+126929,79703,Da Nang,2020-08-04,Female,45-54,organic_search
+126940,79705,Hue,2016-11-20,Female,25-34,paid_search
+126941,79705,Hue,2016-01-28,Non-binary,35-44,email_campaign
+126952,79707,Quy Nhon,2020-07-22,Female,45-54,organic_search
+126999,79731,Nha Trang,2018-08-10,Male,45-54,organic_search
+127133,79782,Kon Tum,2021-06-28,Female,45-54,organic_search
+127244,75214,Tam Ky,2013-02-27,Non-binary,45-54,organic_search
+127309,75228,Hue,2021-02-22,Female,18-24,paid_search
+127310,75228,Hue,2021-06-04,Male,45-54,paid_search
+127409,75252,Tuy Hoa,2020-12-28,Female,18-24,direct
+127653,76513,Dong Hoi,2015-05-13,Non-binary,45-54,direct
+127796,76559,Tuy Hoa,2014-10-06,Female,25-34,paid_search
+128086,76706,Phan Rang-Thap Cham,2016-09-19,Male,35-44,social_media
+128259,77338,Quang Ngai,2022-11-05,Female,55+,organic_search
+128291,77346,Dong Hoi,2013-07-31,Female,25-34,organic_search
+128397,77377,Hue,2019-03-06,Female,25-34,organic_search
+128431,77384,Hue,2018-04-12,Female,18-24,social_media
+128435,77385,Kon Tum,2022-04-02,Female,25-34,organic_search
+128758,77488,Hoi An,2017-04-08,Female,45-54,direct
+128762,77488,Hoi An,2019-07-19,Male,35-44,social_media
+128818,77504,Quy Nhon,2014-11-28,Male,55+,email_campaign
+128825,77505,Nha Trang,2021-06-29,Male,35-44,referral
+128832,77506,Phan Rang-Thap Cham,2022-08-16,Female,45-54,social_media
+128844,77511,Tuy Hoa,2018-04-15,Male,35-44,paid_search
+128857,77515,Phan Rang-Thap Cham,2021-08-07,Male,55+,paid_search
+128913,77535,Dong Hoi,2021-02-01,Female,25-34,referral
+128998,77568,Phan Thiet,2016-05-19,Male,45-54,paid_search
+129290,77901,Phan Thiet,2019-07-03,Female,25-34,organic_search
+129332,77957,Hoi An,2020-02-07,Male,45-54,email_campaign
+129450,78006,Quy Nhon,2022-11-17,Female,35-44,organic_search
+129479,78015,Quy Nhon,2018-01-08,Male,25-34,social_media
+129553,78043,Quy Nhon,2020-09-10,Male,35-44,organic_search
+129683,78076,Tam Ky,2020-11-03,Male,25-34,organic_search
+129708,78109,Quy Nhon,2022-04-28,Male,25-34,email_campaign
+129764,78130,Hoi An,2019-11-30,Female,55+,social_media
+129766,78130,Hoi An,2022-06-05,Female,45-54,direct
+130024,78380,Hue,2017-07-03,Female,55+,paid_search
+130121,78410,Kon Tum,2020-11-27,Female,55+,organic_search
+130213,78501,Quy Nhon,2015-02-23,Female,18-24,social_media
+130217,78501,Quy Nhon,2015-11-27,Male,25-34,referral
+130230,78504,Phan Rang-Thap Cham,2019-07-26,Female,18-24,direct
+130232,78504,Phan Rang-Thap Cham,2020-09-27,Female,18-24,email_campaign
+130355,78559,Dong Hoi,2014-07-29,Male,45-54,email_campaign
+130953,78852,Phan Rang-Thap Cham,2022-07-29,Male,55+,organic_search
+131051,78945,Phan Thiet,2020-02-16,Male,35-44,paid_search
+131298,78744,Tuy Hoa,2016-12-10,Female,18-24,organic_search
+131310,78746,Hue,2018-11-14,Male,35-44,organic_search
+131323,78749,Tam Ky,2022-09-06,Male,18-24,referral
+131565,78233,Da Nang,2017-05-31,Female,55+,social_media
+131581,78237,Kon Tum,2021-06-01,Male,35-44,social_media
+131596,78240,Nha Trang,2018-06-29,Female,45-54,email_campaign
+131760,77005,Dong Hoi,2018-10-25,Male,18-24,social_media
+131824,77018,Tam Ky,2022-03-08,Male,25-34,referral
+131947,77042,Phan Rang-Thap Cham,2013-09-10,Male,35-44,organic_search
+132043,77062,Kon Tum,2021-09-20,Male,35-44,organic_search
+132098,77073,Quang Ngai,2021-12-03,Male,18-24,referral
+132157,77084,Hue,2021-10-18,Male,35-44,organic_search
+132209,77095,Da Nang,2020-08-12,Male,35-44,email_campaign
+132211,77095,Da Nang,2022-03-07,Female,18-24,organic_search
+132545,93291,Tra Vinh,2015-05-14,Female,25-34,social_media
+132863,93720,Vinh Long,2015-06-07,Male,55+,organic_search
+132864,93720,Vinh Long,2018-04-04,Female,35-44,organic_search
+132875,93722,Soc Trang,2012-04-12,Male,18-24,paid_search
+133023,93940,Ho Chi Minh City,2018-05-29,Female,35-44,email_campaign
+133058,94002,Pleiku,2021-04-07,Non-binary,55+,paid_search
+133186,94061,Tra Vinh,2014-12-26,Male,55+,organic_search
+133262,94102,My Tho,2021-04-18,Female,25-34,organic_search
+133266,94103,Can Tho,2022-10-04,Female,35-44,organic_search
+133289,94109,Rach Gia,2021-03-05,Female,25-34,paid_search
+133293,94110,Pleiku,2022-12-28,Male,25-34,email_campaign
+133326,94117,Can Tho,2018-05-31,Female,35-44,social_media
+133328,94118,Buon Ma Thuot,2021-03-24,Female,35-44,organic_search
+133437,94301,Vinh Long,2021-04-08,Female,35-44,organic_search
+133446,94303,Long Xuyen,2019-10-13,Female,45-54,social_media
+133541,94513,Vung Tau,2016-11-05,Female,18-24,organic_search
+133574,94520,Soc Trang,2015-12-04,Male,35-44,social_media
+133623,94531,Buon Ma Thuot,2018-07-10,Female,25-34,paid_search
+133627,94531,Buon Ma Thuot,2022-02-13,Male,55+,organic_search
+133631,94536,Buon Ma Thuot,2016-10-09,Female,25-34,organic_search
+133732,94560,Ho Chi Minh City,2016-06-06,Male,25-34,organic_search
+133746,94563,Ca Mau,2020-12-29,Male,55+,organic_search
+133762,94566,My Tho,2021-05-02,Male,18-24,social_media
+133772,94568,Vung Tau,2019-03-19,Male,35-44,organic_search
+133824,94583,Soc Trang,2021-09-21,Male,25-34,organic_search
+133826,94583,Soc Trang,2014-12-05,Male,25-34,organic_search
+133827,94583,Soc Trang,2020-10-08,Male,18-24,social_media
+133834,94587,Buon Ma Thuot,2020-08-19,Female,18-24,social_media
+133846,94589,Buon Ma Thuot,2021-10-04,Male,45-54,referral
+133977,94701,Bac Lieu,2014-04-04,Male,55+,referral
+134130,94928,Pleiku,2017-02-20,Male,25-34,paid_search
+134192,94947,My Tho,2017-01-04,Male,45-54,referral
+134336,95006,Long Xuyen,2018-06-01,Male,18-24,paid_search
+134496,95054,Ho Chi Minh City,2021-06-20,Male,35-44,direct
+134506,95060,My Tho,2021-10-27,Female,25-34,social_media
+134517,95062,Ho Chi Minh City,2021-08-29,Female,35-44,organic_search
+134547,95070,Vung Tau,2019-09-13,Male,18-24,email_campaign
+134556,95075,Can Tho,2019-03-14,Male,45-54,paid_search
+134644,95125,Pleiku,2022-09-01,Male,45-54,paid_search
+134660,95128,Long Xuyen,2020-01-06,Female,25-34,email_campaign
+134667,95129,Ho Chi Minh City,2019-08-21,Male,45-54,social_media
+134686,95133,Bac Lieu,2013-02-20,Male,25-34,organic_search
+134727,95148,Bac Lieu,2019-02-07,Female,35-44,paid_search
+134836,95219,Bien Hoa,2018-09-11,Female,35-44,paid_search
+134938,95258,Ho Chi Minh City,2019-11-21,Male,35-44,paid_search
+135040,95322,Buon Ma Thuot,2015-04-18,Female,45-54,paid_search
+135267,95379,Tra Vinh,2017-11-29,Female,45-54,social_media
+135509,94533,Bien Hoa,2017-06-16,Female,45-54,referral
+135522,94535,Buon Ma Thuot,2018-09-30,Female,25-34,direct
+135532,94585,Long Xuyen,2022-03-27,Non-binary,35-44,email_campaign
+135993,95603,Rach Gia,2016-08-17,Female,18-24,referral
+135998,95604,Ho Chi Minh City,2022-12-29,Female,55+,social_media
+136004,95605,Buon Ma Thuot,2019-08-14,Male,25-34,social_media
+136016,95608,Ben Tre,2020-06-29,Male,25-34,organic_search
+136109,95628,Vung Tau,2014-06-16,Female,25-34,paid_search
+136144,95635,Bien Hoa,2015-12-19,Female,45-54,social_media
+136180,95648,Ho Chi Minh City,2018-05-09,Female,25-34,social_media
+136293,95677,Long Xuyen,2020-08-28,Male,25-34,referral
+136299,95678,Bac Lieu,2017-06-12,Male,25-34,email_campaign
+136411,95709,My Tho,2018-11-16,Female,18-24,paid_search
+136452,95728,Ben Tre,2018-11-11,Non-binary,45-54,organic_search
+136470,95746,Da Lat,2022-04-23,Male,35-44,social_media
+136475,95747,Buon Ma Thuot,2022-07-19,Female,35-44,referral
+136493,95762,Da Lat,2019-10-23,Male,45-54,email_campaign
+136505,95765,Can Tho,2017-05-01,Male,45-54,organic_search
+136508,95776,Bac Lieu,2015-11-07,Male,55+,paid_search
+136523,95901,Ho Chi Minh City,2021-06-29,Non-binary,35-44,social_media
+136527,95901,Ho Chi Minh City,2018-08-09,Non-binary,25-34,organic_search
+136590,95928,Ben Tre,2012-11-30,Male,55+,paid_search
+136717,95961,Ca Mau,2017-12-18,Male,25-34,organic_search
+136733,95966,Bac Lieu,2022-03-17,Male,45-54,email_campaign
+136751,95969,Vung Tau,2020-01-10,Female,18-24,organic_search
+136822,95991,Long Xuyen,2016-01-07,Female,35-44,referral
+136842,96002,Ben Tre,2015-08-22,Male,35-44,referral
+136997,96049,Ben Tre,2017-04-10,Male,35-44,email_campaign
+137068,96069,Rach Gia,2019-04-14,Female,45-54,organic_search
+137092,96080,Ho Chi Minh City,2016-11-06,Female,45-54,organic_search
+137297,96143,My Tho,2021-04-27,Female,35-44,social_media
+137408,95816,Can Tho,2014-10-17,Male,45-54,referral
+137452,95824,Vung Tau,2018-02-01,Male,35-44,referral
+137506,95835,Da Lat,2016-11-07,Female,35-44,paid_search
+137517,95838,Can Tho,2022-05-16,Female,25-34,paid_search
+137548,92101,Rach Gia,2018-01-06,Female,18-24,social_media
+137619,92115,Soc Trang,2016-11-14,Female,35-44,paid_search
+137627,92116,Long Xuyen,2016-06-26,Male,25-34,social_media
+137631,92117,Vung Tau,2018-09-17,Female,25-34,referral
+137632,92117,Vung Tau,2022-12-19,Male,55+,paid_search
+137635,92119,Ho Chi Minh City,2022-06-14,Male,35-44,email_campaign
+137638,92120,My Tho,2020-08-18,Male,35-44,email_campaign
+137683,92130,Rach Gia,2022-02-25,Female,25-34,organic_search
+137685,92130,Rach Gia,2017-10-20,Female,25-34,referral
+137833,91901,Pleiku,2020-03-24,Female,25-34,organic_search
+137834,91901,Pleiku,2020-07-15,Female,35-44,email_campaign
+137868,91910,Ben Tre,2022-03-30,Male,25-34,email_campaign
+137871,91910,Ben Tre,2018-09-02,Female,35-44,direct
+137874,91911,Rach Gia,2022-11-06,Female,45-54,paid_search
+138021,92008,Bac Lieu,2016-08-08,Female,18-24,paid_search
+138024,92009,Ca Mau,2022-09-16,Non-binary,45-54,organic_search
+138064,92021,My Tho,2015-11-18,Male,25-34,direct
+138065,92021,My Tho,2020-03-21,Female,45-54,organic_search
+138067,92021,My Tho,2021-07-30,Male,55+,paid_search
+138098,92028,Rach Gia,2016-06-27,Female,35-44,paid_search
+138102,92028,Rach Gia,2018-01-16,Female,25-34,social_media
+138103,92029,Bac Lieu,2022-12-29,Female,25-34,email_campaign
+138106,92029,Bac Lieu,2012-09-24,Female,45-54,social_media
+138153,92054,My Tho,2022-03-25,Male,18-24,referral
+138215,92069,Long Xuyen,2022-02-13,Male,25-34,organic_search
+138308,92118,Rach Gia,2020-08-25,Male,55+,organic_search
+138467,92270,Pleiku,2020-06-06,Male,25-34,organic_search
+138470,92274,Vinh Long,2019-02-21,Female,45-54,organic_search
+138484,92277,Ho Chi Minh City,2015-11-13,Female,25-34,organic_search
+138524,92307,Vung Tau,2018-11-10,Male,45-54,email_campaign
+138528,92307,Vung Tau,2021-01-19,Female,35-44,organic_search
+138597,92324,Pleiku,2022-12-25,Female,35-44,referral
+138598,92324,Pleiku,2019-12-17,Female,35-44,organic_search
+138636,92337,Vinh Long,2013-10-29,Male,35-44,paid_search
+138668,92345,Tra Vinh,2022-07-14,Female,35-44,email_campaign
+138691,92354,Ho Chi Minh City,2022-07-04,Female,45-54,organic_search
+138740,92374,Vung Tau,2020-06-20,Male,25-34,organic_search
+138846,92407,Bien Hoa,2020-07-21,Non-binary,25-34,email_campaign
+138919,92509,Ho Chi Minh City,2021-03-24,Male,25-34,paid_search
+139050,92562,Da Lat,2019-12-08,Male,25-34,organic_search
+139129,92590,Vung Tau,2017-11-17,Male,35-44,paid_search
+139137,92592,Long Xuyen,2020-04-11,Male,25-34,paid_search
+139138,92592,Long Xuyen,2015-07-07,Female,55+,organic_search
+139182,92881,Pleiku,2019-08-28,Female,25-34,social_media
+139186,92881,Pleiku,2012-09-30,Female,25-34,social_media
+139343,93306,Rach Gia,2018-11-25,Male,18-24,direct
+139354,93308,Bac Lieu,2017-12-18,Female,25-34,organic_search
+139360,93309,Bac Lieu,2020-07-30,Female,55+,email_campaign
+139371,93312,Pleiku,2022-04-04,Male,45-54,organic_search
+139497,93536,Pleiku,2019-01-22,Female,45-54,organic_search
+139647,92243,Pleiku,2022-08-01,Male,45-54,social_media
+139650,92243,Pleiku,2017-02-22,Male,18-24,social_media
+139651,92243,Pleiku,2017-07-14,Female,35-44,social_media
+139816,90250,Vung Tau,2018-08-29,Male,18-24,social_media
+139891,90277,Vinh Long,2018-10-13,Male,25-34,email_campaign
+139895,90278,Soc Trang,2017-12-13,Female,18-24,organic_search
+139908,90291,Soc Trang,2017-10-10,Female,25-34,referral
+139984,90501,Soc Trang,2022-12-22,Male,45-54,email_campaign
+139988,90501,Soc Trang,2018-05-02,Female,35-44,direct
+140008,90505,Soc Trang,2021-11-05,Female,35-44,organic_search
+140019,90602,Ho Chi Minh City,2020-04-29,Female,25-34,organic_search
+140055,90620,Ben Tre,2019-12-24,Male,25-34,social_media
+140128,90680,Bien Hoa,2017-01-10,Female,25-34,paid_search
+140143,90703,Pleiku,2016-08-10,Male,25-34,social_media
+140237,90746,Da Lat,2019-09-20,Male,45-54,paid_search
+140470,91205,Soc Trang,2016-01-21,Male,35-44,organic_search
+140514,91301,Da Lat,2019-11-24,Female,25-34,organic_search
+140566,91321,Can Tho,2018-07-17,Male,25-34,organic_search
+140619,91343,Da Lat,2013-12-08,Female,35-44,paid_search
+140643,91351,Can Tho,2017-08-13,Female,25-34,organic_search
+140647,91352,Pleiku,2015-08-04,Female,45-54,organic_search
+140685,91361,Vinh Long,2022-02-08,Male,45-54,referral
+140732,91381,Ben Tre,2020-11-07,Male,35-44,social_media
+140817,91423,Ca Mau,2022-07-20,Male,25-34,organic_search
+140818,91423,Ca Mau,2016-01-28,Male,25-34,paid_search
+140845,91505,Ca Mau,2021-09-20,Male,25-34,social_media
+140918,91702,Bien Hoa,2019-11-14,Male,45-54,referral
+140957,91724,Bac Lieu,2022-11-21,Female,45-54,paid_search
+140967,91730,Vung Tau,2020-04-30,Female,35-44,referral
+140985,91737,Tra Vinh,2020-12-11,Female,35-44,organic_search
+141011,91745,Bien Hoa,2020-02-07,Female,25-34,social_media
+141033,91750,Can Tho,2020-02-08,Male,25-34,organic_search
+141067,91763,Vung Tau,2015-10-19,Female,55+,email_campaign
+141116,91776,Can Tho,2019-12-27,Non-binary,35-44,social_media
+141127,91784,My Tho,2014-02-18,Female,18-24,social_media
+141144,91790,Ho Chi Minh City,2015-04-14,Female,25-34,paid_search
+141186,92602,Vinh Long,2022-05-24,Male,35-44,direct
+141220,92610,Vinh Long,2020-03-26,Male,35-44,email_campaign
+141296,92630,Ca Mau,2021-09-01,Female,35-44,referral
+141297,92630,Ca Mau,2020-12-01,Male,45-54,paid_search
+141305,92646,Bac Lieu,2021-01-13,Male,35-44,social_media
+141309,92647,Ben Tre,2022-07-06,Female,55+,organic_search
+141358,92656,Soc Trang,2021-08-16,Non-binary,55+,paid_search
+141374,92660,Vinh Long,2019-07-28,Female,25-34,paid_search
+141411,92675,Tra Vinh,2021-07-16,Male,25-34,organic_search
+141430,92679,Vung Tau,2016-05-23,Male,35-44,email_campaign
+141442,92688,Long Xuyen,2016-02-21,Male,25-34,referral
+141457,92692,Bien Hoa,2018-12-14,Female,18-24,social_media
+141458,92692,Bien Hoa,2019-11-08,Male,35-44,organic_search
+141491,92704,Long Xuyen,2015-07-26,Female,55+,organic_search
+141497,92705,Soc Trang,2017-03-02,Male,25-34,social_media
+141498,92705,Soc Trang,2016-06-02,Male,35-44,direct
+141595,92821,Pleiku,2014-10-23,Female,55+,paid_search
+141697,92867,Tra Vinh,2020-10-08,Male,55+,paid_search
+141728,92886,Long Xuyen,2022-05-10,Male,35-44,email_campaign
+141737,93001,Buon Ma Thuot,2017-12-20,Female,45-54,social_media
+141750,93004,Can Tho,2014-11-24,Male,25-34,email_campaign
+141774,93012,Rach Gia,2015-05-07,Male,35-44,organic_search
+141777,93012,Rach Gia,2017-03-09,Male,45-54,paid_search
+141793,93015,Bien Hoa,2013-12-01,Male,55+,organic_search
+141855,93041,Da Lat,2018-09-18,Male,45-54,organic_search
+141857,93041,Da Lat,2021-12-29,Female,35-44,email_campaign
+141890,93063,Can Tho,2013-09-05,Female,35-44,paid_search
+141896,93065,Tra Vinh,2021-02-21,Male,45-54,email_campaign
+141940,93108,Tra Vinh,2017-01-17,Female,45-54,social_media
+142075,93422,Vinh Long,2020-10-09,Male,35-44,email_campaign
+142117,93433,Can Tho,2018-11-10,Male,25-34,paid_search
+142134,93436,Soc Trang,2017-08-31,Female,35-44,social_media
+142236,93460,Vinh Long,2020-10-31,Male,45-54,email_campaign
+142356,90023,Pleiku,2017-03-27,Male,45-54,paid_search
+142387,90029,Tra Vinh,2013-06-14,Female,25-34,paid_search
+142565,90077,Da Lat,2022-06-24,Female,25-34,paid_search
+142598,90003,Rach Gia,2021-09-20,Female,35-44,referral
+142767,85037,Pleiku,2021-07-07,Male,35-44,organic_search
+142771,85040,Tra Vinh,2016-02-21,Male,55+,direct
+142792,85044,Da Lat,2020-01-13,Male,25-34,social_media
+142815,85050,Bac Lieu,2015-05-07,Male,25-34,organic_search
+142897,85098,Buon Ma Thuot,2022-05-15,Female,55+,referral
+143039,85201,Tra Vinh,2021-05-20,Male,55+,referral
+143096,85213,Can Tho,2016-11-12,Male,25-34,paid_search
+143098,85213,Can Tho,2015-02-22,Female,45-54,paid_search
+143102,85215,Soc Trang,2020-05-16,Male,25-34,referral
+143160,85226,Long Xuyen,2018-07-31,Female,25-34,email_campaign
+143249,85249,Ho Chi Minh City,2021-04-21,Female,18-24,organic_search
+143469,85303,My Tho,2014-08-07,Female,25-34,social_media
+143787,85383,My Tho,2019-04-18,Non-binary,35-44,referral
+144103,85650,Vung Tau,2014-11-03,Female,35-44,social_media
+144324,85747,Ho Chi Minh City,2017-02-08,Male,45-54,social_media
+144479,86001,Ca Mau,2022-11-24,Male,35-44,organic_search
+144676,86326,Ben Tre,2015-07-29,Male,25-34,social_media
+144767,86403,Vung Tau,2018-03-15,Female,45-54,organic_search
+144769,86403,Vung Tau,2018-03-28,Male,55+,paid_search
+144785,86406,Vinh Long,2019-11-10,Female,25-34,organic_search
+145093,87047,Vung Tau,2016-07-04,Female,25-34,paid_search
+145098,87048,Vinh Long,2021-01-10,Female,25-34,organic_search
+145157,87102,Buon Ma Thuot,2015-03-23,Female,25-34,social_media
+145176,87106,Soc Trang,2019-10-10,Male,55+,paid_search
+145206,87112,Ho Chi Minh City,2017-02-22,Female,45-54,paid_search
+145209,87112,Ho Chi Minh City,2020-05-06,Female,35-44,paid_search
+145218,87114,Vung Tau,2019-08-13,Male,45-54,social_media
+145220,87114,Vung Tau,2022-12-06,Male,55+,referral
+145254,87122,Tra Vinh,2017-07-27,Male,45-54,organic_search
+145265,87124,Buon Ma Thuot,2020-12-03,Female,35-44,organic_search
+145280,87144,Ca Mau,2018-01-18,Female,45-54,organic_search
+145448,87401,Ca Mau,2021-11-13,Male,25-34,organic_search
+145543,87505,Pleiku,2015-08-24,Male,25-34,paid_search
+145556,87508,Rach Gia,2021-09-10,Female,25-34,paid_search
+146009,88007,Soc Trang,2021-01-17,Male,25-34,organic_search
+146373,81301,Can Tho,2021-05-02,Male,25-34,organic_search
+146471,81435,Buon Ma Thuot,2022-04-15,Female,18-24,referral
+146512,89029,Tra Vinh,2017-06-02,Male,25-34,referral
+146706,97009,Soc Trang,2014-07-05,Female,18-24,organic_search
+146731,97016,Bien Hoa,2022-11-02,Female,55+,email_campaign
+146837,97045,Vinh Long,2017-04-07,Female,45-54,organic_search
+146866,97055,Bac Lieu,2018-07-11,Female,35-44,organic_search
+147048,97124,Tra Vinh,2016-04-02,Female,35-44,organic_search
+147049,97124,Tra Vinh,2021-09-23,Female,25-34,paid_search
+147283,97227,Rach Gia,2022-11-26,Female,35-44,referral
+147299,97230,Da Lat,2022-06-30,Female,25-34,social_media
+147342,97267,Bac Lieu,2022-11-27,Male,18-24,organic_search
+147357,97280,Ben Tre,2022-04-18,Male,25-34,direct
+147415,97303,Can Tho,2022-03-11,Male,35-44,social_media
+147417,97304,My Tho,2017-01-29,Male,35-44,direct
+147419,97304,My Tho,2018-08-21,Male,25-34,email_campaign
+147476,97330,Long Xuyen,2015-09-16,Female,45-54,paid_search
+147478,97330,Long Xuyen,2014-04-06,Female,18-24,social_media
+147493,97338,Vinh Long,2022-03-31,Male,25-34,organic_search
+147561,97361,Bac Lieu,2021-12-21,Male,35-44,direct
+147577,97365,Long Xuyen,2015-09-18,Female,35-44,organic_search
+147587,97367,Vinh Long,2022-12-11,Female,18-24,organic_search
+147652,97388,Pleiku,2018-01-25,Female,25-34,organic_search
+147694,99504,Rach Gia,2021-06-07,Male,35-44,email_campaign
+147714,99508,Soc Trang,2022-10-29,Male,35-44,email_campaign
+147745,99516,Bac Lieu,2019-05-17,Male,35-44,paid_search
+147751,99518,Tra Vinh,2021-12-29,Female,45-54,organic_search
+147765,99520,Soc Trang,2014-06-14,Female,25-34,social_media
+147780,99523,Bien Hoa,2021-10-20,Female,45-54,social_media
+147869,99577,Rach Gia,2018-09-28,Male,25-34,organic_search
+147902,99603,Buon Ma Thuot,2014-08-04,Male,18-24,organic_search
+148030,99654,Ho Chi Minh City,2021-07-02,Female,35-44,paid_search
+148046,99664,Soc Trang,2021-07-17,Male,25-34,referral
+148059,99669,Vung Tau,2021-08-09,Female,35-44,organic_search
+148064,99672,Ca Mau,2022-05-22,Male,25-34,organic_search
+148143,99706,Long Xuyen,2021-09-03,Male,45-54,organic_search
+148159,99709,Can Tho,2019-08-27,Female,25-34,organic_search
+148333,99801,Pleiku,2018-06-15,Female,55+,email_campaign
+148450,98005,Ho Chi Minh City,2020-04-18,Male,35-44,paid_search
+148454,98006,Rach Gia,2022-12-17,Female,45-54,paid_search
+148511,98021,Da Lat,2022-01-15,Male,35-44,organic_search
+148518,98022,Da Lat,2022-12-20,Male,18-24,referral
+148537,98026,Vinh Long,2014-03-07,Female,18-24,email_campaign
+148566,98032,Bac Lieu,2022-09-02,Female,55+,organic_search
+148579,98034,My Tho,2019-02-08,Female,25-34,social_media
+148754,98092,Soc Trang,2017-02-28,Female,45-54,referral
+148794,98107,Ca Mau,2021-09-07,Female,35-44,social_media
+148819,98112,Bac Lieu,2021-11-22,Female,55+,referral
+148847,98121,Bac Lieu,2016-03-09,Female,18-24,paid_search
+148916,98148,Ben Tre,2015-04-19,Female,25-34,direct
+148920,98148,Ben Tre,2019-12-21,Female,25-34,paid_search
+148934,98166,Long Xuyen,2018-05-07,Male,25-34,social_media
+148970,98198,Can Tho,2018-03-13,Female,25-34,social_media
+149008,98208,Buon Ma Thuot,2018-07-03,Female,35-44,referral
+149024,98221,Vung Tau,2021-01-20,Male,35-44,email_campaign
+149030,98223,Da Lat,2014-08-12,Male,18-24,email_campaign
+149045,98226,Ho Chi Minh City,2019-04-11,Non-binary,25-34,referral
+149086,98236,Vinh Long,2020-08-09,Female,45-54,organic_search
+149129,98245,Ho Chi Minh City,2018-12-20,Male,45-54,organic_search
+149224,98274,Bac Lieu,2022-12-28,Male,18-24,social_media
+149237,98277,Tra Vinh,2021-11-13,Female,45-54,organic_search
+149239,98277,Tra Vinh,2022-12-13,Male,45-54,organic_search
+149294,98290,Long Xuyen,2016-09-21,Male,25-34,social_media
+149398,98327,Ho Chi Minh City,2021-07-21,Male,45-54,email_campaign
+149434,98335,Ho Chi Minh City,2017-04-29,Female,18-24,organic_search
+149494,98351,Buon Ma Thuot,2020-06-12,Male,35-44,organic_search
+149577,98372,Pleiku,2021-11-14,Male,18-24,direct
+149638,98387,My Tho,2021-05-17,Male,18-24,social_media
+149646,98390,Long Xuyen,2017-09-12,Male,55+,direct
+149753,98422,Vinh Long,2020-03-21,Male,45-54,social_media
+149755,98422,Vinh Long,2022-07-21,Female,35-44,email_campaign
+149773,98439,Long Xuyen,2017-12-22,Female,45-54,organic_search
+149889,98512,Ca Mau,2020-07-02,Female,35-44,email_campaign
+149891,98513,Da Lat,2017-09-21,Female,55+,organic_search
+150084,98580,Ben Tre,2022-12-31,Male,35-44,organic_search
+150171,98604,Buon Ma Thuot,2016-12-05,Female,18-24,social_media
+150189,98607,Ca Mau,2018-07-23,Male,25-34,organic_search
+150237,98625,Rach Gia,2016-02-10,Male,35-44,direct
+150240,98625,Rach Gia,2022-08-20,Female,35-44,social_media
+150256,98632,Ho Chi Minh City,2020-09-12,Male,45-54,referral
+150259,98632,Ho Chi Minh City,2021-11-16,Male,35-44,email_campaign
+150270,98638,Soc Trang,2021-08-22,Female,45-54,referral
+150376,98682,My Tho,2020-02-21,Female,45-54,organic_search
+150377,98682,My Tho,2022-11-13,Female,45-54,email_campaign
+150378,98682,My Tho,2022-02-14,Female,25-34,direct
+150388,98684,Ca Mau,2016-11-27,Male,45-54,email_campaign
+150462,97333,Ben Tre,2022-07-17,Female,18-24,organic_search
+150574,97420,My Tho,2019-02-19,Male,25-34,organic_search
+150721,97459,Ben Tre,2019-02-27,Male,18-24,email_campaign
+150724,97459,Ben Tre,2021-10-31,Female,35-44,organic_search
+150786,97478,Ho Chi Minh City,2018-02-23,Female,25-34,organic_search
+150841,97496,Ca Mau,2022-09-14,Female,35-44,organic_search
+150881,97520,Da Lat,2018-09-30,Female,45-54,organic_search
+150909,97526,Pleiku,2022-02-24,Female,25-34,organic_search
+151255,89410,Ben Tre,2020-10-23,Female,35-44,email_campaign
+151441,89509,Ben Tre,2022-02-21,Male,35-44,organic_search
+151446,89510,Pleiku,2019-05-30,Male,35-44,direct
+151449,89510,Pleiku,2022-04-15,Female,25-34,organic_search
+151531,89706,Da Lat,2021-04-26,Female,45-54,paid_search
+151534,89706,Da Lat,2021-05-07,Male,55+,organic_search
+151641,84765,Rach Gia,2016-11-07,Male,55+,referral
+151778,89012,Rach Gia,2022-08-02,Female,35-44,paid_search
+151779,89012,Rach Gia,2022-08-29,Female,45-54,email_campaign
+151851,89031,Ben Tre,2021-03-21,Male,25-34,referral
+151855,89031,Ben Tre,2019-08-28,Male,18-24,organic_search
+151945,89074,Soc Trang,2021-09-25,Female,25-34,email_campaign
+152033,89110,Ca Mau,2017-10-16,Female,55+,paid_search
+152173,89142,Vung Tau,2022-04-12,Male,25-34,organic_search
+152186,89145,Bien Hoa,2020-06-11,Female,35-44,organic_search
+152302,82414,Bac Lieu,2016-01-31,Female,18-24,paid_search
+152303,82414,Bac Lieu,2019-02-18,Male,25-34,organic_search
+152585,97813,Tra Vinh,2017-03-20,Female,55+,organic_search
+152900,98823,My Tho,2015-05-19,Female,45-54,social_media
+152945,98837,Ho Chi Minh City,2021-02-24,Male,35-44,social_media
+153069,98926,Vinh Long,2020-09-28,Male,25-34,organic_search
+153668,99301,Ben Tre,2018-04-19,Male,18-24,organic_search
+153722,99336,My Tho,2021-04-01,Female,25-34,email_campaign
+153725,99336,My Tho,2021-03-02,Female,55+,email_campaign
+153817,99362,Can Tho,2020-12-22,Male,55+,organic_search
+153818,99362,Can Tho,2014-02-05,Female,25-34,paid_search
+153819,99362,Can Tho,2018-07-02,Female,45-54,paid_search
+153845,84003,Ho Chi Minh City,2018-12-25,Female,55+,social_media
+153877,84015,Rach Gia,2022-07-18,Male,35-44,social_media
+153955,84043,Vinh Long,2021-03-30,Male,25-34,email_campaign
+154097,84088,Long Xuyen,2021-01-02,Female,18-24,social_media
+154099,84088,Long Xuyen,2016-11-21,Female,35-44,paid_search
+154168,84105,Vung Tau,2022-12-09,Female,35-44,organic_search
+154212,84116,Bac Lieu,2020-10-06,Female,25-34,social_media
+154252,84124,Ho Chi Minh City,2020-06-15,Female,55+,organic_search
+154444,84332,My Tho,2022-09-01,Male,35-44,organic_search
+154505,84403,Soc Trang,2018-08-17,Male,45-54,paid_search
+154595,84542,Tra Vinh,2018-06-03,Female,35-44,organic_search
+154773,84655,Long Xuyen,2015-12-07,Female,45-54,social_media
+154774,84655,Long Xuyen,2015-04-04,Male,25-34,paid_search
+155045,83241,Vinh Long,2021-12-09,Male,45-54,paid_search
+155130,83274,My Tho,2021-04-16,Male,18-24,paid_search
+155256,83340,Ca Mau,2021-09-09,Female,45-54,organic_search
+155416,83440,Vung Tau,2016-03-30,Non-binary,25-34,paid_search
+155497,83467,Ben Tre,2019-04-27,Female,18-24,direct
+155682,83619,Ca Mau,2021-03-18,Male,35-44,paid_search
+155883,83703,My Tho,2020-01-19,Male,35-44,organic_search
+155890,83704,Can Tho,2013-04-09,Non-binary,18-24,organic_search
+156159,83858,Can Tho,2019-08-28,Male,35-44,direct
+156306,59034,Can Tho,2022-04-30,Non-binary,35-44,email_campaign
+156349,59047,Pleiku,2020-06-07,Male,25-34,email_campaign
+156516,59261,Vinh Long,2018-02-04,Male,45-54,paid_search
+156587,59405,Bien Hoa,2019-02-04,Male,25-34,paid_search
+156887,59538,Pleiku,2021-06-13,Male,25-34,organic_search
+156952,59635,Da Lat,2016-10-11,Female,25-34,organic_search
+157000,59701,Rach Gia,2016-02-12,Female,35-44,social_media
+157114,59736,Ho Chi Minh City,2019-06-29,Male,25-34,email_campaign
+157395,59860,Soc Trang,2020-04-06,Female,25-34,organic_search
+157514,59923,Soc Trang,2017-09-07,Female,25-34,direct
+157561,59937,Buon Ma Thuot,2018-10-15,Non-binary,45-54,paid_search
+157563,59937,Buon Ma Thuot,2018-08-23,Male,35-44,social_media

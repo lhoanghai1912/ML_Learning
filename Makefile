@@ -29,4 +29,4 @@ forecast:
 	python -m datathon.submission
 
 sample:
-	python jobs/make_sample.py
+	python tests/tools/generate_sample.py
