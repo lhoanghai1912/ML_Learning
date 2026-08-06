@@ -93,6 +93,15 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
   - **M3 (dbt) HOÀN TẤT hoàn toàn** (M3a+M3b) — hết gap tầng dbt.
   - **Việc kế cho M6a** (không chặn, TODO có sẵn trong `notebooks/02_eda.ipynb`): đổi cell đọc raw CSV → đọc mart qua Trino (`exposure notebook_02_eda` đã khai 4 model). Chưa greenlight session mới — để tuỳ PO lên lịch.
   - **8/8 milestone chính (M0-M7, tính M3=M3a+M3b) ✅.** Chỉ còn nợ #1 (P2) + nợ #3 (PO action item) + việc tuỳ chọn M6a nối mart.
+- 2026-08-06: **CHECKPOINT — tạm dừng, tiếp tục sau.** Trạng thái tại điểm dừng (đọc mục này trước nếu mất ngữ cảnh):
+  - Restructure lakehouse: **8/8 milestone chính ✅** (M0,M1,M2,M3a,M3b,M4a,M4b,M5,M6a,M6b,M7 — không còn milestone bảng nào ⬜).
+  - HEAD hiện tại = `10f8295`. Không có việc đang dang dở nửa chừng (mọi commit đã verify PASS trước khi ghi).
+  - **Việc còn treo, chưa làm — thứ tự ưu tiên gợi ý khi tiếp tục:**
+    1. `CLAUDE.md` (file `/Users/lhoanghai_/Documents/Study/Dự án datathon2026/CLAUDE.md`) đang **modified, CHƯA commit** (rule "phân tích chi tiết mọi nội dung tạo ra" thêm ngày 2026-08-06) — `git diff CLAUDE.md` để xem lại, quyết commit hay bỏ.
+    2. **Nợ #1** (P2): `src/datathon/features.py` (`lookup_lag`/`lookup_lag_smooth` fallback `hist.mean()` look-ahead nhẹ ~9.4% dòng train đầu) + `src/datathon/submission.py` (`validate_submission` lộ `KeyError` thô thay vì `AssertionError`) — giao M4 (de/ds), sửa xong PHẢI re-run REGRESSION forecast_548 (so byte-identical `docs/analysis/phase9_validation/committed_baseline/` nay đã có local, không cần `git show` nữa) + update test M5 (`tests/test_features_no_leakage.py`, `tests/test_submission.py` — xoá/update `xfail` tương ứng).
+    3. **Nợ #3**: PO cấp nguồn tải data raw thật → điền `data/README.md` mục 0 (còn TODO từ M7, `.process_status/M7.md`).
+    4. **Tuỳ chọn, không nợ**: M6a đổi `notebooks/02_eda.ipynb` từ đọc raw CSV sang đọc mart qua Trino (`exposure notebook_02_eda` đã khai sẵn 4 model trong `schema.yml` từ M3b) — TODO note sẵn trong notebook mục 0, không chặn gì.
+  - **Không có milestone nào ⬜ pending trong bảng — restructure coi như xong phần khung.** Việc còn lại thuần là tech-debt/polish, làm khi có thời gian, không khẩn cấp.
 - (PO ghi tiếp mỗi lần duyệt...)
 
 ---
