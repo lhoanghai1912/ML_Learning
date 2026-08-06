@@ -72,6 +72,11 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
   - **Greenlight M3b** (da, `models/intermediate/*`+`models/marts/*`, cần M3a ✅ — đã đủ điều kiện).
   - **2 việc nợ mới** (không chặn merge, track tech debt): (1) M4 sửa `lookup_lag` fallback mean look-ahead nhẹ + `validate_submission` KeyError thô (M5 finding). (2) Cherry-pick `phase8_model/`+`phase9_validation/` từ `feat/phase8-model` vào `docs/analysis` — M6b regression check đang phụ thuộc commit rời `f4bc6a4`, rủi ro mất nguồn đối chiếu nếu nhánh đó bị xoá (nhắc lại từ M4b, giờ thêm M6b phụ thuộc trực tiếp).
   - Việc nợ cũ vẫn còn: cấp nguồn tải data raw cho `data/README.md` (M7 TODO).
+- 2026-08-06: **QUYẾT ĐỊNH tiến độ (RICE) — chạy M3b ngay, lịch 3 nợ song song không chặn**:
+  - **M3b = P0, chạy ngay**: Reach=100% (mọi output A/B phụ thuộc mart cuối cùng), Impact=cao (đóng nốt bảng restructure, mở đường notebook 01/02 nối mart thay raw — đang là TODO của M6a), Confidence=cao (staging 14 bảng xanh, spec sẵn RESTRUCTURE_AGENTS.md), Effort=trung bình → RICE cao nhất còn lại. **Greenlight chạy da, single session** (không song song — không có milestone nào khác đang mở).
+  - **Nợ #2 (cherry-pick phase8_model/phase9_validation) = ưu tiên nhì, làm TRƯỚC/song song M3b**: rủi ro mất nguồn đối chiếu regression tăng dần theo thời gian (nhánh `feat/phase8-model` có thể bị dọn/xoá bất cứ lúc nào, ngoài kiểm soát của PROCESS này) — effort thấp (copy/cherry-pick 2 thư mục vào `docs/analysis`), impact cao nếu xảy ra (M4b + M6b cả 2 đang phụ thuộc commit rời `f4bc6a4`). Giao **pm/ba**, disjoint file với M3b (`docs/analysis/phase8_model/`, `docs/analysis/phase9_validation/` — không đụng `dbt_datathon/`) → **có thể chạy CÙNG LÚC với M3b**.
+  - **Nợ #1 (lookup_lag fallback mean + validate_submission KeyError) = P2, sau M3b**: effort thấp nhưng đụng `src/datathon/features.py`+`submission.py` (M4a/M4b sở hữu) — sửa xong phải chạy lại REGRESSION forecast_548 (rủi ro đổi số nếu fix đụng đường tính lag) + tests M5 đã có sẵn characterize (phải update/xoá `xfail` tương ứng). KHÔNG chặn M3b (khác file hoàn toàn), nhưng **không chạy song song với M3b/nợ#2** để tránh 3 luồng cùng lúc khó verify — xếp lịch SAU khi M3b xanh.
+  - **Nợ #3 (nguồn tải data raw) = action item của PO**, không phải agent — chưa có nguồn thật để điền, giữ TODO, không chặn merge nào.
 - (PO ghi tiếp mỗi lần duyệt...)
 
 ---
