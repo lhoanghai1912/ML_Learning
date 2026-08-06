@@ -25,6 +25,8 @@ data/raw/*.csv
 # dbt
 dbt_datathon/target/
 dbt_datathon/dbt_packages/
+dbt_datathon/logs/
+dbt_datathon/.user.yml
 
 # DuckDB
 *.duckdb
