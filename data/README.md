@@ -17,10 +17,21 @@ Từ milestone M1 (`ee63d2b`), `data/raw/*.csv` đã `git rm --cached` — file 
 nhưng **không còn trong git**. Clone repo mới ở máy khác sẽ có thư mục `data/raw/` rỗng (chỉ có
 `.gitkeep`).
 
-- **Nguồn tải chính thức: TODO: nguồn data — hỏi PO.** Chưa có link/Drive/Kaggle/S3 chính thức ghi
-  nhận trong repo (đã grep `RESTRUCTURE_PLAN.md`, `RESTRUCTURE_AGENTS.md`, `PROCESS.md`, root
-  `README.md` — không thấy). PO cần cung cấp nguồn (link cuộc thi / Drive team / bucket) rồi cập
-  nhật mục này.
+- **Nguồn tải chính thức (PO cấp 2026-08-07):**
+  <https://drive.google.com/drive/folders/1nLtCvUsczAQ9QB-hbBDh5_w6v-joRBaX>
+
+  > ⚠ **Folder KHÔNG public — cần được cấp quyền truy cập trước.** Đã probe bằng
+  > `curl -sL` (2026-08-07): HTTP 200 nhưng nội dung trả về là trang
+  > `<title>Google Drive: Sign-in</title>` → Drive đang ở chế độ hạn chế, người ngoài mở link sẽ
+  > thấy "Request access". Muốn clone-and-run được thì PO phải đổi share thành
+  > *"Anyone with the link → Viewer"*, hoặc add email từng người vào folder.
+  >
+  > ⚠ **Nội dung folder CHƯA verify được từ repo** — session không có quyền truy cập nên **chưa**
+  > xác nhận folder chứa đủ 14 CSV, chưa đối chiếu checksum với bản đang có trên đĩa
+  > (`data/raw/`, 126MB, 14 file). Ai tải về lần đầu: chạy mục "Verify" bên dưới trước khi tin số.
+  >
+  > Ghi chú link: link PO gửi có tiền tố `/u/2/` (chỉ số tài khoản Google của PO, không dùng được
+  > cho người khác) — đã chuẩn hoá bỏ `/u/2/` khi ghi vào đây.
 - Sau khi có nguồn: tải đủ **14 file CSV**, đặt đúng tên vào `data/raw/` (tên phải khớp
   `src/datathon/config.RAW_TABLES`, không đổi tên):
   `customers.csv, geography.csv, inventory.csv, order_items.csv, orders.csv, payments.csv,
@@ -29,9 +40,10 @@ nhưng **không còn trong git**. Clone repo mới ở máy khác sẽ có thư 
 - Có thể override thư mục bằng env `DATA_RAW_PATH` (xem `src/datathon/config.py`) nếu không muốn
   đặt ở `data/raw/` mặc định.
 - Verify sau khi đặt file: `python3 -c "import sys; sys.path.insert(0,'src'); from datathon.config import RAW_TABLES; import pandas as pd; print(pd.read_csv(RAW_TABLES['sales']).shape)"` → kỳ vọng `(3833, 3)`.
-- `data/sample/` — **chưa tồn tại tại thời điểm M7** (sẽ tạo ở milestone M5 bằng `make sample`, lấy
-  N dòng đầu mỗi bảng, đủ nhỏ để commit vào git dùng cho CI/pytest). Không nhầm với `data/raw/`
-  (full data, gitignored, không commit).
+- `data/sample/` — **ĐÃ CÓ** (M5, commit `fe4b455`): 14 CSV, tổng **640K**, commit vào git, dùng cho
+  CI/pytest. Sinh lại bằng `make sample`. Không nhầm với `data/raw/` (full data 126MB, gitignored,
+  không commit). **Hệ quả:** clone sạch **không có** `data/raw/` vẫn chạy được `make test`
+  (pytest trên sample), nhưng **không** chạy được `make forecast` (cần full raw từ Drive ở trên).
 
 ## 1. Tổng quan phạm vi
 
