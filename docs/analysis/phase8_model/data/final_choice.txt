@@ -1,2 +1,0 @@
-Revenue: tree_model=LightGBM use_ensemble=True use_quarter=False
-COGS: tree_model=LightGBM use_ensemble=True use_quarter=False
