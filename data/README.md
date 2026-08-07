@@ -26,17 +26,36 @@ nhưng **không còn trong git**. Clone repo mới ở máy khác sẽ có thư 
   > thấy "Request access". Muốn clone-and-run được thì PO phải đổi share thành
   > *"Anyone with the link → Viewer"*, hoặc add email từng người vào folder.
   >
-  > ⚠ **Nội dung folder CHƯA verify được từ repo** — session không có quyền truy cập nên **chưa**
-  > xác nhận folder chứa đủ 14 CSV, chưa đối chiếu checksum với bản đang có trên đĩa
-  > (`data/raw/`, 126MB, 14 file). Ai tải về lần đầu: chạy mục "Verify" bên dưới trước khi tin số.
+  > ✅ **Nội dung folder ĐÃ VERIFY (2026-08-07)** — PO tải bản Drive về máy, PO đối chiếu
+  > `shasum -a 256` từng file với `data/raw/` đang dùng: **14/14 CSV BYTE-IDENTICAL**
+  > (`diff` checksum = rỗng). Data trên Drive = đúng data mọi kết quả trong repo đang dựa vào,
+  > không phải bản khác/bản cũ.
   >
   > Ghi chú link: link PO gửi có tiền tố `/u/2/` (chỉ số tài khoản Google của PO, không dùng được
   > cho người khác) — đã chuẩn hoá bỏ `/u/2/` khi ghi vào đây.
-- Sau khi có nguồn: tải đủ **14 file CSV**, đặt đúng tên vào `data/raw/` (tên phải khớp
-  `src/datathon/config.RAW_TABLES`, không đổi tên):
+
+**Cấu trúc folder trên Drive** (khác layout repo — phải copy đúng chỗ, đừng bê nguyên):
+
+| Trên Drive | Đích trong repo | Ghi chú |
+|---|---|---|
+| `data/*.csv` (14 file, **126MB**, phẳng — KHÔNG có thư mục con `raw/`) | `data/raw/` | ✅ 14/14 checksum khớp bản đang dùng |
+| `tài liệu/data_dictionary.xlsx` | `docs/brief/` | ✅ checksum khớp bản trong repo |
+| `tài liệu/Đề bài1.docx` | `docs/brief/` | ⚠ **khác byte** bản repo (439KB vs 266KB) — **nhưng NỘI DUNG CHỮ GIỐNG HỆT**: PO giải nén cả 2 docx, trích text từ `word/document.xml` → cả 2 đúng **3007 ký tự / 18 dòng, `diff` = 0**. Khác byte do Google Docs re-export (nhúng font `NotoSansSymbols*.ttf`, đổi `customXml`→`customXML`, bỏ `endnotes/footnotes`). **KHÔNG phải đề bài sửa đổi** — không cần làm lại phân tích |
+| `EDA_Insight/{Hải,Hoàng,Đăng}/` | — | 3 thư mục **RỖNG** trên Drive. Việc thật đã archive ở `docs/analysis/` trong repo (D2=A). Không copy |
+
+- Lệnh copy sau khi tải (giả sử giải nén ở `~/Downloads/Dự án datathon2026`):
+  ```bash
+  cp "~/Downloads/Dự án datathon2026/data/"*.csv data/raw/
+  ```
+- Đủ **14 file CSV**, giữ nguyên tên (phải khớp `src/datathon/config.RAW_TABLES`, không đổi tên):
   `customers.csv, geography.csv, inventory.csv, order_items.csv, orders.csv, payments.csv,
   products.csv, promotions.csv, returns.csv, reviews.csv, sales.csv, sample_submission.csv,
   shipments.csv, web_traffic.csv`.
+- Verify checksum sau khi copy (khuyến nghị, phát hiện file lỗi/thiếu ngay):
+  ```bash
+  cd data/raw && shasum -a 256 *.csv | sort
+  # so với bản nguồn: cd "<thư mục Drive>/data" && shasum -a 256 *.csv | sort
+  ```
 - Có thể override thư mục bằng env `DATA_RAW_PATH` (xem `src/datathon/config.py`) nếu không muốn
   đặt ở `data/raw/` mặc định.
 - Verify sau khi đặt file: `python3 -c "import sys; sys.path.insert(0,'src'); from datathon.config import RAW_TABLES; import pandas as pd; print(pd.read_csv(RAW_TABLES['sales']).shape)"` → kỳ vọng `(3833, 3)`.
