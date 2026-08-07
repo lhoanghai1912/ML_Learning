@@ -34,7 +34,13 @@ nhưng **không còn trong git**. Clone repo mới ở máy khác sẽ có thư 
   > Ghi chú link: link PO gửi có tiền tố `/u/2/` (chỉ số tài khoản Google của PO, không dùng được
   > cho người khác) — đã chuẩn hoá bỏ `/u/2/` khi ghi vào đây.
 
-**Cấu trúc folder trên Drive** (khác layout repo — phải copy đúng chỗ, đừng bê nguyên):
+- **Bản đã tải sẵn trên máy PO (2026-08-07):** `~/Downloads/Dự án datathon2026/`
+  — chính là folder Drive ở trên tải về, giải nén. Dùng làm nguồn copy nhanh, khỏi tải lại.
+  > ⚠ Path này **machine-local**, chỉ đúng trên máy PO. Máy khác phải tải từ link Drive.
+  > Không hardcode path này vào code — code luôn đọc qua `src/datathon/config.py`
+  > (override được bằng env `DATA_RAW_PATH`).
+
+**Cấu trúc folder trên Drive / bản tải về** (khác layout repo — phải copy đúng chỗ, đừng bê nguyên):
 
 | Trên Drive | Đích trong repo | Ghi chú |
 |---|---|---|

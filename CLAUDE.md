@@ -23,6 +23,12 @@
 - Restructure: EDA-notebook → lakehouse (Spark+Iceberg+Trino+MinIO+Postgres+dbt), D1=C.
 - Nhánh làm việc: `chore/restructure-lakehouse`. Việc cũ 11 phase archive ở `docs/analysis/`.
 
+## RULE — PHÂN TÍCH CHI TIẾT MỌI NỘI DUNG TẠO RA
+
+- Sau khi tạo/sửa bất kỳ nội dung nào (code, doc, config, notebook, report...) → **LUÔN phân tích chi tiết** ngay, không tóm tắt qua loa. Gồm: cái gì thay đổi, vì sao chọn cách đó, tác động/rủi ro, đã verify gì (bằng chứng thật, không suy đoán), còn thiếu/nợ gì.
+- Áp dụng cho cả report agent (`.process_status/<M>.md`) lẫn trả lời trực tiếp cho PO/user.
+- Không chỉ khai báo "đã xong" — phải kèm bằng chứng verify + phân tích được/mất.
+
 ## Ràng buộc bắt buộc
 
 - KHÔNG sửa data raw (`data/raw/` chỉ đọc).

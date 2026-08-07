@@ -19,6 +19,10 @@ __pycache__/
 data/raw/*.csv
 !data/raw/.gitkeep
 
+# Artifact sinh ra bởi `make forecast` (python -m datathon.submission) — KHÔNG commit,
+# bản chuẩn để đối chiếu là docs/analysis/phase9_validation/committed_baseline/
+submission.csv
+
 # Secrets
 .env
 
