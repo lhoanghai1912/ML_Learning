@@ -1,0 +1,59 @@
+name: CI
+
+# M5 — pytest + ruff lint trên data/sample (đã commit sẵn, KHÔNG cần regenerate).
+# KHÔNG chạy docker/Spark/Trino/MinIO (M2) — nặng, ngoài scope CI này.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies (uv nếu có, fallback pip)
+        run: |
+          if command -v uv >/dev/null 2>&1; then
+            uv sync
+          else
+            pip install -e .
+          fi
+
+      - name: Ruff lint (tests/)
+        # Chỉ lint tests/ — ownership M5. src/jobs thuộc M2/M4, có lint debt riêng
+        # (xem .process_status/M5.md) — không kéo vào gate M5 để tránh fail vì code
+        # ngoài phạm vi milestone này.
+        run: |
+          if command -v uv >/dev/null 2>&1; then
+            uv run ruff check tests
+          else
+            ruff check tests
+          fi
+
+      - name: Verify data/sample present and <1MB (không cần docker/Spark)
+        run: |
+          test -d data/sample
+          du -sh data/sample
+          size_kb=$(du -sk data/sample | cut -f1)
+          if [ "$size_kb" -ge 1024 ]; then
+            echo "data/sample >= 1MB ($size_kb KB) — vi phạm ràng buộc M5" >&2
+            exit 1
+          fi
+
+      - name: Pytest (data/sample)
+        run: |
+          if command -v uv >/dev/null 2>&1; then
+            uv run pytest -q
+          else
+            pytest -q
+          fi

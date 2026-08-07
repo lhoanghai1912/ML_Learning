@@ -14,3 +14,23 @@ __pycache__/
 # Editor
 .vscode/
 .idea/
+
+# Data (raw kept local/out-of-git, sample/ committed for CI)
+data/raw/*.csv
+!data/raw/.gitkeep
+
+# Artifact sinh ra bởi `make forecast` (python -m datathon.submission) — KHÔNG commit,
+# bản chuẩn để đối chiếu là docs/analysis/phase9_validation/committed_baseline/
+submission.csv
+
+# Secrets
+.env
+
+# dbt
+dbt_datathon/target/
+dbt_datathon/dbt_packages/
+dbt_datathon/logs/
+dbt_datathon/.user.yml
+
+# DuckDB
+*.duckdb

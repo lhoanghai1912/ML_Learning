@@ -1,0 +1,50 @@
+# dbt_datathon/dbt_project.yml — M3a (de). Profile trỏ Trino/Iceberg (xem profiles.yml).
+# KHÔNG cấu hình models/intermediate hay models/marts ở đây — thuộc M3b (chạy sau M3a),
+# tự thêm block "intermediate:"/"marts:" khi milestone đó bắt đầu.
+
+name: "datathon_lakehouse"
+version: "1.0.0"
+config-version: 2
+
+profile: "datathon_lakehouse"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Iceberg raw landing (M2) đã cast kiểu + tên cột chuẩn từ ingest job — staging KHÔNG cast lại
+# kiểu khác đi (một nguồn sự thật type duy nhất), chỉ làm sạch business-rule tối thiểu (xem
+# models/staging/*.sql), khai contract tường minh + tách khỏi namespace `raw` để không đụng data
+# gốc (đích ghi = namespace `staging`, KHÔNG bao giờ ghi đè `iceberg.raw.*`).
+models:
+  datathon_lakehouse:
+    staging:
+      +materialized: view
+      # KHÔNG set +schema ở đây: profiles.yml đã default schema=staging. dbt default macro
+      # `generate_schema_name` nối target.schema + custom +schema thành "staging_staging" nếu
+      # set cả 2 (bug thật gặp lúc verify, xem .process_status/M3a.md) — chỉ dùng 1 nguồn.
+    # M3b (da). Lý do KHÔNG set +schema ở đây (giống staging): tránh lặp lại bug
+    # "staging_staging" — profiles.yml chỉ có 1 schema mặc định (staging) nên intermediate/marts
+    # SẼ CÙNG NẰM chung schema Trino với staging trừ khi override — chấp nhận có chủ đích ở
+    # milestone này (namespace tách bằng tiền tố int_/mart_ trong tên bảng, đủ phân biệt khi
+    # query qua Trino; tách schema vật lý riêng "intermediate"/"marts" để dành cho M sau nếu cần,
+    # không phải blocker của M3b).
+    intermediate:
+      +materialized: incremental
+      # Default incremental — từng model tự khai unique_key/incremental_strategy riêng (grain
+      # khác nhau: date / customer_id / cohort_month+month_offset). Xem lý do "full recompute
+      # mỗi run" (không dùng is_incremental() filter) ngay trong từng .sql — dữ liệu nguồn tĩnh,
+      # nhỏ, window function (MA30/ntile) cần toàn bộ lịch sử để đúng số cho MỌI dòng.
+    marts:
+      +materialized: table
+      # Marts = lớp phục vụ dashboard/BI trực tiếp — vật lý hoá thành table (đọc nhanh, không
+      # phụ thuộc incremental logic của intermediate), rebuild toàn bộ mỗi lần `dbt build` (dữ
+      # liệu nhỏ, không cần tối ưu incremental ở lớp cuối).

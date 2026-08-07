@@ -1,0 +1,23 @@
+# dbt_datathon/profiles.yml — M3a (de). Đọc biến từ .env (KHÔNG hardcode host thật/secret).
+# Trino local (M2) không bật auth (method: none) — "user" chỉ là nhãn session, không phải secret.
+# .env không tự động nạp — export trước khi chạy dbt, ví dụ:
+#   set -a && source .env && set +a && dbt build --project-dir dbt_datathon --profiles-dir dbt_datathon
+# Default trong env_var() khớp .env.example (localhost/8080) nên vẫn chạy được nếu quên export
+# khi làm việc trên máy host (đúng giá trị .env thật hiện tại cũng là localhost:8080).
+datathon_lakehouse:
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      method: none
+      user: datathon_dbt
+      host: "{{ env_var('TRINO_HOST', 'localhost') }}"
+      port: "{{ env_var('TRINO_PORT', '8080') | int }}"
+      database: "{{ env_var('ICEBERG_CATALOG', 'iceberg') }}"
+      schema: staging
+      http_scheme: http
+      cert: false
+      threads: 4
+      prepared_statements_enabled: true
+      session_properties:
+        query_max_run_time: 30m
