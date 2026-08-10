@@ -62,6 +62,21 @@ nhưng **không còn trong git**. Clone repo mới ở máy khác sẽ có thư 
   cd data/raw && shasum -a 256 *.csv | sort
   # so với bản nguồn: cd "<thư mục Drive>/data" && shasum -a 256 *.csv | sort
   ```
+
+- **Nguồn tải thay thế (2026-08-10) — `dataRaw/input/` NGAY TRONG REPO, không cần Drive/quyền
+  truy cập:** 14 CSV commit thẳng vào git (đảo ngược có chủ đích quyết định D3 gốc — xem PROCESS.md
+  log 2026-08-10 lý do đầy đủ). Verify byte-identical `data/raw/` bằng `shasum -a 256` trước khi
+  commit (0 khác biệt). Dùng luôn:
+  ```bash
+  cp dataRaw/input/*.csv data/raw/
+  ```
+  ⚠ `dataRaw/input/` chỉ là **bản snapshot để clone-and-run tiện**, KHÔNG phải nguồn code đọc
+  (`src/datathon/config.py` vẫn trỏ `data/raw/` như cũ, không đổi). Cập nhật `dataRaw/input/`
+  bằng tay nếu data gốc đổi — không có job tự đồng bộ.
+  ⚠ **Repo public trên GitHub** — 14 CSV giờ browse được trực tiếp qua git history (thực ra đã
+  từng ở đó từ trước M1, chỉ là ẩn trong history; giờ lộ lại ở working tree hiện tại). Data mô
+  phỏng (`E-commerce VN mô phỏng`, không phải giao dịch thật) — nếu sau này xác nhận có PII thật,
+  cần đánh giá lại việc để repo public.
 - Có thể override thư mục bằng env `DATA_RAW_PATH` (xem `src/datathon/config.py`) nếu không muốn
   đặt ở `data/raw/` mặc định.
 - Verify sau khi đặt file: `python3 -c "import sys; sys.path.insert(0,'src'); from datathon.config import RAW_TABLES; import pandas as pd; print(pd.read_csv(RAW_TABLES['sales']).shape)"` → kỳ vọng `(3833, 3)`.

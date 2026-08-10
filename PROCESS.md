@@ -170,6 +170,15 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
   - **Hệ quả mới**: notebook giờ **cần Trino sống** (`docker compose up`) mới chạy được cell 3 — trước đây không cần docker. Đã ghi rõ trong markdown intro (cell 0).
   - **Nợ mới phát sinh (không chặn)**: muốn đóng nốt phần còn lại của TODO gốc cần dbt build thêm 1 mart ở grain dòng đơn hàng (chưa có trong M3b) — ngoài phạm vi optional RICE 1.6 này, để backlog riêng nếu PO muốn.
   - `01_data_quality.ipynb` (M6a phần kia) **không đụng** — vẫn đọc raw CSV, đúng ownership/scope.
+- 2026-08-10: **Nợ #3 hướng giải quyết KHÁC — commit thẳng data raw vào git (`dataRaw/input/`), thay vì đợi PO đổi quyền Drive.**
+  - PO chủ động chọn đảo ngược D3 (quyết định gốc M1: `git rm --cached` để tránh phình repo) — đã hỏi rõ trade-off trước khi làm (repo phình vĩnh viễn, khó rút lại vì cấm rewrite history), PO xác nhận chấp nhận.
+  - **4 điểm đã chốt với PO**: (1) nhánh `chore/restructure-lakehouse` (không đụng `main`). (2) vị trí `dataRaw/input/`. (3) plain `git add` (không LFS). (4) giữ nguyên `data/raw/` (gitignored) + `config.py` không đổi — `dataRaw/input/` chỉ là snapshot song song.
+  - **Verify trước khi add**: nguồn `~/Downloads/Dự án datathon2026/data/*.csv` (bản Drive tải về, đã verify byte-identical `data/raw/` từ trước, xem log 2026-08-07) — `shasum -a 256` 14/14 file khớp tuyệt đối `data/raw/` đang dùng lần nữa, không tin lại kết quả cũ suông. `git check-ignore` xác nhận `dataRaw/input/*.csv` KHÔNG bị `.gitignore` chặn (chỉ chặn đúng path `data/raw/*.csv`).
+  - Commit `32ed7d3`, push xong.
+  - **Phát hiện bất ngờ khi verify sau commit (bằng chứng thật, không suy đoán)**: kỳ vọng `.git` phình +126MB, nhưng `du -sh .git` = **101M — KHÔNG đổi**. Điều tra: `git rev-parse HEAD:dataRaw/input/sales.csv` cho đúng blob hash đã tồn tại từ `first commit` (8e1200c) — data CSV này **byte-identical** với bản đã từng ở `data/` (flat) trước M1 (chưa bao giờ bị xoá khỏi git HISTORY, chỉ bị untrack khỏi working tree ở M1). Git dedupe theo content hash (SHA) → 0 storage mới, chỉ thêm tree/commit object trỏ lại blob cũ. **Kết luận**: rủi ro phình repo đã cảnh báo trước KHÔNG xảy ra thực tế trong trường hợp này (may mắn do trùng đúng nội dung cũ) — nhưng đây là đặc thù của lần commit NÀY (data không đổi từ M1 tới giờ); nếu sau này data raw đổi/cập nhật, blob mới sẽ thật sự tốn thêm size, cảnh báo cũ vẫn đúng về nguyên tắc.
+  - **Repo public** (`gh repo view` xác nhận `isPrivate=false`) — ghi rõ trong `data/README.md`: data mô phỏng, không phải giao dịch thật, nhưng để ngỏ TODO đánh giá lại nếu phát hiện PII thật.
+  - `data/README.md` cập nhật mục 0 — thêm nguồn tải thay thế `dataRaw/input/`, giữ nguyên nguồn Drive cũ (không xoá, cả 2 cùng tồn tại).
+  - **Nợ #3 coi như đóng theo hướng khác** (không cần PO đổi quyền Drive nữa — có đường tải thay thế ngay trong repo). Không xoá cảnh báo Drive cũ trong README (vẫn đúng, chỉ không còn BẮT BUỘC).
 
 ---
 
