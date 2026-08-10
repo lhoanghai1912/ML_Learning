@@ -542,6 +542,37 @@ models:
           arguments:
             combination_of_columns: [cohort_month, month_offset]
 
+  - name: int_diagnostic_line_items
+    description: >
+      Line-item join (order_items x orders x products x geography), lọc year 2013-2022. Nguồn
+      dùng chung cho mart_revenue_diagnostic_yearly + mart_promo_margin_diagnostic — tránh viết
+      lại join 2 lần. Port `li` build trong notebooks/02b_eda_nguyen_nhan.ipynb. Grain 1 dòng/
+      (order_id, product_id, line_number) — khớp stg_order_items. Thêm 2026-08-10 (mart chẩn đoán
+      nguyên nhân, xem docs/analysis/EDA_FINDINGS.md mục "Hình dung Dashboard").
+    columns:
+      - name: diagnostic_line_id
+        description: "order_id||'|'||product_id||'|'||line_number — surrogate unique_key MERGE."
+        tests: [not_null, unique]
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: category
+        description: "Từ stg_products. NULL nếu product_id không khớp (orphan FK — hiếm, xem check_ri chiều 4)."
+      - name: has_promo
+        description: "promo_id IS NOT NULL."
+        tests: [not_null]
+      - name: below_cost
+        description: "unit_price < unit_cogs (bán dưới giá vốn ở grain dòng hàng)."
+        tests: [not_null]
+      - name: line_revenue
+        description: "quantity * unit_price — GROSS, trước chiết khấu."
+        tests: [not_null]
+      - name: line_cogs
+        description: "quantity * unit_cogs."
+        tests: [not_null]
+
   - name: mart_revenue_daily
     description: >
       Mart doanh thu ngày cho dashboard Phần A — từ int_daily_revenue, thêm revenue_yoy_pct
@@ -643,6 +674,101 @@ models:
         tests: [not_null]
       - name: retention_pct
         description: "total_active*100/total_cohort_size — đường cong retention trung bình weighted theo cohort_size. month_offset=0 luôn = 100%."
+
+  - name: mart_revenue_diagnostic_yearly
+    description: >
+      Mart "chẩn đoán nguyên nhân" theo năm — gap lớn nhất được chỉ ra ở
+      docs/analysis/EDA_FINDINGS.md mục "Hình dung Dashboard" (trước đây 100% phải chạy notebook
+      mới xem được). Grain 1 dòng/year (2013-2022, 10 dòng). Gộp 3 chart
+      notebooks/02b_eda_nguyen_nhan.ipynb: doanh thu khách mới/cũ, waterfall gross->net, ASP vs
+      volume. n_orders/n_active_cust lấy TRỰC TIẾP từ stg_orders (không suy từ join line-item, xem
+      ghi chú trong .sql). refund_loss theo năm là MỞ RỘNG có chủ đích so notebook gốc (gốc chỉ có
+      1 số toàn kỳ, KHÔNG lọc năm) — verify phát hiện tổng mart (0.487 tỷ) thấp hơn số notebook gốc
+      (0.511 tỷ) vì 2,115/39,939 dòng returns.csv thuộc đơn năm 2012 (ngoài khung 2013-2022 mọi cột
+      khác đang dùng) — mart SỬA ĐÚNG sự không nhất quán đó của notebook gốc, xem ghi chú đầy đủ
+      trong .sql.
+    columns:
+      - name: year
+        tests: [not_null, unique]
+      - name: gross_booked
+        description: "Tổng line_revenue (GROSS, trước hủy/chiết khấu/hoàn tiền)."
+        tests: [not_null]
+      - name: revenue_new
+        description: "Doanh thu từ đơn ĐẦU TIÊN của khách (order_date = first_order_date, tính trên toàn bộ lịch sử orders)."
+        tests: [not_null]
+      - name: revenue_repeat
+        description: "gross_booked - revenue_new."
+        tests: [not_null]
+      - name: pct_revenue_repeat
+        description: "revenue_repeat*100/gross_booked."
+      - name: cancelled_loss
+        description: "line_revenue của đơn order_status='cancelled'."
+        tests: [not_null]
+      - name: discount_loss
+        description: "discount_amount của đơn KHÔNG cancelled."
+        tests: [not_null]
+      - name: refund_loss
+        description: "returns.refund_amount join theo order_date -> year (MỞ RỘNG so notebook gốc, xem description model)."
+        tests: [not_null]
+      - name: net_revenue
+        description: "gross_booked - cancelled_loss - discount_loss - refund_loss."
+        tests: [not_null]
+      - name: qty
+        tests: [not_null]
+      - name: n_orders
+        description: "count(distinct order_id) từ stg_orders trực tiếp — KHÔNG từ line-item join."
+        tests: [not_null]
+      - name: n_active_cust
+        description: "count(distinct customer_id) từ stg_orders trực tiếp, năm đó."
+        tests: [not_null]
+      - name: asp
+        description: "gross_booked/qty — Average Selling Price."
+      - name: aov
+        description: "gross_booked/n_orders — Average Order Value."
+    tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            # abs(...) < 1 (VND) thay vì "=" tuyệt đối — double Trino có nhiễu làm tròn ~1e-6 trên
+            # tổng hàng tỷ (verify thật: max lệch quan sát 2.3e-05 VND, xem report M), không phải
+            # lỗi logic. Ngưỡng 1 VND vẫn đủ chặt để bắt lỗi thật nếu công thức sai.
+            expression: "abs(revenue_new + revenue_repeat - gross_booked) < 1"
+
+  - name: mart_promo_margin_diagnostic
+    description: >
+      Mart "chẩn đoán nguyên nhân" — cơ chế lỗ gộp/khuyến mãi, gap thứ 2 chỉ ra ở
+      docs/analysis/EDA_FINDINGS.md mục "Hình dung Dashboard". Grain 1 dòng/(year, month, category,
+      has_promo) — tối đa 960 dòng, đủ mịn để BI tool tự pivot theo bất kỳ chiều nào (category,
+      promo, tháng, hoặc năm-chẵn/lẻ qua is_odd_year) mà không cần thêm mart riêng cho từng lát
+      cắt (khác cách tiếp cận "long dimension_type" của mart_channel_perf — grain mịn hơn, phù hợp
+      hơn cho phân tích cơ chế promo/mùa vụ). Mở khóa trực tiếp phát hiện "Urban Blowout" (promo
+      fixed chỉ chạy năm lẻ tháng 8) — trước đây không có mart nào thể hiện được cờ này.
+    columns:
+      - name: year
+        tests: [not_null]
+      - name: month
+        tests: [not_null]
+      - name: category
+      - name: has_promo
+        tests: [not_null]
+      - name: is_odd_year
+        description: "mod(year,2)=1 — cờ chu kỳ khuyến mãi 'Urban Blowout' (chỉ chạy năm lẻ)."
+        tests: [not_null]
+      - name: n_lines
+        tests: [not_null]
+      - name: n_below_cost
+        tests: [not_null]
+      - name: pct_below_cost
+        description: "n_below_cost*100/n_lines."
+      - name: revenue
+        tests: [not_null]
+      - name: cogs
+        tests: [not_null]
+      - name: margin_pct
+        description: "(revenue-cogs)*100/revenue."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year, month, category, has_promo]
 
 # ---------------------------------------------------------------------------
 # EXPOSURES — model nào cấp cho notebook nào. notebooks/01_data_quality.ipynb CỐ Ý KHÔNG khai
