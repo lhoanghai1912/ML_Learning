@@ -218,9 +218,20 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
     - Đọc nội dung markdown mới — chất lượng cao: có phân biệt rõ "giả thuyết mùa vụ" (mục 5, đưa ra cách kiểm định thêm) vs "bằng chứng" (chưa đủ, ghi rõ ở mục 6); có cảnh báo **right-censoring** (M12 mẫu 86.795 < M0 88.123, thiếu 1.328 khách/1,5% do cohort quá trẻ) — PO verify số 1.328/88.123=1,507%≈1,5% khớp đúng dữ liệu mart. 3 tỷ lệ lệch M1/M6/M12 = 2,03x/1,77x/2,21x — PO đối chiếu khớp đúng số tự tính trước đó.
   - **Kết luận wave**: nợ `signup_date` (mở từ log trước) **đóng dứt điểm cả 3 nhánh** — (a) đã có model đúng (`int_cohort_first_order`, log trước), (b) đã expose BI-ready (`mart_cohort_retention`), (c) đã có chart+phân tích thật trong notebook, (d) đã có audit xác nhận không còn landmine tương tự + đề xuất cụ thể vá gốc ở DQ framework.
   - **Việc còn treo, chờ PO quyết (không tự làm)**:
-    1. Có duyệt thêm **chiều DQ #11** (`cross_table_temporal_consistency`, WARN) vào `quality.py` không — nếu có, giao `de`, sửa xong BẮT BUỘC chạy lại toàn bộ M4a DoD (CLAUDE.md).
-    2. `payments` thiếu cột ngày — chấp nhận giới hạn dataset, hay cần nguồn dữ liệu khác.
-    3. Giả thuyết "nụ cười = mùa vụ" (agent 3, mục 5) mới ở mức gián tiếp — nếu muốn kết luận chắc, cần tách cohort theo tháng bắt đầu (đề xuất đã có sẵn cách làm trong notebook, chưa ai thực hiện).
+    1. ~~Có duyệt thêm chiều DQ #11 vào quality.py không~~ → **PO DUYỆT, ĐÃ SỬA — xem log kế tiếp.**
+    2. `payments` thiếu cột ngày — chấp nhận giới hạn dataset, hay cần nguồn dữ liệu khác. (còn treo)
+    3. Giả thuyết "nụ cười = mùa vụ" (agent 3, mục 5) mới ở mức gián tiếp — nếu muốn kết luận chắc, cần tách cohort theo tháng bắt đầu (đề xuất đã có sẵn cách làm trong notebook, chưa ai thực hiện). (còn treo)
+- 2026-08-10: **Chiều DQ #11 `cross_table_temporal_consistency` — ĐÃ THÊM vào `src/datathon/quality.py`, PO duyệt + tự làm (đóng vai `de`).** Commit `d3e5395`.
+  - Implement đúng đề xuất của agent 1 (audit): hàm mới check `customers.signup_date` vs `min(orders.order_date)` theo `customer_id`, severity **WARN** (không QUARANTINE — lý do đã ghi ở đề xuất gốc: vi phạm 89,3% khách, quarantine sẽ xoá gần hết bảng `customers`). Gọi trong `run_all()` ngay sau `check_ri`. Cập nhật `SEVERITY_BY_DIMENSION`/`DIMENSION_NAME`/docstring module (10→11 chiều). **Chỉ implement đúng 1 cặp đã có bằng chứng vi phạm thật** — không thêm check suy đoán cho 6 cặp đã audit sạch.
+  - **M4a DoD bắt buộc (CLAUDE.md: sửa `quality.py` xong phải chạy lại toàn bộ)** — PO tự verify, không tin suông:
+    - `import datathon.quality` OK. `run_all()` chạy đủ 14/14 bảng.
+    - **Dimension 11 cho đúng số đã biết**: 80.623/90.246 (**89,34%**) WARN — khớp tuyệt đối audit + notebook.
+    - `reconcile` (dimension 9) MAPE sales↔order_items **vẫn 0,0000%** — không đổi.
+    - Severity map đúng đủ: 1/3/9=HARD_FAIL, 2/4/6/8=QUARANTINE, 5/7=WARN, 10=INFO, **11=WARN (mới)**.
+    - `pytest -q` = **53 passed** (không đổi — không có `tests/test_quality.py` riêng assert cứng số chiều, `test_schema.py` gọi từng hàm dimension riêng lẻ không phụ thuộc tổng số).
+    - `ruff check src/datathon/quality.py` = **0 lỗi**.
+  - **Phát hiện phụ khi verify**: `run_all()` cho **gate=FAIL** (dimension 3, `order_items` thiếu cột surrogate) — kiểm bằng `git stash` xác nhận **lỗi PRE-EXISTING** (do gọi `run_all()` trần không qua `ingestion.build_order_items_line_id()` trước, đúng như docstring đã ghi từ M4a), **không phải do thêm chiều 11 gây ra**. Không sửa (ngoài phạm vi, không phải bug thật — pipeline thật (job M2) luôn build surrogate trước khi gọi DQ).
+  - **Nợ signup_date coi như đóng HOÀN TOÀN cả 4 nhánh**: model dbt đúng, mart BI-ready, chart+phân tích notebook, và giờ đã vá gốc ở tầng DQ framework để lỗi tương tự tương lai (nếu phát sinh ở cặp bảng khác) được bắt tự động thay vì phải chờ phát hiện thủ công qua EDA.
 
 ---
 
