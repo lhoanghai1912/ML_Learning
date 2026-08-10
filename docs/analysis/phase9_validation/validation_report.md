@@ -233,3 +233,24 @@ Chọn theo **avg WAPE các fold rolling** (validation) — **KHÔNG nhìn fold 
 - `forecast_548_SUBMIT_crlf.csv` — **bản nộp đã fix CRLF** (nội dung byte-identical forecast_548).
 - `committed_baseline/*.committed.csv` — snapshot output committed để diff sau rerun.
 - `rerun1_stdout.log` — log chạy lại `build_model.py`.
+
+---
+
+## ⚠️ CẬP NHẬT 2026-08-10 — `forecast_548.committed.csv` đã ĐỔI (nợ #1 fix, KHÔNG còn khớp báo cáo gốc phía trên)
+
+Toàn bộ nội dung phía trên (T9.1–T9.6) là **snapshot lịch sử của code phase8/9 gốc** (`EDA_Insight/phase8_model/build_model.py`), giữ nguyên không sửa lại — tài liệu lịch sử đúng thời điểm nó được viết.
+
+Sau khi restructure sang `src/datathon` (M4b, port GIỮ NGUYÊN công thức), team phát hiện + sửa 1 bug thật trong `datathon.features.lookup_lag`/`lookup_lag_smooth` (xem PROCESS.md "nợ #1", `.process_status/M5.md`): fallback khi thiếu offset `d-365(±tol)` dùng `hist.mean()` trên **TOÀN BỘ** `hist` (kể cả dữ liệu SAU ngày `d`) thay vì chỉ dữ liệu `< d` → look-ahead leakage nhẹ cho ~362/3833 dòng train đầu (2012-07-04 .. 2013-07-01, ~9.4%). Bug này **đã có sẵn từ code phase8/9 gốc** (không phải lỗi do restructure gây ra) — port giữ nguyên nên leak cũng theo qua.
+
+**Đã sửa** (`src/datathon/features.py`, hàm `_fallback_mean_no_leak`): fallback giờ chỉ lấy mean các ngày `< d`. Verify thật trên `sales.csv` production: 362 dòng vẫn rơi vào fallback (không đổi — logic tìm offset chính xác/±tol giữ nguyên), nhưng chỉ còn **1 dòng** (đúng ngày đầu tiên chuỗi, không có bất kỳ lịch sử nào trước nó — bất khả kháng) còn phụ thuộc dữ liệu tương lai; **361 dòng còn lại đã hết leak**.
+
+**Hệ quả — `forecast_548.committed.csv` đã cập nhật lại (2026-08-10), KHÔNG byte-identical với bản cũ**:
+
+| Target | Max abs diff | Max % diff | Mean % diff |
+|---|---:|---:|---:|
+| Revenue | 483,728.30 | 14.15% | 2.35% |
+| COGS | 619,613.62 | 10.48% | 2.12% |
+
+Đây là **thay đổi CHỦ ĐỊNH** do sửa bug (không phải regression lỗi) — tách riêng PR/commit khỏi việc restructure lakehouse để phân biệt rõ số đổi do fix chứ không do di chuyển hạ tầng (quyết định PO, xem PROCESS.md log 2026-08-07 "Trade-off chốt").
+
+**Chưa làm** (ghi nhận nợ mới, không chặn fix này): `backtest_metrics.committed.csv` + `holdout_predictions.committed.csv` cũng dùng `TargetForecaster.fit()` nên về lý thuyết cũng bị ảnh hưởng bug tương tự, nhưng **CHƯA regenerate** (không có test nào assert cứng vào 2 file này — chỉ dùng cho audit thủ công; regenerate cần chạy lại backtest đầy đủ 4 model × N fold × 2 target, tốn thời gian, ngoài phạm vi fix tối thiểu lần này). Notebook `notebooks/03_forecasting_colab.ipynb` (output cell đã lưu từ M6b) cũng sẽ cho số khác nếu chạy lại — chưa re-execute.

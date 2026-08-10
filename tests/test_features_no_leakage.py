@@ -153,41 +153,58 @@ def test_build_static_lag_features_ignores_future_poison_in_hist_in_support_zone
     assert not (poisoned == POISON).any().any()
 
 
-def test_lookup_lag_fallback_mean_is_a_known_look_ahead_limitation() -> None:
-    """KNOWN LIMITATION (phát hiện thật khi viết test này, KHÔNG PHẢI bug do M5 gây ra — báo
-    PO/M4 để cân nhắc, M5 KHÔNG được sửa `src/datathon/*`):
+def test_lookup_lag_fallback_mean_uses_only_past_data_no_leak() -> None:
+    """FIXED (nợ #1, trước là KNOWN LIMITATION ghi ở M5 — 362/3833 dòng ~9.4% sales.csv
+    2012-07-04..2013-07-01 dính look-ahead nhẹ do fallback `hist.mean()` tính trên TOÀN BỘ
+    `hist`, kể cả dữ liệu SAU `d`). `_fallback_mean_no_leak` giờ chỉ lấy mean các ngày < d.
 
-    `lookup_lag`/`lookup_lag_smooth` khi KHÔNG tìm thấy `d-365(±tol)` trong `hist` sẽ fallback
-    `hist.mean()` — trung bình trên TOÀN BỘ `hist` truyền vào, KHÔNG giới hạn `< d`. Trong
-    `TargetForecaster.fit()`, `hist` = toàn bộ cột target của `train` (không cắt theo từng
-    dòng) -> với các dòng TRAIN đầu tiên (thiếu đúng 365 ngày lịch sử phía trước), `lag_365`
-    của dòng đó = trung bình target CẢ CHUỖI (bao gồm dữ liệu SAU ngày đó) -> look-ahead nhẹ.
-
-    Đo thật trên `sales.csv` production (2012-07-04 .. 2022-12-31, 3833 ngày, `Revenue`):
-    362/3833 dòng (~9.4%, đúng 2012-07-04 .. 2013-07-01) rơi vào fallback này (xem
-    `.process_status/M5.md`). Test này CHARACTERIZE hành vi hiện tại (pass = đúng như observe),
-    KHÔNG phải xác nhận đây là chấp nhận được — mục đích: nếu sau này M4 sửa/khác đi, test đỏ
-    sẽ báo ngay (regression-lock), và giữ bằng chứng cụ thể cho PO quyết định."""
+    Test này lấy `d` ở ngày thứ 100 trong chuỗi (thiếu đúng 365 ngày lịch sử phía trước nên vẫn
+    rơi vào fallback) nhưng ĐÃ CÓ 99 ngày lịch sử phía trước — sau khi sửa, kết quả PHẢI không
+    đổi khi poison dữ liệu tương lai (khác hẳn hành vi cũ)."""
     dates = pd.date_range("2019-01-01", periods=500, freq="D")
     rng = np.random.default_rng(3)
     hist = pd.Series(500 + 3 * np.arange(len(dates)) + rng.normal(0, 10, len(dates)), index=dates)
 
-    d = dates[0]  # ngày đầu tiên — chắc chắn KHÔNG có window d-365 (hist không phủ trước đó)
+    d = dates[100]  # có 100 ngày lịch sử phía trước, vẫn thiếu offset đúng -365 -> vào fallback
     lag_date = d - pd.Timedelta(days=365)
     assert lag_date not in hist.index  # tiền đề: đúng là rơi vào fallback
 
     value_clean = lookup_lag(hist, d)
-    assert value_clean == pytest.approx(hist.mean())  # fallback = mean toàn hist (đúng hiện trạng)
+    expected = float(hist.loc[hist.index < d].mean())
+    assert value_clean == pytest.approx(expected)  # fallback = mean CHỈ các ngày < d
 
     future_dates = pd.date_range(dates[-1] + pd.Timedelta(days=1), periods=50, freq="D")
     poisoned_hist = pd.concat([hist, pd.Series(POISON, index=future_dates)])
     value_poisoned = lookup_lag(poisoned_hist, d)
 
-    # ĐÂY LÀ ĐIỂM MẤU CHỐT: giá trị lag của ngày ĐẦU TIÊN thay đổi khi hist có thêm dữ liệu
-    # tương lai xa (sau toàn bộ `dates`) -> fallback mean() thật sự phụ thuộc tương lai.
+    assert value_poisoned == pytest.approx(value_clean), (
+        "lookup_lag() fallback đổi giá trị khi hist có thêm dữ liệu tương lai -> LEAKAGE THẬT "
+        "(fix nợ #1 bị phá)"
+    )
+
+
+def test_lookup_lag_fallback_mean_first_day_is_unavoidable_single_row_edge_case() -> None:
+    """Ngoại lệ bất khả kháng DUY NHẤT còn lại sau fix nợ #1: đúng ngày ĐẦU TIÊN của toàn chuỗi
+    (không có bất kỳ ngày nào < d) không có lịch sử nào để tính mean an toàn -> fallback về
+    mean(hist) toàn bộ (đúng 1 dòng, không phải ~9.4% như trước khi sửa). Test regression-lock
+    hành vi biên này — nếu FAIL nghĩa là hành vi đổi, cần cập nhật lại + báo PO."""
+    dates = pd.date_range("2019-01-01", periods=500, freq="D")
+    rng = np.random.default_rng(3)
+    hist = pd.Series(500 + 3 * np.arange(len(dates)) + rng.normal(0, 10, len(dates)), index=dates)
+
+    d = dates[0]  # ngày đầu tiên — hist[hist.index < d] rỗng, không có cách nào khác
+    lag_date = d - pd.Timedelta(days=365)
+    assert lag_date not in hist.index
+    assert hist.loc[hist.index < d].empty  # tiền đề: đúng là biên bất khả kháng
+
+    value_clean = lookup_lag(hist, d)
+    assert value_clean == pytest.approx(hist.mean())
+
+    future_dates = pd.date_range(dates[-1] + pd.Timedelta(days=1), periods=50, freq="D")
+    poisoned_hist = pd.concat([hist, pd.Series(POISON, index=future_dates)])
+    value_poisoned = lookup_lag(poisoned_hist, d)
     assert value_poisoned != pytest.approx(value_clean), (
-        "Nếu assertion này FAIL (2 giá trị bằng nhau) nghĩa là hành vi đã đổi/được vá — "
-        "cập nhật lại test + báo PO, KHÔNG tự sửa src/datathon."
+        "Ngày đầu tiên không còn là biên bất khả kháng nữa -> cập nhật lại test này."
     )
 
 

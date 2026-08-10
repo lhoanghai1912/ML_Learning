@@ -103,29 +103,10 @@ def test_validate_submission_catches_duplicate_date(sample_dir: Path) -> None:
         validate_submission(sub, sample_path=sample_dir / "sample_submission.csv")
 
 
-def test_validate_submission_wrong_columns_raises_keyerror_KNOWN_LIMITATION(sample_dir: Path) -> None:
-    """KNOWN LIMITATION (phát hiện thật, KHÔNG PHẢI bug do M5 gây ra — báo PO/M4, M5 KHÔNG được
-    sửa `src/datathon/*`): khi cột sai (thiếu/đổi tên `Revenue`/`COGS`), `validate_submission()`
-    KHÔNG dừng sớm ở check "columns == [...]" (chỉ set `ok=False` rồi chạy tiếp) — dòng sau đó
-    `sub[["Revenue", "COGS"]]` (check NaN) access thẳng cột đã đổi tên -> văng `KeyError` THẬT
-    từ pandas, KHÔNG phải `AssertionError("submission format FAIL: ...")` như API tài liệu hoá
-    (docstring: "FAIL bất kỳ check nào -> raise AssertionError"). Test này CHARACTERIZE hành vi
-    HIỆN TẠI (pass = đúng như observe thật, xem `.process_status/M5.md`)."""
-    sub = _valid_sub(sample_dir).rename(columns={"COGS": "Cost"})
-    with pytest.raises(KeyError):
-        validate_submission(sub, sample_path=sample_dir / "sample_submission.csv")
-
-
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "KNOWN LIMITATION đã báo PO/M4 (.process_status/M5.md): validate_submission() nên raise "
-        "AssertionError('submission format FAIL: ...') rõ ràng cho cột sai, giống mọi check khác "
-        "(negative/NaN/row-count/...), thay vì để lộ KeyError thô từ pandas. Nếu M4 sửa xong, "
-        "test này sẽ tự PASS -> lúc đó xoá marker xfail + xoá test _KNOWN_LIMITATION ở trên."
-    ),
-)
 def test_validate_submission_catches_wrong_columns_with_clean_assertion_error(sample_dir: Path) -> None:
+    """FIXED (nợ #1, trước là KNOWN LIMITATION ghi ở M5): cột sai (thiếu/đổi tên `Revenue`/
+    `COGS`) giờ dừng sớm ngay sau check "columns == [...]" và raise `AssertionError` rõ ràng,
+    KHÔNG còn để lộ `KeyError` thô từ pandas khi các check sau đó lỡ index cột đã đổi tên."""
     sub = _valid_sub(sample_dir).rename(columns={"COGS": "Cost"})
     with pytest.raises(AssertionError, match=r"columns == \[Date,Revenue,COGS\]"):
         validate_submission(sub, sample_path=sample_dir / "sample_submission.csv")

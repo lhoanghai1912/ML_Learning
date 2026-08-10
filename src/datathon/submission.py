@@ -49,7 +49,13 @@ def validate_submission(sub: pd.DataFrame, sample_path: Path | None = None) -> l
     def check(name: str, ok: bool, detail: str) -> None:
         results.append((name, bool(ok), detail))
 
-    check("columns == [Date,Revenue,COGS]", list(sub.columns) == SUBMISSION_COLUMNS, f"got {list(sub.columns)}")
+    cols_ok = list(sub.columns) == SUBMISSION_COLUMNS
+    check("columns == [Date,Revenue,COGS]", cols_ok, f"got {list(sub.columns)}")
+    if not cols_ok:
+        # Cột thiếu/đổi tên -> mọi check phía dưới đọc thẳng sub["Date"]/["Revenue"]/["COGS"]
+        # sẽ văng KeyError thô (không phải AssertionError như API tài liệu hoá). Dừng sớm ở
+        # đây, raise đúng AssertionError rõ ràng thay vì để lộ lỗi nội bộ của pandas.
+        raise AssertionError(f"submission format FAIL: {[r for r in results if not r[1]]}")
     check("row count == 548", len(sub) == EXPECTED_ROWS, f"rows={len(sub)}")
     check("row count == sample", len(sub) == len(sample), f"sub={len(sub)} sample={len(sample)}")
 

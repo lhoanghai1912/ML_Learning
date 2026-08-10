@@ -137,9 +137,26 @@ def build_calendar_features(dates: pd.Series, tet_dates: pd.Series) -> pd.DataFr
 # Lag features (365 ngày) — chỉ tra cứu quá khứ, KHÔNG dùng future info
 # =========================================================================
 
+def _fallback_mean_no_leak(hist: pd.Series, d: pd.Timestamp) -> float:
+    """Mean an toàn dùng khi vùng lân cận d-lag không có dữ liệu: CHỈ lấy
+    `hist` các ngày < d (đã biết tại thời điểm d) — không đọc tương lai.
+
+    Ngoại lệ bất khả kháng DUY NHẤT: đúng ngày ĐẦU TIÊN của toàn chuỗi (không
+    có bất kỳ ngày nào < d trong `hist`) — khi đó không có thông tin lịch sử
+    nào để suy ra, dùng mean(hist) toàn bộ làm phương án cuối cùng. Đây là
+    giới hạn không thể tránh (đúng 1 ngày, không phải ~9.4% như trước khi sửa
+    — xem test `test_lookup_lag_fallback_mean_is_a_known_look_ahead_limitation`
+    và ghi chú nợ #1 trong PROCESS.md)."""
+    past = hist.loc[hist.index < d]
+    if len(past):
+        return float(past.mean())
+    return float(hist.mean())
+
+
 def lookup_lag(hist: pd.Series, d: pd.Timestamp, lag: int = LAG_DAYS, tol: int = LAG_TOL) -> float:
-    """Giá trị `hist` tại d-lag (±tol nếu thiếu đúng ngày); fallback mean(hist)
-    nếu vùng lân cận cũng thiếu. `hist` chỉ chứa dữ liệu tính tới < d."""
+    """Giá trị `hist` tại d-lag (±tol nếu thiếu đúng ngày); fallback
+    `_fallback_mean_no_leak` (mean các ngày < d, không leak) nếu vùng lân cận
+    cũng thiếu. `hist` chỉ chứa dữ liệu tính tới < d."""
     lag_date = d - pd.Timedelta(days=lag)
     if lag_date in hist.index:
         return float(hist.loc[lag_date])
@@ -147,13 +164,14 @@ def lookup_lag(hist: pd.Series, d: pd.Timestamp, lag: int = LAG_DAYS, tol: int =
         for cand in (lag_date - pd.Timedelta(days=delta), lag_date + pd.Timedelta(days=delta)):
             if cand in hist.index:
                 return float(hist.loc[cand])
-    return float(hist.mean())
+    return _fallback_mean_no_leak(hist, d)
 
 
 def lookup_lag_smooth(
     hist: pd.Series, d: pd.Timestamp, lag: int = LAG_DAYS, window: int = SMOOTH_WINDOW
 ) -> float:
-    """Trung bình `hist` quanh d-lag (±window) — làm mượt nhiễu 1 ngày lẻ."""
+    """Trung bình `hist` quanh d-lag (±window) — làm mượt nhiễu 1 ngày lẻ.
+    Fallback `_fallback_mean_no_leak` (không leak) nếu cả window cũng thiếu."""
     lag_date = d - pd.Timedelta(days=lag)
     vals = []
     for k in range(-window, window + 1):
@@ -161,7 +179,7 @@ def lookup_lag_smooth(
         if cand in hist.index:
             vals.append(float(hist.loc[cand]))
     if not vals:
-        return float(hist.mean())
+        return _fallback_mean_no_leak(hist, d)
     return float(np.mean(vals))
 
 
