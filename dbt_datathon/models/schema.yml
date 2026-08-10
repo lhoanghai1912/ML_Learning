@@ -614,6 +614,36 @@ models:
           arguments:
             combination_of_columns: [year, dimension_type, dimension_value]
 
+  - name: mart_cohort_retention
+    description: >
+      Mart đường cong retention trung bình cho dashboard cohort — từ `int_cohort_first_order`
+      (cohort theo tháng ĐƠN HÀNG ĐẦU TIÊN non-cancelled — KHÔNG dùng signup_date, KHÔNG phải
+      int_cohort). Grain 1 dòng/month_offset — AGGREGATE (weighted theo cohort_size) mọi
+      cohort_month có mặt ở offset đó, cho phép lấy thẳng đường cong tổng bằng 1 SELECT đơn giản
+      không cần GROUP BY. Muốn breakdown theo từng cohort_month, query thẳng
+      int_cohort_first_order. Thêm 2026-08-10. REGRESSION verify qua Trino trực tiếp: M0=100.0%,
+      M1=6.10%, M6=5.30% (đáy), M12=6.40% (hồi phục, hình "nụ cười") — khớp tuyệt đối số công bố
+      khi thêm int_cohort_first_order (PROCESS.md log 2026-08-10).
+    columns:
+      - name: month_offset
+        description: "Số tháng kể từ cohort_month (0 = tháng khách mua lần đầu). Khóa chính mart này."
+        tests: [not_null, unique]
+      - name: n_cohorts_observed
+        description: "Số cohort_month khác nhau có mặt ở offset này (đủ điều kiện quan sát)."
+        tests: [not_null]
+      - name: earliest_cohort_month
+        description: "cohort_month sớm nhất đóng góp vào offset này."
+      - name: latest_cohort_month
+        description: "cohort_month muộn nhất đóng góp vào offset này."
+      - name: total_cohort_size
+        description: "Mẫu số retention — tổng cohort_size (số khách mua lần đầu) của mọi cohort có mặt ở offset này."
+        tests: [not_null]
+      - name: total_active
+        description: "Tổng số khách active (>=1 đơn không-cancelled) ở offset này, cộng dồn mọi cohort."
+        tests: [not_null]
+      - name: retention_pct
+        description: "total_active*100/total_cohort_size — đường cong retention trung bình weighted theo cohort_size. month_offset=0 luôn = 100%."
+
 # ---------------------------------------------------------------------------
 # EXPOSURES (M3b) — model nào cấp cho notebook nào, phục vụ TODO đổi nguồn từ raw CSV sang mart
 # đã note sẵn trong notebooks/02_eda.ipynb (mục 0: "Khi M3b xong, thay các cell load ở mục 0 bằng
