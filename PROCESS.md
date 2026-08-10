@@ -219,8 +219,17 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
   - **Kết luận wave**: nợ `signup_date` (mở từ log trước) **đóng dứt điểm cả 3 nhánh** — (a) đã có model đúng (`int_cohort_first_order`, log trước), (b) đã expose BI-ready (`mart_cohort_retention`), (c) đã có chart+phân tích thật trong notebook, (d) đã có audit xác nhận không còn landmine tương tự + đề xuất cụ thể vá gốc ở DQ framework.
   - **Việc còn treo, chờ PO quyết (không tự làm)**:
     1. ~~Có duyệt thêm chiều DQ #11 vào quality.py không~~ → **PO DUYỆT, ĐÃ SỬA — xem log kế tiếp.**
-    2. `payments` thiếu cột ngày — chấp nhận giới hạn dataset, hay cần nguồn dữ liệu khác. (còn treo)
-    3. Giả thuyết "nụ cười = mùa vụ" (agent 3, mục 5) mới ở mức gián tiếp — nếu muốn kết luận chắc, cần tách cohort theo tháng bắt đầu (đề xuất đã có sẵn cách làm trong notebook, chưa ai thực hiện). (còn treo)
+    2. ~~`payments` thiếu cột ngày~~ → **PO QUYẾT: chấp nhận giới hạn dataset — xem log kế tiếp.**
+    3. ~~Giả thuyết "nụ cười = mùa vụ" chưa kiểm định chắc~~ → **ĐÃ KIỂM ĐỊNH, KẾT LUẬN RÕ — xem log kế tiếp.**
+- 2026-08-10: **Đóng nốt 2 việc treo cuối cùng của phiên hôm nay.** Commit `7b9e2dc`.
+  - **Giả thuyết mùa vụ vs vòng đời — ĐÃ KIỂM ĐỊNH, kết luận: MÙA VỤ.** Tách 126 cohort theo tháng bắt đầu (10–11 cohort/nhóm), tìm điểm đáy retention từng nhóm bằng cả 2 thước đo:
+    - `trough_offset` (đáy ở offset thứ mấy): trải 1–10, std=**3,06 tháng** — KHÔNG hội tụ → bác bỏ giả thuyết vòng đời (tenure cố định).
+    - `trough_calendar_month` (đáy rơi tháng dương lịch nào): **10/12 nhóm (83%) đáy đúng Tháng 1**, circular std=**27,8° (~0,93 tháng)** — hội tụ rất chặt → xác nhận giả thuyết mùa vụ, khớp trực tiếp "hình dạng mùa vụ" Phần 1 (T11=4,83%/T12=4,71%/T1=5,11% — 3 tháng thấp điểm nhất năm).
+    - **Phát hiện phụ quan trọng**: đường "nụ cười" trung bình toàn kỳ (log trước) thực ra là **ảo ảnh gộp (pooling artifact)** — 12 đáy sắc nhọn ở 12 offset khác nhau bị trung bình trộn thành 1 đáy nông quanh M6, không phải hiệu ứng vòng đời thật.
+    - **Đã sửa khuyến nghị sai đã ghi trước đó**: "win-back nhắm M4–M5" (dựa trên offset trung bình) → sửa thành nhắm **theo tháng lịch** (khoảng Tháng 10–11, trước mùa thấp điểm), áp dụng đồng loạt mọi khách bất kể offset riêng.
+    - Thêm 1 code cell (query Trino trực tiếp, tính toán, vẽ chart) + 1 markdown 6-mục vào `notebooks/02_eda.ipynb`. Verify: `nbconvert --execute` = **0/27 cell lỗi**; diff từ-scratch với commit trước = 26/26 code cell cũ nguyên source + 1 mới, 0 output đổi ngoài dự kiến, đúng 1 markdown cũ đổi có chủ đích.
+  - **`payments` thiếu cột ngày — PO quyết định: chấp nhận giới hạn dataset, không vá.** Ghi rõ trong `data/README.md` mục 4.6: không có cách suy ra ngày thanh toán từ các cột hiện có, nếu cần sau này phải xin bổ sung nguồn dữ liệu gốc. Không chặn gì (mọi phân tích Monetary/RFM hiện tại chỉ cần `payment_value`, không cần ngày).
+  - **Toàn bộ backlog phiên hôm nay (từ lúc phát hiện `signup_date` tới giờ) coi như đóng hết** — không còn việc nào treo trong PROCESS.md.
 - 2026-08-10: **Chiều DQ #11 `cross_table_temporal_consistency` — ĐÃ THÊM vào `src/datathon/quality.py`, PO duyệt + tự làm (đóng vai `de`).** Commit `d3e5395`.
   - Implement đúng đề xuất của agent 1 (audit): hàm mới check `customers.signup_date` vs `min(orders.order_date)` theo `customer_id`, severity **WARN** (không QUARANTINE — lý do đã ghi ở đề xuất gốc: vi phạm 89,3% khách, quarantine sẽ xoá gần hết bảng `customers`). Gọi trong `run_all()` ngay sau `check_ri`. Cập nhật `SEVERITY_BY_DIMENSION`/`DIMENSION_NAME`/docstring module (10→11 chiều). **Chỉ implement đúng 1 cặp đã có bằng chứng vi phạm thật** — không thêm check suy đoán cho 6 cặp đã audit sạch.
   - **M4a DoD bắt buộc (CLAUDE.md: sửa `quality.py` xong phải chạy lại toàn bộ)** — PO tự verify, không tin suông:
