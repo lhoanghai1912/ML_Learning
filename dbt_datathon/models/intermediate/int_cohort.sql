@@ -7,6 +7,20 @@
     )
 }}
 
+-- ⚠️⚠️ CẢNH BÁO CHẤT LƯỢNG DỮ LIỆU (thêm 2026-08-10) — ĐỌC TRƯỚC KHI DÙNG SỐ CỦA MODEL NÀY ⚠️⚠️
+-- `signup_date` KHÔNG phản ánh thời điểm khách bắt đầu quan hệ mua bán, nên cohort dựng trên nó
+-- KHÔNG phải cohort thật và `retention_pct` ở đây KHÔNG phải retention. Bằng chứng tự chạy trên
+-- tầng staging (chi tiết: PROCESS.md log 2026-08-10, notebooks/02_eda.ipynb mục Cohort):
+--   1) 80,623/90,246 khách có đơn (89.3%) có đơn hàng TRƯỚC ngày signup của chính mình.
+--   2) Khách signup TĂNG 957 (2012) -> 21,103 (2022); khách có đơn ĐẦU TIÊN GIẢM 22,068 -> 1,322.
+--   3) retention_pct phẳng 3.4-3.6% ở MỌI month_offset 0..12 = trùng khít "base rate" 3.50%
+--      (~4,265 khách khác nhau có đơn mỗi tháng / 121,930 khách) -> chỉ đang đo xác suất một khách
+--      BẤT KỲ mua trong một tháng BẤT KỲ, không phụ thuộc cohort.
+-- MODEL NÀY GIỮ NGUYÊN CÓ CHỦ ĐÍCH: là bản đối chiếu REGRESSION với phase cũ
+-- (dashboard_rfm_cohort.md), sửa đè sẽ phá gate M3b đã verify. => Phân tích/BI/ra quyết định phải
+-- dùng model `int_cohort_first_order` (cohort theo tháng đơn hàng ĐẦU TIÊN). Model này chỉ
+-- dùng cho mục đích đối chiếu lịch sử.
+--
 -- Grain: 1 dòng/(cohort_month, month_offset). Nguồn: {{ ref('stg_customers') }} (cohort theo
 -- tháng signup_date) + {{ ref('stg_orders') }} KHÔNG-cancelled (activity).
 -- Port: docs/analysis/phase3_dashboard/customer_demographics.py mục COHORT RETENTION

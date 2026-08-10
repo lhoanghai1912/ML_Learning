@@ -480,6 +480,13 @@ models:
 
   - name: int_cohort
     description: >
+      ⚠️ CHỈ DÙNG ĐỐI CHIẾU LỊCH SỬ — KHÔNG DÙNG RA QUYẾT ĐỊNH. Cohort dựng trên signup_date, mà
+      trường này KHÔNG phản ánh thời điểm khách bắt đầu mua (89.3% khách có đơn TRƯỚC ngày signup;
+      signup tăng 957->21,103/năm trong khi khách mua lần đầu giảm 22,068->1,322). Hệ quả:
+      retention_pct phẳng 3.4-3.6% ở mọi month_offset = trùng base rate 3.50%, tức KHÔNG PHẢI
+      retention. Dùng int_cohort_first_order thay thế. Model giữ nguyên có chủ đích để bảo toàn
+      REGRESSION M3b — sửa đè sẽ phá gate đã verify. Chi tiết: PROCESS.md log 2026-08-10.
+      ---
       Cohort retention theo tháng signup_date, loại 238 khách pre-launch (signup_date <
       2012-07-04, W8). Grain 1 dòng/(cohort_month, month_offset) — chỉ sinh offset "quan sát
       được" (cohort_month + offset <= tháng đơn không-cancelled mới nhất toàn hệ thống). Port
@@ -489,19 +496,47 @@ models:
       chính — khớp TUYỆT ĐỐI.
     columns:
       - name: cohort_month
-        description: "date_trunc('month', signup_date). Tháng khách signup."
+        description: "date_trunc('month', signup_date). Tháng khách signup — KHÔNG phải tháng khách bắt đầu mua."
         tests: [not_null]
       - name: month_offset
         description: "Số tháng kể từ cohort_month (0 = tháng signup)."
         tests: [not_null]
       - name: cohort_size
-        description: "Số khách signup trong cohort_month (mẫu số retention)."
+        description: "Số khách signup trong cohort_month (mẫu số retention) — gồm cả khách chưa từng có đơn nào."
         tests: [not_null]
       - name: n_active
         description: "Số khách có >=1 đơn KHÔNG-cancelled ở tháng offset đó (0 nếu không ai active — KHÔNG phải NULL, xem .sql)."
         tests: [not_null]
       - name: retention_pct
-        description: "n_active*100/cohort_size."
+        description: "n_active*100/cohort_size. ⚠️ KHÔNG phải retention thật — xem cảnh báo ở description của model."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [cohort_month, month_offset]
+
+  - name: int_cohort_first_order
+    description: >
+      Cohort retention theo định nghĩa CHUẨN: cohort_month = tháng của ĐƠN HÀNG ĐẦU TIÊN
+      (non-cancelled), KHÔNG dùng signup_date. Đây là model retention đáng tin để phân tích/BI —
+      thay thế int_cohort (xem cảnh báo ở model đó). Grain 1 dòng/(cohort_month, month_offset),
+      giữ nguyên quy ước "offset quan sát được" của int_cohort để 2 model so sánh trực tiếp được.
+      Mẫu khách = khách có >=1 đơn không-cancelled (giống mẫu int_rfm) — khách chưa từng mua không
+      có cohort nên bị loại theo định nghĩa. Thêm 2026-08-10 khi xử lý nợ signup_date.
+    columns:
+      - name: cohort_month
+        description: "date_trunc('month', min(order_date)) trên đơn không-cancelled. Tháng khách mua lần đầu."
+        tests: [not_null]
+      - name: month_offset
+        description: "Số tháng kể từ cohort_month (0 = chính tháng mua lần đầu)."
+        tests: [not_null]
+      - name: cohort_size
+        description: "Số khách có đơn đầu tiên trong cohort_month (mẫu số retention)."
+        tests: [not_null]
+      - name: n_active
+        description: "Số khách có >=1 đơn KHÔNG-cancelled ở tháng offset đó (0 nếu không ai active)."
+        tests: [not_null]
+      - name: retention_pct
+        description: "n_active*100/cohort_size. Theo định nghĩa, month_offset=0 luôn = 100%."
     tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
