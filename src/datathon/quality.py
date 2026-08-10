@@ -1,22 +1,30 @@
-"""10 chiều Data Quality — port từ `docs/analysis/phase0_qc/phase0_full_qc.py` (đã verify thủ công,
-xem `phase0_qc_report.md`). KHÔNG làm lại thuật toán, chỉ tổ chức lại thành hàm tái dùng được.
+"""10+1 chiều Data Quality — port từ `docs/analysis/phase0_qc/phase0_full_qc.py` (đã verify thủ
+công, xem `phase0_qc_report.md`). KHÔNG làm lại thuật toán, chỉ tổ chức lại thành hàm tái dùng được.
 
 Chuẩn: RESTRUCTURE_AGENTS.md mục "DATA QUALITY CHECK STANDARD (10 chiều)".
 
-    #  Hàm                Chiều                          Severity (action khi sai)
-    1  inventory           Snapshot/inventory             HARD_FAIL
-    2  validate_schema     Schema & format                QUARANTINE
-    3  keys                Grain & candidate key           HARD_FAIL
-    4  check_ri            Referential integrity          QUARANTINE
-    5  completeness        Completeness                   WARN
-    6  business_rules      Business-rule validity         QUARANTINE
-    7  time_coverage       Time coverage                  WARN
-    8  dup_outlier         Duplicate & outlier            QUARANTINE (dup) / FLAG (outlier)
-    9  reconcile           Cross-table reconciliation     HARD_FAIL
-    10 write_dq_log        Data-quality log                INFO (tổng hợp, ghi log)
+    #  Hàm                              Chiều                              Severity
+    1  inventory                        Snapshot/inventory                 HARD_FAIL
+    2  validate_schema                  Schema & format                    QUARANTINE
+    3  keys                             Grain & candidate key              HARD_FAIL
+    4  check_ri                         Referential integrity              QUARANTINE
+    5  completeness                     Completeness                       WARN
+    6  business_rules                   Business-rule validity             QUARANTINE
+    7  time_coverage                    Time coverage                      WARN
+    8  dup_outlier                      Duplicate & outlier                QUARANTINE (dup) / FLAG (outlier)
+    9  reconcile                        Cross-table reconciliation         HARD_FAIL
+    10 write_dq_log                     Data-quality log                   INFO (tổng hợp, ghi log)
+    11 cross_table_temporal_consistency Cross-table temporal consistency   WARN
+
+Chiều 11 thêm 2026-08-10 (PO duyệt, xem PROCESS.md log cùng ngày +
+`.process_status/audit_temporal_consistency_2026-08-10.md`) — vá gap thật: `check_ri` (chiều 4)
+chỉ đo khoá con→cha CÓ TỒN TẠI, không đo THỨ TỰ THỜI GIAN giữa 2 cột ngày liên bảng. Phát hiện gốc:
+`customers.signup_date` không đáng tin làm mốc quan hệ khách hàng (89,3% khách có đơn hàng TRƯỚC
+ngày signup) — không chiều nào trong 10 chiều gốc bắt được vì đây là lỗi *ngữ nghĩa liên bảng theo
+ngày*, không phải lỗi dtype/null/range/tồn-tại-khoá/khớp-tổng-tiền.
 
 Mỗi hàm trả `list[DQResult]` — KHÔNG raise để dừng pipeline; caller (job M2 / test M5) tự quyết
-định hành động (quarantine/fail/warn) dựa vào `.severity` + `.status`. `run_all()` gộp cả 10 chiều
+định hành động (quarantine/fail/warn) dựa vào `.severity` + `.status`. `run_all()` gộp cả 11 chiều
 + ghi log + trả gate tổng.
 """
 
@@ -48,6 +56,7 @@ SEVERITY_BY_DIMENSION: dict[int, str] = {
     8: "QUARANTINE",
     9: "HARD_FAIL",
     10: "INFO",
+    11: "WARN",
 }
 
 DIMENSION_NAME: dict[int, str] = {
@@ -61,6 +70,7 @@ DIMENSION_NAME: dict[int, str] = {
     8: "dup_outlier",
     9: "reconcile",
     10: "write_dq_log",
+    11: "cross_table_temporal_consistency",
 }
 
 
@@ -520,6 +530,60 @@ def write_dq_log(
     return log_df
 
 
+# ----------------------------------------------------------------------
+# 11 — Cross-table temporal consistency (thêm 2026-08-10, PO duyệt — xem docstring module)
+# ----------------------------------------------------------------------
+def cross_table_temporal_consistency(
+    tables: dict[str, pd.DataFrame] | None = None,
+    batch_id: str | None = None,
+    warn_threshold: float = 0.02,
+) -> list[DQResult]:
+    """Chiều 11 — cột ngày ở bảng "quan hệ" (vd `signup_date`) phải xảy ra TRƯỚC (hoặc cùng) cột
+    ngày ở bảng "sự kiện phát sinh từ quan hệ đó" (vd `order_date`), theo GRAIN ĐÚNG của quan hệ
+    (1 dòng/khoá join, không phải 1 dòng/sự kiện) — khác `check_ri` (chiều 4) vốn đo khoá con→cha
+    CÓ TỒN TẠI, không đo THỨ TỰ THỜI GIAN.
+
+    Sai -> WARN, KHÔNG QUARANTINE: vi phạm đo được ở mức 89,3% khách (audit 2026-08-10) —
+    quarantine sẽ xoá gần hết bảng `customers`, phá mọi model/mart downstream dùng bảng này. Bản
+    chất lỗi là "1 CỘT không đáng tin" (dùng sai mục đích), không phải "1 nhóm DÒNG lỗi cá biệt"
+    như orphan FK thường gặp — hành động đúng là cảnh báo, để downstream tự chọn cột thay thế
+    (xem `int_cohort_first_order` — dbt đã làm đúng việc này), không phải lọc dòng.
+
+    Chỉ implement đúng 1 cặp đã CHỨNG MINH có vi phạm thật (`customers.signup_date` vs
+    `orders.order_date`) — 6 cặp ngày-tháng khác trong 14 bảng đã audit riêng đều 0,0000% vi phạm
+    (`.process_status/audit_temporal_consistency_2026-08-10.md`), không thêm check suy đoán cho
+    cặp chưa có bằng chứng cần kiểm."""
+    batch_id = batch_id or new_batch_id()
+    loaded = _load_all(tables)
+    results: list[DQResult] = []
+
+    if "customers" not in loaded or "orders" not in loaded:
+        return [_result(11, "customers<->orders", "temporal_check_skipped", 0, None, "WARN",
+                         "Thiếu bảng 'customers' hoặc 'orders' để check temporal consistency.",
+                         batch_id)]
+
+    cust, orders = loaded["customers"], loaded["orders"]
+    if not {"customer_id", "signup_date"}.issubset(cust.columns) or \
+            not {"customer_id", "order_date"}.issubset(orders.columns):
+        return [_result(11, "customers<->orders", "temporal_check_skipped", 0, None, "WARN",
+                         "Thiếu cột signup_date/customer_id/order_date — bỏ qua check.", batch_id)]
+
+    first_order = orders.groupby("customer_id")["order_date"].min().rename("first_order_date")
+    joined = cust[["customer_id", "signup_date"]].merge(first_order, on="customer_id", how="inner")
+    n = len(joined)
+    n_viol = int((joined["first_order_date"] < joined["signup_date"]).sum())
+    pct = (n_viol / n) if n else 0.0
+    results.append(
+        _result(11, "customers<->orders", "signup_after_first_order", round(pct, 6),
+                warn_threshold, "PASS" if pct <= warn_threshold else "WARN",
+                f"{n_viol:,}/{n:,} ({pct:.2%}) khách có signup_date SAU ngày đơn hàng đầu tiên — "
+                "cột signup_date không đáng tin làm mốc quan hệ khách hàng (dùng ngày đơn hàng "
+                "đầu tiên thay thế nếu cần mốc thời gian bắt đầu quan hệ, vd dbt int_cohort_first_order).",
+                batch_id)
+    )
+    return results
+
+
 def gate_status(results: list[DQResult]) -> str:
     """PASS / CONDITIONAL / FAIL tổng hợp — FAIL nếu có FAIL ở dimension HARD_FAIL (1/3/9),
     CONDITIONAL nếu có FAIL/WARN ở dimension khác, ngược lại PASS."""
@@ -533,7 +597,7 @@ def gate_status(results: list[DQResult]) -> str:
 def run_all(
     tables: dict[str, pd.DataFrame] | None = None, batch_id: str | None = None
 ) -> tuple[pd.DataFrame, str]:
-    """Chạy đủ 10 chiều DQ trên toàn bộ bảng raw, ghi dq_log, trả (log_df, gate_status)."""
+    """Chạy đủ 11 chiều DQ trên toàn bộ bảng raw, ghi dq_log, trả (log_df, gate_status)."""
     batch_id = batch_id or new_batch_id()
     loaded = _load_all(tables)
     results: list[DQResult] = []
@@ -543,6 +607,7 @@ def run_all(
         results += validate_schema(df, table, batch_id)
         results += keys(df, table, batch_id)
     results += check_ri(loaded, batch_id)
+    results += cross_table_temporal_consistency(loaded, batch_id)
     for table, df in loaded.items():
         results += completeness(df, table, batch_id)
     results += business_rules(loaded, batch_id)
