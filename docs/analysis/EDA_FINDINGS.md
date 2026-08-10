@@ -864,18 +864,18 @@ Câu hỏi trả lời: doanh thu đang ở đâu so với lịch sử, xu hư�
 | AOV có/không promo | `mart_channel_perf` (`dimension_type='promo'`) | Có sẵn |
 | Region × Category cross (2 chiều đồng thời) | KHÔNG có — `mart_channel_perf` chỉ 1 chiều/lần (`dimension_type`) | **Thiếu** — cần mart mới hoặc pivot ở BI tool |
 
-### Trang 3 — Chẩn đoán nguyên nhân (Diagnostic) — GAP LỚN NHẤT
+### Trang 3 — Chẩn đoán nguyên nhân (Diagnostic) — ĐÃ ĐÓNG (2026-08-10)
 
-Đây là nhóm phát hiện có giá trị cao nhất phiên này (break Q4/2018, ASP-vs-volume, cơ chế lỗ gộp promo) nhưng **hoàn toàn chưa có mart nào expose** — hiện chỉ tính được trong notebook qua join `li` (pandas, `items+orders+products+customers+geography+promotions`).
+~~Đây là nhóm phát hiện có giá trị cao nhất phiên này... hoàn toàn chưa có mart nào expose~~ → **ĐÃ LÀM.** 2 mart mới (`dbt_datathon/models/marts/mart_revenue_diagnostic_yearly.sql`, `mart_promo_margin_diagnostic.sql`) + 1 intermediate dùng chung (`int_diagnostic_line_items.sql`). Verify đối chiếu Trino vs số notebook đã công bố khớp tuyệt đối (gross/cancelled/discount, repeat share, ASP-volume 2018→2019, below-cost promo/category). Chi tiết: PROCESS.md log 2026-08-10 "Mart chẩn đoán nguyên nhân".
 
 | Thành phần | Nguồn dữ liệu | Sẵn sàng |
 |---|---|---|
-| ASP vs Volume theo năm (index 2018=100) | Không có mart — cần `n_orders`, `n_active_cust`, `qty`, `ASP` theo năm | **Thiếu** |
-| Waterfall Gross → Net (hủy đơn/chiết khấu/hoàn tiền) | Không có mart — cần join `orders.order_status` + `order_items.discount_amount` + `returns.refund_amount` | **Thiếu** |
-| % dòng bán dưới giá vốn theo category/promo/tháng | Không có mart — cần `unit_price < cogs` ở grain dòng hàng, group theo nhiều chiều | **Thiếu** |
-| Cờ "năm chẵn/lẻ" + lịch khuyến mãi | Không có mart — cần join `order_items.promo_id` → `promotions.start_date/end_date` | **Thiếu** |
+| ASP vs Volume theo năm (index 2018=100) | `mart_revenue_diagnostic_yearly` (`asp`, `qty`, `n_orders`, `n_active_cust`) | **Có sẵn** |
+| Waterfall Gross → Net (hủy đơn/chiết khấu/hoàn tiền) | `mart_revenue_diagnostic_yearly` (`gross_booked`/`cancelled_loss`/`discount_loss`/`refund_loss`/`net_revenue`) | **Có sẵn** |
+| % dòng bán dưới giá vốn theo category/promo/tháng | `mart_promo_margin_diagnostic` (grain year×month×category×has_promo) | **Có sẵn** |
+| Cờ "năm chẵn/lẻ" + lịch khuyến mãi | `mart_promo_margin_diagnostic.is_odd_year` (kết hợp `month`+`has_promo`) | **Có sẵn** |
 
-**Đề xuất RICE nếu làm dashboard thật**: đây là nhóm ưu tiên cao nhất để bổ sung mart — build 1 model mới kiểu `mart_revenue_diagnostic` (grain năm hoặc năm-tháng, cột: qty/n_orders/n_active_cust/ASP/pct_below_cost/pct_has_promo) sẽ mở khóa cả Trang 1 (cờ mùa vụ) lẫn Trang 3 mà không cần dashboard tự query `li` runtime (nặng, 677K dòng).
+Phát hiện phụ khi build: `refund_loss` tổng mart (0.487 tỷ) thấp hơn số notebook gốc từng công bố (0.511 tỷ) — notebook gốc tính `refund_loss` KHÔNG lọc năm (khác mọi cột khác đều lọc 2013-2022), mart sửa đúng sự không nhất quán đó (2.115/39.939 dòng `returns.csv` thuộc đơn năm 2012 bị loại đúng). Số mart đáng tin hơn số notebook cũ ở điểm này.
 
 ### Trang 4 — Khách hàng (Customer / RFM / Cohort)
 
@@ -897,8 +897,8 @@ Khác biệt về bản chất: đây là tính toán CÓ GIẢ ĐỊNH (`PRICE_
 
 | Ưu tiên | Việc | Lý do |
 |---|---|---|
-| **1** | Mart chẩn đoán (Trang 3) | Gap lớn nhất, giá trị phân tích cao nhất phiên này, hiện 100% phải chạy notebook mới xem được |
-| 2 | Mart cohort theo năm (Trang 4) | Có sẵn dữ liệu nguồn (`int_cohort_first_order`), chỉ cần thêm 1 view/mart nhẹ |
+| ~~1~~ ĐÃ XONG | ~~Mart chẩn đoán (Trang 3)~~ | Xong 2026-08-10 — `mart_revenue_diagnostic_yearly` + `mart_promo_margin_diagnostic` |
+| 1 (mới) | Mart cohort theo năm (Trang 4) | Có sẵn dữ liệu nguồn (`int_cohort_first_order`), chỉ cần thêm 1 view/mart nhẹ |
 | 3 | Region × Category cross (Trang 2) | Nhu cầu cụ thể (đã dùng ở đề xuất 3), nhưng độ lớn tác động đã đo thấp (0.038 tỷ) — không khẩn |
 | Không cần mart | Trang 5 (What-if) | Bản chất động, mart tĩnh không phù hợp |
 
