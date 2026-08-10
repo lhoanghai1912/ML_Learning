@@ -645,29 +645,76 @@ models:
         description: "total_active*100/total_cohort_size — đường cong retention trung bình weighted theo cohort_size. month_offset=0 luôn = 100%."
 
 # ---------------------------------------------------------------------------
-# EXPOSURES (M3b) — model nào cấp cho notebook nào, phục vụ TODO đổi nguồn từ raw CSV sang mart
-# đã note sẵn trong notebooks/02_eda.ipynb (mục 0: "Khi M3b xong, thay các cell load ở mục 0 bằng
-# SELECT * FROM iceberg.marts.* qua Trino"). notebooks/01_data_quality.ipynb CỐ Ý KHÔNG khai
+# EXPOSURES — model nào cấp cho notebook nào. notebooks/01_data_quality.ipynb CỐ Ý KHÔNG khai
 # exposure ở đây — notebook đó validate trực tiếp src/datathon.quality (10 hàm DQ, M4a) trên raw
 # CSV để mô phỏng đúng pipeline ingest thật (M2), là 1 luồng kiểm tra SONG SONG/độc lập với dbt
 # staging test, KHÔNG phải use-case "đọc mart để phân tích" — gán exposure vào đây sẽ sai ý nghĩa.
+#
+# 2026-08-10: `notebook_02_eda` (1 file gộp 4 phần) tách thành 4 exposure riêng — 1 exposure cũ
+# khai `depends_on` cả 4 mart nhưng thực tế notebook lúc đó chỉ query `mart_revenue_daily` qua
+# Trino, còn lại (`li`/`rfm`/cohort) tính bằng pandas thuần trên raw CSV, KHÔNG thật sự query mart
+# — khai kiểu đó là lineage SAI (aspirational, không phải hiện trạng). Bảng dưới đây khai ĐÚNG
+# dependency thật của từng file (verify bằng cách đọc code từng notebook, không suy đoán). Các
+# mart chưa được dùng thật (`mart_customer_segments`/`mart_channel_perf`/`mart_cohort_retention`)
+# là cơ hội TODO cho lần sửa sau (thay `li`/`rfm` pandas bằng query mart tương ứng), KHÔNG khai
+# vào `depends_on` cho tới khi notebook thật sự query chúng.
 # ---------------------------------------------------------------------------
 exposures:
-  - name: notebook_02_eda
-    label: "02_eda.ipynb — EDA Descriptive/Diagnostic/Dashboard/Prescriptive"
+  - name: notebook_02a_eda_thoi_vu
+    label: "02a_eda_thoi_vu.ipynb — Thời vụ & biến động theo thời gian"
     type: notebook
     maturity: medium
     description: >
-      Notebook M6a gộp phase1_descriptive/phase2_diagnostic/phase3_dashboard/phase4_prescriptive.
-      HIỆN TẠI (M6a, trước M3b) đọc raw CSV qua datathon.load_raw() vì lúc viết M3a/M3b chưa xong
-      (TODO ghi rõ trong notebook mục 0). M3b (milestone này) đã xong — exposure khai đúng model
-      cấp dữ liệu để lần đổi tới (ngoài phạm vi M3b, thuộc M6a làm lại) dùng đúng nguồn, KHÔNG tự
-      suy đoán bảng nào tương ứng phần nào của notebook.
+      Xu hướng ngày/tháng/mùa vụ/Tết (query mart_revenue_daily qua Trino) + doanh thu theo
+      category/vùng/kênh qua các năm (tính từ raw CSV qua join `li`, chưa có mart tương ứng —
+      TODO nếu muốn nối mart_channel_perf sau này).
     depends_on:
       - ref('mart_revenue_daily')
-      - ref('mart_customer_segments')
-      - ref('mart_channel_perf')
+    owner:
+      name: da
+      email: da-team@datathon2026.local
+
+  - name: notebook_02b_eda_nguyen_nhan
+    label: "02b_eda_nguyen_nhan.ipynb — Chẩn đoán nguyên nhân"
+    type: notebook
+    maturity: medium
+    description: >
+      Khách mới/cũ, waterfall gross→net, khuyến mãi, ASP vs volume, bán dưới giá vốn — toàn bộ
+      tính từ raw CSV qua join `li` (pandas), CHƯA query mart nào (chỉ load mart_revenue_daily ở
+      cell setup dùng chung, không dùng trực tiếp trong phần này).
+    depends_on:
+      - ref('mart_revenue_daily')
+    owner:
+      name: da
+      email: da-team@datathon2026.local
+
+  - name: notebook_02c_eda_khach_hang
+    label: "02c_eda_khach_hang.ipynb — Phân khúc khách hàng"
+    type: notebook
+    maturity: medium
+    description: >
+      Demographics theo tuổi (raw CSV qua `li`), RFM (pandas thuần trên orders+payments, chưa
+      query int_rfm/mart_customer_segments), cohort retention (query TRỰC TIẾP int_cohort +
+      int_cohort_first_order qua Trino — 2 model dbt thật, xem PROCESS.md log nợ signup_date
+      2026-08-10).
+    depends_on:
+      - ref('mart_revenue_daily')
       - ref('int_cohort')
+      - ref('int_cohort_first_order')
+    owner:
+      name: da
+      email: da-team@datathon2026.local
+
+  - name: notebook_02d_eda_de_xuat
+    label: "02d_eda_de_xuat.ipynb — Đề xuất hành động"
+    type: notebook
+    maturity: medium
+    description: >
+      3 đề xuất (floor price, win-back RFM, đồng bộ pricing vùng) — tự build lại `li_full`/`rfm`/
+      `li` bằng pandas (không share state với 02a-02c), chưa query mart nào ngoài
+      mart_revenue_daily ở cell setup dùng chung.
+    depends_on:
+      - ref('mart_revenue_daily')
     owner:
       name: da
       email: da-team@datathon2026.local
