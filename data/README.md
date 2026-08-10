@@ -228,6 +228,8 @@ ngày lỗ gộp ở `sales.csv`), không phải lỗi dữ liệu.
 | `payment_value` | float64 | = **Monetary cho RFM** (Phần A). Khớp 100% công thức `qty×price − discount`. Có payment kể cả đơn `cancelled` — phải lọc `order_status` trước khi coi là dòng tiền thực thu |
 | `installments` | int64 | số kỳ trả góp |
 
+⚠️ **Giới hạn dataset đã ghi nhận, KHÔNG PHẢI THIẾU SÓT CẦN VÁ (quyết định PO 2026-08-10)**: `payments.csv` **không có cột ngày nào** (`order_id, payment_method, payment_value, installments`). Hệ quả: không thể kiểm "ngày thanh toán có sau ngày đặt đơn không" (audit `.process_status/audit_temporal_consistency_2026-08-10.md` ghi cặp này là **N/A — không kiểm được**, khác với 6 cặp khác đều kiểm được và sạch 0,0000%). Nếu về sau cần đối chiếu thời điểm thanh toán (vd phát hiện thanh toán trễ/gian lận theo thời gian), phải xin bổ sung cột từ nguồn dữ liệu gốc — không có cách suy ra từ các cột hiện có. Không chặn gì hiện tại (mọi phân tích Monetary/RFM chỉ cần `payment_value`, không cần ngày).
+
 ### 4.7 `products.csv` — 2,412 dòng, grain 1 dòng/SKU
 
 | Cột | Dtype quan sát | Ý nghĩa / ghi chú |
