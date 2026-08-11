@@ -276,6 +276,22 @@ Status: ⬜ pending · 🟡 running · ✅ done · ❌ blocked
     - `ruff check src/datathon/quality.py` = **0 lỗi**.
   - **Phát hiện phụ khi verify**: `run_all()` cho **gate=FAIL** (dimension 3, `order_items` thiếu cột surrogate) — kiểm bằng `git stash` xác nhận **lỗi PRE-EXISTING** (do gọi `run_all()` trần không qua `ingestion.build_order_items_line_id()` trước, đúng như docstring đã ghi từ M4a), **không phải do thêm chiều 11 gây ra**. Không sửa (ngoài phạm vi, không phải bug thật — pipeline thật (job M2) luôn build surrogate trước khi gọi DQ).
   - **Nợ signup_date coi như đóng HOÀN TOÀN cả 4 nhánh**: model dbt đúng, mart BI-ready, chart+phân tích notebook, và giờ đã vá gốc ở tầng DQ framework để lỗi tương tự tương lai (nếu phát sinh ở cặp bảng khác) được bắt tự động thay vì phải chờ phát hiện thủ công qua EDA.
+- 2026-08-10: **tester audit độc lập `tests/test_ingestion.py` (commit `2a06c33`) — GATE = PASS, phát hiện 5 gap coverage/assert, ghi nợ mới cho de/ds.** Report đầy đủ: `.process_status/tester_verify_test_ingestion_2026-08-10.md`. KHÔNG tin self-report của phiên viết code, tự chạy lại độc lập:
+  - `pytest tests/test_ingestion.py -v` = **32/32 PASSED** (khớp claim). `pytest -q` full suite = **85 passed** (53 cũ + 32 mới, không đổi so PROCESS.md, không phá gì cũ). `ruff check tests/` = **0 lỗi**.
+  - Monkeypatch `RAW_TABLES` (2 test trong `TestIngestTable`) **KHÔNG rò rỉ sang test khác** — verify 3 cách độc lập: đảo thứ tự file `test_schema.py`↔`test_ingestion.py` cả 2 chiều (49/49 passed cả 2), full suite chạy 2 lần liên tiếp (85/85 cả 2 lần, không có `pytest-randomly` cài nên `-p no:randomly` no-op), script riêng kiểm `pytest.MonkeyPatch.undo()` phục hồi đúng dict gốc.
+  - **5 gap ghi nợ mới, xếp mức độ nghiêm trọng** (đối chiếu `grep "^def " src/datathon/ingestion.py` — 4 mục tiêu core module đã khai đủ test, gap nằm ở 2 hàm phụ trợ NGOÀI scope khai báo của file test):
+    1. **G1 (Medium)**: `add_metadata_columns()` — không test nào assert 5 cột metadata bắt buộc (`_ingested_at`/`_source_file`/`_source_row_number`/`_checksum`/`_batch_id`) tồn tại đúng tên/đúng giá trị — contract cứng DE HARDENING STANDARD, sửa hỏng sẽ không có test nào báo đỏ.
+    2. **G2 (Low-Medium)**: `_row_checksum()` (private) — 0 test trong toàn repo đọc/assert nội dung cột `_checksum` (deterministic theo nội dung dòng, xử lý NaN).
+    3. **G3 (Low)**: `load_raw()` — nhánh `FileNotFoundError` (path khai trong `RAW_TABLES` nhưng file không tồn tại trên đĩa) chưa từng được test.
+    4. **G4 (Low)**: `build_order_items_line_id()` — nhánh `raise ValueError` (thiếu cột `_source_row_number`, gọi hàm không qua `add_metadata_columns` trước) chưa từng được test.
+    5. **G5 (Low)**: `test_runs_clean_on_every_sample_table`/`test_order_items_gets_unique_surrogate_key_column` assert lỏng `status in ("OK","QUARANTINED")` — có chủ đích (smoke 14 bảng), chấp nhận được, nhưng không pin đúng trạng thái/số dòng quarantine kỳ vọng theo từng bảng `data/sample`.
+  - **Không có gap Critical/High.** Không tự sửa `tests/test_ingestion.py`/`src/datathon/ingestion.py` (đúng scope audit) — **chờ de/ds quyết** có vá G1-G5 không, ưu tiên G1 trước (duy nhất chạm contract cứng đã ghi trong docstring module + `RESTRUCTURE_AGENTS.md`).
+- 2026-08-11: **G1-G5 ĐÓNG — vá xong `tests/test_ingestion.py`.** Giao `tester` (subagent), commit `7e04455`. PO verify độc lập, không tin self-report:
+  - `git show 7e04455 --stat` = đúng 2 file (`tests/test_ingestion.py` +270/-7, `.process_status/tester_patch_ingestion_gaps_2026-08-10.md` mới) — 0 đụng `src/datathon/ingestion.py`, đúng ràng buộc đã giao.
+  - G1 → `TestAddMetadataColumns` (9 test, assert đủ 5 cột metadata tên/giá trị/kiểu, hardcode tên độc lập với `schema.METADATA_COLUMNS`). G2 → `TestRowChecksum` (8 test, deterministic + khớp sha256 tính tay độc lập + NaN→rỗng). G3 → `TestLoadRaw` (2 test, nhánh `FileNotFoundError`). G4 → `TestBuildOrderItemsLineId` (2 test, nhánh `ValueError` thiếu `_source_row_number`). G5 → pin `status=="OK"` + `rows_quarantined==0` (đo thật 14/14 bảng `data/sample`, tất cả sạch).
+  - PO tự chạy lại độc lập qua `.venv/bin/python` (không dùng lại kết quả agent): `pytest -q` = **106 passed** (khớp claim 85→106, +21 test = 9+8+2+2+0 đúng tổng). `ruff check tests/test_ingestion.py` = **All checks passed**.
+  - Không phát hiện bug thật trong `ingestion.py` (đúng scope, không tự sửa production code).
+  - **Nợ G1-G5 (mở từ log tester audit 2026-08-10) coi như đóng hết.** Chưa push (`ahead` origin, chờ gộp đợt sau cùng các việc khác nếu có).
 
 ---
 
